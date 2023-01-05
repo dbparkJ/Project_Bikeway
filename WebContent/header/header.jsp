@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="ctxpath" value="<%=request.getContextPath()%>" scope="session"/>
 <head>
-	<title>당신 근처의 당근마켓</title>
+	<title>Bikeway 당신의 라이딩과 함께</title>
 	<meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
