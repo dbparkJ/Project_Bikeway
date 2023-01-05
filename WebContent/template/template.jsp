@@ -24,7 +24,7 @@ Hello World
 		<%-- <jsp:include page="/module/top.jsp" flush="false"/>--%>
 		<!-- content -->	
 		<div class="container-md">
-			<%--<jsp:include page="${CONTENT}" flush="false"/> --%>
+			<jsp:include page="${CONTENT}" flush="false"/>
 		</div>
 		<!-- content end-->
 		<jsp:include page="/module/bottom.jsp"/>
