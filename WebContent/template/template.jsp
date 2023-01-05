@@ -6,7 +6,7 @@
 <%-- template.jsp --%>
 <html>
 <body>
-Hello
+Hello World
 
 <div id="map" style="width:500px;height:400px;"></div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=17d6d1b98aeed31a6b874f4a6fd6d957"></script>
