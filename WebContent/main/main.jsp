@@ -62,6 +62,7 @@
                 </div>
             </c:forEach>
         </div>
+        
         <div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination pagination justify-content-center">
@@ -89,6 +90,7 @@
                 </ul>
             </nav>
         </div>
+        
     </div>
 </div>
 </html>
