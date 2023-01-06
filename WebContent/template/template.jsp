@@ -7,24 +7,13 @@
 <html>
 	<body>
 		<div>
-			<div> 
-				<h1>상단메뉴바</h1>
+			<div>
+				<a href="${ctxpath}/corse/corse.do">상단메뉴바</a>	 
 			</div>
 			<div>
 				<img src="${ctxpath}/template/bike2.jpg" style="max-width: 100%; height:auto;"/>
 			</div>
 			<div>
-				<div id="map" style="width:500px;height:500px;"></div>
-					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=17d6d1b98aeed31a6b874f4a6fd6d957"></script>
-					<script>
-						var container = document.getElementById('map');
-						var options = {
-							center: new kakao.maps.LatLng(33.450701, 126.570667),
-							level: 3
-						};
-						
-						var map = new kakao.maps.Map(container, options);
-					</script>
 				<div>
 					<div style="">네이버
 						<nav>

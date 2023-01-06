@@ -20,7 +20,7 @@ import command.CommandAction; //인터페이스
 //컨트롤러 = 서블릿
 public class ControllerDispatcher extends HttpServlet{
 	//변수
-	private Map map=new HashMap();
+	private Map map=new HashMap(); 
 	
 	//init() : 초기화 작업
 	public void init(ServletConfig config) throws ServletException{

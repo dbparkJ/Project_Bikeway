@@ -8,7 +8,7 @@ import command.CommandAction;
 
 public class MainAction implements CommandAction {
 	
-	@Override
+	@Override 
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		String pageNum=request.getParameter("pageNum");//view단에서 페이지 넘길때 요청 받는다
 		
