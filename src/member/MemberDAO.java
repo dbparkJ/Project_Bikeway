@@ -20,8 +20,7 @@ public class MemberDAO {
 	
 	public static MemberDAO getDao(){ //jsp 사용할 메서드
 		return instance;
-	}//getDao-end
-	
+	}//getDao-end	
 
 	
 	//전역변수
@@ -220,7 +219,7 @@ public class MemberDAO {
 	   public void updateMember(MemberDTO dto){
 	      try{
 	         con = DBConnection.getConnection();
-	         String sql="update member set password=?, name=?, nickname=?,  zipcode=?, address=?, updated_at=NOW() where id=?";
+	         String sql="update member set password=?, name=?, nickname=?,  zipcode=?, address=?, updated_at=SYSDATE where id=?";
 	         pstmt=con.prepareStatement(sql);
 	         
 	         pstmt.setString(1, dto.getPassword());
@@ -244,7 +243,7 @@ public class MemberDAO {
 	   public void updatePw(String pw,String email){
 		      try{
 		         con = DBConnection.getConnection();
-		         String sql="update member set password=?, updated_at=NOW() where email=?";
+		         String sql="update member set password=?, updated_at=SYSDATE where email=?";
 		         pstmt=con.prepareStatement(sql);
 		         pstmt.setString(1, pw);
 		         pstmt.setString(2, email);
@@ -311,7 +310,7 @@ public class MemberDAO {
 		try{
 			con = DBConnection.getConnection();
 			pstmt=con.prepareStatement("insert into member (email, password, nickname, name, address, zipcode, created_at, updated_at,ID)"+
-			" values(?,?,?,?,?,?, SYSDATE, SYSDATE,1)");
+			" values(?,?,?,?,?,?, SYSDATE, SYSDATE,emp_seq.NEXTVAL)");
 
 			//?값 채우기
 			pstmt.setString(1, dto.getEmail());

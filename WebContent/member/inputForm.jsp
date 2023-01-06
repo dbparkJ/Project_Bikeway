@@ -96,7 +96,7 @@
    </script>
    <h2>회원가입</h2>
   
-   <form name="inputForm" method="post" action="${ctxpath}/member/inputPro.do" >  <!-- onsubmit="return check2()" -->
+   <form name="inputForm" method="post" action="${ctxpath}/member/inputPro.do" onsubmit="return check2()" >
       <table border="1" align="center">
       <%--
          <tr>
@@ -111,11 +111,7 @@
             <td>이메일</td>
             <td>
                 <input type="text" name="email" id="email" size="30" placeholder="이메일입력">
-                <input class="btn btn-outline-dark" type="button" value="email중복체크" onClick="emailCheck()" >                
-                <%--
-                <input type="button" value="email유효성체크" onClick="verifyEmail()">                      
-                 --%>
-                 
+                <input class="btn btn-outline-dark" type="button" value="email중복체크" onClick="emailCheck()">                
                 <input type="hidden" name="emailck" id="emailck" value="false">                
             </td>
          </tr>
@@ -123,10 +119,6 @@
          <tr>
             <td>PW</td>
             <td><input type="password" name="password" id="password" size="12">
-                               ※소문자/숫자/특수문자포함 8자리이상 
-                <%--
-                <input type="button" value="비번체크" onClick="chkPW()">                
-                 --%>
             </td>
          </tr>
          
@@ -134,9 +126,6 @@
             <td>PW확인</td>
             <td>
                 <input type="password" name="password2" id="password2" size="12" ">
-                <%--
-                <input type="button" value="비번확인체크" onClick="chkPW2()">
-                 --%>
             </td>
          </tr>
           
@@ -144,10 +133,6 @@
          <tr>
             <td>이름</td>
             <td><input type="text" name="name" id="name" size="30" placeholder="이름입력" ">
-                                ※숫자불가
-                <%--
-                <input type="button" value="이름체크" onClick="chkName()">
-                 --%>
             </td>
          </tr>
          <tr>
@@ -155,9 +140,6 @@
             <td>
             <input type="text" name="nickname" id="nickname" size="12">
             <input type="hidden" name="nicknameck" id="nicknameck" value="false" >
-            <%--
-            <input type="button" value="닉네임체크" onClick="nickCheck()">
-             --%>
             </td>
             
          </tr>
