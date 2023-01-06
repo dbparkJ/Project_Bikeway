@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctxpath" value="<%=request.getContextPath() %>" />
 <html>
-loginFrom2
-	<div class="row justify-content-md-center py-5">
+<div class="row justify-content-md-center py-5">
     
     <div class="w-100 text-center mb-5">
         <img src="${ctxpath}/static/images/loginLogo.png" style="height: 300px" />
