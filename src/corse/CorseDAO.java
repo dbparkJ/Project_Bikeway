@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import db.DBConnection;
 
 public class CorseDAO {
@@ -34,22 +37,22 @@ public class CorseDAO {
 	
 	
 	public List<CorseDTO> getAllCorseList(){
-		List<CorseDTO> allCorse = null;
+		//List<CorseDTO> allCorse = null;
+		JSONArray array = new JSONArray();
 		try {
 			con = DBConnection.getConnection();
-			pstmt = con.prepareStatement("select * from corse where corse= '소말송추됫박' ");
+			pstmt = con.prepareStatement("select * from corse where corse_name= '여주ic-농부부'");
 			rs=pstmt.executeQuery();
 			
-			if(rs.next()){
-				allCorse=new ArrayList();
-				do{	//rs.next로 하나를 받았으므로 do-while 사용
-					CorseDTO dto=new CorseDTO();
-					dto.setCorse(rs.getString("corse"));
-
-
-					allCorse.add(dto);
-				}while(rs.next());
-			}//if-end
+			while(rs.next()) {
+		    	JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
+		    	obj.put("elev", rs.getLong("elev"));
+		        obj.put("lon", rs.getLong("lon"));
+		        obj.put("lat", rs.getLong("lat"));
+		        obj.put("corse_name", rs.getString("corse_name"));	// obj.put("key","value")
+		        array.add(obj);	//작성한 JSON 객체를 배열에 추가
+		    }
+			
 		}catch(Exception ex) {
 			System.out.println("getAllCorseList()예외:"+ex);
 		}finally{
@@ -59,7 +62,7 @@ public class CorseDAO {
 				if(con!=null){con.close();}
 			} catch (Exception exx) {}
 		}//finally
-		return allCorse;
+		return array;
 	}//getAllCorseList-end
 	
 	
@@ -81,7 +84,7 @@ public class CorseDAO {
 				singleCorse=new ArrayList();
 				do{	//rs.next로 하나를 받았으므로 do-while 사용
 					CorseDTO dto=new CorseDTO();
-					dto.setCorse(rs.getString("corse"));
+					dto.setCorse_name(rs.getString("corse"));
 
 					singleCorse.add(dto);
 				}while(rs.next());

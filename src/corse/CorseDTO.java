@@ -1,15 +1,15 @@
 package corse;
 
 public class CorseDTO {
-	private String corse;
+	private String corse_name;
 	private long lon;
 	private long lat;
 	private long elev;
-	public String getCorse() {
-		return corse;
+	public String getCorse_name() {
+		return corse_name;
 	}
-	public void setCorse(String corse) {
-		this.corse = corse;
+	public void setCorse_name(String corse_name) {
+		this.corse_name = corse_name;
 	}
 	public long getLon() {
 		return lon;
