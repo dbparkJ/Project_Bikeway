@@ -41,15 +41,15 @@ public class CorseDAO {
 		JSONArray array = new JSONArray();
 		try {
 			con = DBConnection.getConnection();
-			pstmt = con.prepareStatement("select * from corse where corse_name= '여주ic-농부부'");
+			pstmt = con.prepareStatement("select * from corse where elev = '64.25'");
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
 		    	JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
+		    	obj.put("corse_name", rs.getString("corse_name"));	// obj.put("key","value")
 		    	obj.put("elev", rs.getLong("elev"));
 		        obj.put("lon", rs.getLong("lon"));
 		        obj.put("lat", rs.getLong("lat"));
-		        obj.put("corse_name", rs.getString("corse_name"));	// obj.put("key","value")
 		        array.add(obj);	//작성한 JSON 객체를 배열에 추가
 		    }
 			

@@ -18,9 +18,8 @@ public class CorseAction implements CommandAction{
 		
 		allCorseList=corseDAO.getAllCorseList();
 		
-//		System.out.println(allCorseList.size());
 		request.setAttribute("allCorseList", allCorseList);
-		
+		System.out.println(allCorseList);
 		return "/corse/corse.jsp";
 	}
 

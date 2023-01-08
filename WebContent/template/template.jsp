@@ -8,35 +8,12 @@
 	<body>
 		<div>
 			<div>
-				<a href="${ctxpath}/corse/corse.do">상단메뉴바</a>	 
-			</div>
-			<div>
-				<img src="${ctxpath}/template/bike2.jpg" style="max-width: 100%; height:auto;"/>
-			</div>
-			<div>
-				<div>
-					<div style="">네이버
-						<nav>
-							<ul>
-								<li><a href="">첫번째리스트</a></li>
-								<li><a href="">첫번째리스트</a></li>
-								<li><a href="">첫번째리스트</a></li>
-								<li><a href="">첫번째리스트</a></li>
-								<li><a href="">첫번째리스트</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			
-				<div class="container-md">
-					<%-- <jsp:include page="/module/top.jsp" flush="false"/>--%>
-					<!-- content -->	
-					<div class="container-md">
-						<jsp:include page="${CONTENT}" flush="false"/>
-					</div>
-					<!-- content end-->
-					<jsp:include page="/module/bottom.jsp"/>
-				</div>
+				<!-- 상단바 -->	
+				<jsp:include page="/module/top.jsp" flush="false"/>
+				<!-- 메인이미지 -->	
+				<jsp:include page="${CONTENT}" flush="false"/>
+				<!-- 하단바 -->	
+				<jsp:include page="/module/bottom.jsp"/>
 			</div>	
 		</div>
 	</body>

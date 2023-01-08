@@ -2,20 +2,13 @@
     pageEncoding="UTF-8"
     import="corse.*"
     import="java.util.*"
+    import="org.json.simple.*"
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-String corse_name=request
+List<CorseDTO> corseList = null;
+CorseDAO dao = CorseDAO.getDao();
+corseList = dao.getAllCorseList();
 %>
-
-
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+{"corseList" : <%=corseList %>,}
