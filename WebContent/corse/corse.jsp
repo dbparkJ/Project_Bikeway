@@ -5,48 +5,51 @@
 <html>
 	<head>
 		<meta charset="EUC-KR">
-		<title>Insert title here</title>
+		<script type="text/javascript" src="${ctxpath}/static/app/js/PaintingLine.js"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=17d6d1b98aeed31a6b874f4a6fd6d957"></script>    
 	</head>
-	<script>
-		function a(){
-			$.ajax({
-				type : "get",
-                url:"postdb.jsp",
-                dataType:"JSON",/*서버로부터 받는 자료형*/
-                success: 
-                function(data){
-                	alert("연결성공")
-                	var json = JSON.parse(data.trim());
-                	alert(json)
-                }
-             });//$.ajax()
-		}
-	
-	</script>
-	
-	
-	
 	<body>
-		<p id="demo"></p><br>
-		<button onclick="a()">디비불러오기</button>
-		<table border="1">
-	        <thead>
-	            <tr>
-	                <th>번호</th>
-	                <th>제목</th>
-	                <th>내용</th>
-	                <th>작성자</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	        </tbody>
-		</table>
-		<div id="result"></div>
-		<%-- <c:forEach var="allCorse" items="${allCorseList}">
-			<span> 코스이름 : ${allCorse.corse_name} </span>&nbsp;
-			<span> 위도 : ${allCorse.lat} </span>&nbsp;
-			<span> 경도 : ${allCorse.lon} </span>&nbsp;
-			<span> 고도 : ${allCorse.elev} </span>&nbsp; <br>
-		</c:forEach> --%>
+		<nav class="navbar navbar-expand-lg bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Navbar</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Link</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Dropdown
+							</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">Action</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">Something else here</a></li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link disabled">Disabled</a>
+						</li>
+					</ul>
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				</div>
+			</div>
+		</nav>
+		<div class="container-xxl">
+		<c:forEach var="singleCorse" items="${singleCorseList}" varStatus="status">
+			<button onclick="PaintingLine()" value="${singleCorse.corse_name}">${singleCorse.corse_name}</button>
+		</c:forEach>
+      	<div id="map" style="width:50%;height:50%;"></div>
+		</div>
 	</body>
 </html>

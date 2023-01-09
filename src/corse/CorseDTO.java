@@ -2,31 +2,31 @@ package corse;
 
 public class CorseDTO {
 	private String corse_name;
-	private long lon;
-	private long lat;
-	private long elev;
+	private Double lon;
+	private Double lat;
+	private Double elev;
 	public String getCorse_name() {
 		return corse_name;
 	}
 	public void setCorse_name(String corse_name) {
 		this.corse_name = corse_name;
 	}
-	public long getLon() {
+	public Double getLon() {
 		return lon;
 	}
-	public void setLon(long lon) {
+	public void setLon(Double lon) {
 		this.lon = lon;
 	}
-	public long getLat() {
+	public Double getLat() {
 		return lat;
 	}
-	public void setLat(long lat) {
+	public void setLat(Double lat) {
 		this.lat = lat;
 	}
-	public long getElev() {
+	public Double getElev() {
 		return elev;
 	}
-	public void setElev(long elev) {
+	public void setElev(Double elev) {
 		this.elev = elev;
 	}
 	

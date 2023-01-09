@@ -17,6 +17,8 @@
 			</div>	
 		</div>
 	</body>
+	
+	<script type="text/javascript" src="${ctxpath}/static/app/js/PaintingLine.js"></script>
 	<%-- 
 	<script type="text/javascript" src="${ctxpath}/static/app/js/paging.js"></script>
 	<script type="text/javascript" src="${ctxpath}/static/app/js/msg.js?ver=6"></script>

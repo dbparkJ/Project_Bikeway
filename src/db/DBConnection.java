@@ -6,15 +6,14 @@ import java.sql.SQLException;
  
 public class DBConnection
 {
-//    public static Connection dbCon;
+    public static Connection dbCon;
     
-        public static Connection getConnection()
-        {
+        public static Connection getConnection(){
             Connection con = null;
             try {
                 String user = "bike"; 
                 String pw = "12345";
-                String url = "jdbc:oracle:thin:@localhost:1521:xe";
+                String url = "jdbc:oracle:thin:@192.168.0.78/xe";
                 
                 Class.forName("oracle.jdbc.driver.OracleDriver");        
                 con = DriverManager.getConnection(url, user, pw);
@@ -31,4 +30,5 @@ public class DBConnection
             }
             return con;     
         }
+        
 }

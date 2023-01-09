@@ -36,23 +36,25 @@ public class CorseDAO {
 	 */
 	
 	
-	public List<CorseDTO> getAllCorseList(){
-		//List<CorseDTO> allCorse = null;
+	public List<CorseDTO> getLatLon(String corse_name){
 		JSONArray array = new JSONArray();
+		System.out.println(corse_name);
 		try {
 			con = DBConnection.getConnection();
-			pstmt = con.prepareStatement("select * from corse where elev = '64.25'");
+			pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=?");
+			pstmt.setString(1, corse_name);
+			
 			rs=pstmt.executeQuery();
+			
 			
 			while(rs.next()) {
 		    	JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
 		    	obj.put("corse_name", rs.getString("corse_name"));	// obj.put("key","value")
-		    	obj.put("elev", rs.getLong("elev"));
-		        obj.put("lon", rs.getLong("lon"));
-		        obj.put("lat", rs.getLong("lat"));
+		    	obj.put("elev", rs.getDouble("elev"));
+		        obj.put("lon", rs.getDouble("lon"));
+		        obj.put("lat", rs.getDouble("lat"));
 		        array.add(obj);	//작성한 JSON 객체를 배열에 추가
 		    }
-			
 		}catch(Exception ex) {
 			System.out.println("getAllCorseList()예외:"+ex);
 		}finally{
@@ -71,22 +73,22 @@ public class CorseDAO {
 	 */
 	
 	
-	public List<CorseDTO> getSingleCorseList(String corse){
-		List<CorseDTO> singleCorse = null;
+	public List<CorseDTO> getSingleCorseList(){
+		List<CorseDTO> singleCorseList = null;
 		try {
-			
 			con = DBConnection.getConnection();
-			pstmt = con.prepareStatement("select corse, lat, lon from corse where corse=?");
-			pstmt.setString(1, corse);
+			pstmt = con.prepareStatement("select corse_name from corse group by corse_name");
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()){
-				singleCorse=new ArrayList();
-				do{	//rs.next로 하나를 받았으므로 do-while 사용
+				singleCorseList=new ArrayList();
+				do{	
 					CorseDTO dto=new CorseDTO();
-					dto.setCorse_name(rs.getString("corse"));
 
-					singleCorse.add(dto);
+					dto.setCorse_name(rs.getString("corse_name"));
+
+					singleCorseList.add(dto); //***
+
 				}while(rs.next());
 			}//if-end
 			
@@ -100,7 +102,7 @@ public class CorseDAO {
 				if(con!=null){con.close();}
 			} catch (Exception exx) {}
 		}//finally
-		return singleCorse;
+		return singleCorseList;
 	}//getSingleCorseList-end
 
 }//CorseDAO-end

@@ -13,13 +13,12 @@ public class CorseAction implements CommandAction{
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		List<CorseDTO> allCorseList = null;
+		List<CorseDTO> singleCorseList = null;
 		CorseDAO corseDAO = CorseDAO.getDao();
 		
-		allCorseList=corseDAO.getAllCorseList();
+		singleCorseList=corseDAO.getSingleCorseList();
 		
-		request.setAttribute("allCorseList", allCorseList);
-		System.out.println(allCorseList);
+		request.setAttribute("singleCorseList", singleCorseList);
 		return "/corse/corse.jsp";
 	}
 

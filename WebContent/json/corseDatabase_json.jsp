@@ -7,8 +7,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
+String corse_name = request.getParameter("keyword");
 List<CorseDTO> corseList = null;
 CorseDAO dao = CorseDAO.getDao();
-corseList = dao.getAllCorseList();
+corseList = dao.getLatLon(corse_name);
 %>
-{"corseList" : <%=corseList %>,}
+
+<%=corseList%>
