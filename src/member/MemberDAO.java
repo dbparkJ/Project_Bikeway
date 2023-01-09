@@ -36,7 +36,7 @@ public class MemberDAO {
 			int x=-100; //변수
 			
 			try{
-				con = DBConnection.getConnection();
+				con = DBConnection.getInstacne().getConnection();
 				pstmt=con.prepareStatement("select email from member where email=?");
 				
 				pstmt.setString(1, email);
@@ -66,7 +66,7 @@ public class MemberDAO {
 			int x=-100; //변수
 			
 			try{
-				con = DBConnection.getConnection();
+				con = DBConnection.getInstacne().getConnection();
 				pstmt=con.prepareStatement("select nickname from member where nickname=?");
 				
 				pstmt.setString(1, nickname);
@@ -98,7 +98,7 @@ public class MemberDAO {
 		String dbpw="";
 		
 		try{
-			con = DBConnection.getConnection();
+			con = DBConnection.getInstacne().getConnection();
 			pstmt=con.prepareStatement("select * from member where email=?");
 			
 			pstmt.setString(1, email);
@@ -137,7 +137,7 @@ public class MemberDAO {
 			LoginMemberDTO dto=null;
 			
 			try{
-				con = DBConnection.getConnection();
+				con = DBConnection.getInstacne().getConnection();
 				pstmt=con.prepareStatement("select * from member where email=?");
 				
 				pstmt.setString(1, email);
@@ -175,7 +175,7 @@ public class MemberDAO {
 		MemberDTO dto=null;
 		
 		try{
-			con = DBConnection.getConnection();
+			con = DBConnection.getInstacne().getConnection();
 			pstmt=con.prepareStatement("select * from member where id=?");
 			
 			pstmt.setInt(1, id);
@@ -218,7 +218,7 @@ public class MemberDAO {
 	   //====================
 	   public void updateMember(MemberDTO dto){
 	      try{
-	         con = DBConnection.getConnection();
+	         con = DBConnection.getInstacne().getConnection();
 	         String sql="update member set password=?, name=?, nickname=?,  zipcode=?, address=?, updated_at=SYSDATE where id=?";
 	         pstmt=con.prepareStatement(sql);
 	         
@@ -242,7 +242,7 @@ public class MemberDAO {
 	   
 	   public void updatePw(String pw,String email){
 		      try{
-		         con = DBConnection.getConnection();
+		         con = DBConnection.getInstacne().getConnection();
 		         String sql="update member set password=?, updated_at=SYSDATE where email=?";
 		         pstmt=con.prepareStatement(sql);
 		         pstmt.setString(1, pw);
@@ -269,7 +269,7 @@ public class MemberDAO {
 		int x=-100;
 		
 		try{
-			con = DBConnection.getConnection();
+			con = DBConnection.getInstacne().getConnection();
 			pstmt=con.prepareStatement("select pw from member where id=?");
 			
 			pstmt.setInt(1,id);
@@ -308,7 +308,7 @@ public class MemberDAO {
 	
 	public void insertMember(MemberDTO dto){
 		try{
-			con = DBConnection.getConnection();
+			con = DBConnection.getInstacne().getConnection();
 			pstmt=con.prepareStatement("insert into member (email, password, nickname, name, address, zipcode, created_at, updated_at,ID)"+
 			" values(?,?,?,?,?,?, SYSDATE, SYSDATE,emp_seq.NEXTVAL)");
 
@@ -336,7 +336,7 @@ public class MemberDAO {
 		List<MemberDTO> relist=null;
 
 		try {
-			con = DBConnection.getConnection();
+			con = DBConnection.getInstacne().getConnection();
 			String sql="select m.nickname,m.id from (select distinct sender_id from message where item_id = ?) me join (select * from member where id != ?) m on me.sender_id = m.id;";
 			pstmt=con.prepareStatement(sql); //생성시 인자들어간다
 
@@ -383,7 +383,7 @@ public class MemberDAO {
 		String dbpw="";
 		
 		try{
-			con = DBConnection.getConnection();
+			con = DBConnection.getInstacne().getConnection();
 			pstmt=con.prepareStatement("select * from member where email=?");
 			
 			pstmt.setString(1, email);
@@ -419,7 +419,7 @@ public class MemberDAO {
 		String dbpw="";
 		
 		try{
-			con = DBConnection.getConnection();
+			con = DBConnection.getInstacne().getConnection();
 			pstmt=con.prepareStatement("select * from member where id=?");
 			
 			pstmt.setInt(1, id);
@@ -457,7 +457,7 @@ public class MemberDAO {
 				PreparedStatement pstmt2=null;
 				int x=-100;
 				try{
-					con = DBConnection.getConnection();
+					con = DBConnection.getInstacne().getConnection();
 					pstmt=con.prepareStatement("delete from member where id=?");
 					pstmt.setInt(1, id);
 					

@@ -31,16 +31,15 @@ public class CorseDAO {
 	ResultSet rs=null;
 	
 	
+	
 	/*
-	 * 한개의 코스의 데이터를 불러온다
-	 */
-	
-	
+	 * 코스의 위도 경도 데이터를 불러온다
+	 */	
 	public List<CorseDTO> getLatLon(String corse_name){
 		JSONArray array = new JSONArray();
 		System.out.println(corse_name);
 		try {
-			con = DBConnection.getConnection();
+			con = DBConnection.getInstacne().getConnection();
 			pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=?");
 			pstmt.setString(1, corse_name);
 			
@@ -59,6 +58,7 @@ public class CorseDAO {
 			System.out.println("getAllCorseList()예외:"+ex);
 		}finally{
 			try{
+				if(stmt!=null){stmt.close();}
 				if(rs!=null){rs.close();}
 				if(pstmt!=null){pstmt.close();}
 				if(con!=null){con.close();}
@@ -69,14 +69,14 @@ public class CorseDAO {
 	
 	
 	/*
-	 * 한개의 코스의 데이터를 불러온다
+	 * 코스의 이름 리스트를 가져온다
 	 */
 	
 	
 	public List<CorseDTO> getSingleCorseList(){
 		List<CorseDTO> singleCorseList = null;
 		try {
-			con = DBConnection.getConnection();
+			con = DBConnection.getInstacne().getConnection();
 			pstmt = con.prepareStatement("select corse_name from corse group by corse_name");
 			rs=pstmt.executeQuery();
 			
@@ -98,6 +98,7 @@ public class CorseDAO {
 		}finally{
 			try{
 				if(rs!=null){rs.close();}
+				if(stmt!=null){stmt.close();}
 				if(pstmt!=null){pstmt.close();}
 				if(con!=null){con.close();}
 			} catch (Exception exx) {}

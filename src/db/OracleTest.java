@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
- 
+import db.DBConnection;
  
 public class OracleTest 
 {
-    public static void main(String args[])
+    public static void main(String args[]) throws ClassNotFoundException
     {
         Connection conn = null; // DB연결된 상태(세션)을 담은 객체
         PreparedStatement pstm = null;  // SQL 문을 나타내는 객체
@@ -19,7 +19,7 @@ public class OracleTest
             // 그 결과를 담을 ResulSet 객체를 준비한 후 실행시킨다.
             String quary = "SELECT * FROM corse";
             
-            conn = DBConnection.getConnection();
+            conn = DBConnection.getInstacne().getConnection();
             pstm = conn.prepareStatement(quary);
             rs = pstm.executeQuery();
             

@@ -47,7 +47,7 @@
 		</nav>
 		<div class="container-xxl">
 		<c:forEach var="singleCorse" items="${singleCorseList}" varStatus="status">
-			<button onclick="PaintingLine()" value="${singleCorse.corse_name}">${singleCorse.corse_name}</button>
+			<button class="btn-primary" onclick="PaintingLine()" value="${singleCorse.corse_name}">${singleCorse.corse_name}</button>
 		</c:forEach>
       	<div id="map" style="width:50%;height:50%;"></div>
 		</div>

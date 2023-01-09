@@ -20,7 +20,7 @@
 			<img src="${ctxpath}/template/bike3.jpg" class="d-block w-100" alt="...">
 		</div>
 		<div class="carousel-item" data-bs-interval="10000">
-			<img src="${ctxpath}/template/bike4_1.jpg" class="d-block w-100" alt="...">
+			<img src="${ctxpath}/template/bike4.jpg" class="d-block w-100" alt="...">
 		</div>
 	</div>
 	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
