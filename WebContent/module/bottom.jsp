@@ -3,10 +3,10 @@
 
 <%-- bottom.jsp --%>
 <!-- bottom -->
-<div class="blog-footer text-center border-top pt-5 m-3">
-  <p>This site built for <a href="${ctxpath}/member/loginForm.jsp">Bootstrap</a> by <a href="">@Cyan is so bright</a></p>
+<div class="blog-footer text-center bg-dark text-white pt-3">
+  <p>This site built for <a class="text-white" href="${ctxpath}/member/loginForm.jsp">Bootstrap</a> by <a class="text-white" href="">@Bikeway</a></p>
   <p>
-    <a href="#">맨 위로</a>
+    <a class="text-white" href="#">맨 위로</a>
   </p>
 </div>
 <!-- bottom end-->

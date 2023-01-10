@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="ctxpath" value="<%=request.getContextPath() %>" />
 <html>
-<body>
+<body class="bg-dark">
  
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 	<div class="carousel-indicators">
@@ -32,7 +32,5 @@
 		<span class="visually-hidden">Next</span>
 	</button>
 </div>
- 
- 
 </body>
 </html>

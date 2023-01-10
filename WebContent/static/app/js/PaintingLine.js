@@ -14,9 +14,7 @@ mapOption = {
 
 var path = [];
 var map = new kakao.maps.Map(mapContainer, mapOption);
-function PaintingLine(){
-	$('.btn-primary').on('click', (e) => {
-	keyword= e.target.value;
+function PaintingLine(keyword){
 	$.ajax({
 		type : "GET",
         url:"../json/corseDatabase_json.jsp?keyword="+keyword,
@@ -40,6 +38,5 @@ function PaintingLine(){
 			polyline.setMap(map);  
         }
      });//$.ajax()
-	});
          
 }

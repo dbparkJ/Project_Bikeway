@@ -13,12 +13,13 @@
 				<!-- 메인이미지 -->	
 				<jsp:include page="${CONTENT}" flush="false"/>
 				<!-- 하단바 -->	
-				<jsp:include page="/module/bottom.jsp"/>
+				<jsp:include page="/module/bottom.jsp" flush="false"/>
 			</div>	
 		</div>
 	</body>
 	
-	<script type="text/javascript" src="${ctxpath}/static/app/js/PaintingLine.js"></script>
+	
+	
 	<%-- 
 	<script type="text/javascript" src="${ctxpath}/static/app/js/paging.js"></script>
 	<script type="text/javascript" src="${ctxpath}/static/app/js/msg.js?ver=6"></script>
