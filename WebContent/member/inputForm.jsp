@@ -95,7 +95,7 @@
       
    </script>
    <h2>회원가입</h2>
-  
+   <body class="pt-5">
    <form name="inputForm" method="post" action="${ctxpath}/member/inputPro.do" onsubmit="return check2()" >
       <table border="1" align="center">
       <%--

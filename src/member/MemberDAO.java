@@ -319,7 +319,7 @@ public class MemberDAO {
 			pstmt.setString(4, dto.getName());
 			pstmt.setString(5, dto.getAddress());
 			pstmt.setString(6, dto.getZipcode());
-			pstmt.setString(7, dto.getWeight());			
+			pstmt.setDouble(7, dto.getWeight());			
 
 			pstmt.executeUpdate();// 쿼리 수행
 
