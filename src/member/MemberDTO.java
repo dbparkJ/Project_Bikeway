@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public class MemberDTO {
 	//전역변수=필드=property= 속성
 	
-	private Integer id;
 	private String email;
 	private String password;
 	private String nickname;
@@ -14,10 +13,8 @@ public class MemberDTO {
 	private String zipcode;	
 	private LocalDateTime created_at;
 	private LocalDateTime updated_at;
-	
-	public Integer getId() {
-		return id;
-	}
+	private Integer id;
+	private String weight;
 	public String getEmail() {
 		return email;
 	}
@@ -66,8 +63,20 @@ public class MemberDTO {
 	public void setUpdated_at(LocalDateTime updated_at) {
 		this.updated_at = updated_at;
 	}
+	public Integer getId() {
+		return id;
+	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public String getWeight() {
+		return weight;
+	}
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+	
+	
+	}	
 		
 }

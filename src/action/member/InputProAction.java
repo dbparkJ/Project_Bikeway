@@ -27,13 +27,18 @@ public class InputProAction implements CommandAction {
 		dto.setNickname(request.getParameter("nickname"));
 		dto.setAddress(request.getParameter("address"));
 		dto.setZipcode(request.getParameter("zipcode"));
+		dto.setZipcode(request.getParameter("weight"));		
+		dto.setWeight(Double.parseDouble(request.getParameter("weight")));	
 		
+	
 		MemberDAO dao=MemberDAO.getDao();
 		dao.insertMember(dto);//dao메서드 호출
 		
 		String email=request.getParameter("email");		
 		request.setAttribute("email", email);
 		
+		System.out.println(email);
+		System.out.println(Double.parseDouble(request.getParameter("weight")));
 		
 		return "/member/inputPro.jsp";
 	}

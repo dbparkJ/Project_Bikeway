@@ -154,7 +154,13 @@
          <tr>
             <td>주소</td>
             <td><input type="text" name="address" id="address" size="50" ></td>
-         </tr>        
+         </tr>  
+
+         
+         <tr>
+            <td>몸무게</td>
+            <td><input type="text" name="weight" id="weight" size="7" ></td>
+         </tr>               
        
          <tr>
             <td colspan="2" align="center">
@@ -167,4 +173,3 @@
    </form>
 </body>
 </html>
-<script type="text/javascript" src="${ctxpath}/static/app/js/aa.js"></script>

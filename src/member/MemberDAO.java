@@ -309,8 +309,8 @@ public class MemberDAO {
 	public void insertMember(MemberDTO dto){
 		try{
 			con = DBConnection.getInstacne().getConnection();
-			pstmt=con.prepareStatement("insert into member (email, password, nickname, name, address, zipcode, created_at, updated_at,ID)"+
-			" values(?,?,?,?,?,?, SYSDATE, SYSDATE,emp_seq.NEXTVAL)");
+			pstmt=con.prepareStatement("insert into member (email, password, nickname, name, address, zipcode, created_at, updated_at,ID,weight)"+
+			" values(?,?,?,?,?,?, SYSDATE, SYSDATE,emp_seq.NEXTVAL,?)");
 
 			//?값 채우기
 			pstmt.setString(1, dto.getEmail());
@@ -319,6 +319,7 @@ public class MemberDAO {
 			pstmt.setString(4, dto.getName());
 			pstmt.setString(5, dto.getAddress());
 			pstmt.setString(6, dto.getZipcode());
+			pstmt.setString(7, dto.getWeight());			
 
 			pstmt.executeUpdate();// 쿼리 수행
 
