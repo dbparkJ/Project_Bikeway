@@ -1,4 +1,4 @@
-package corse;
+package bike;
 
 public class CorseDTO {
 	private String corse_name;

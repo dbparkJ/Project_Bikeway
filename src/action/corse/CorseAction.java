@@ -5,9 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bike.CorseDAO;
+import bike.CorseDTO;
 import command.CommandAction;
-import corse.CorseDAO;
-import corse.CorseDTO;
 
 public class CorseAction implements CommandAction{
 

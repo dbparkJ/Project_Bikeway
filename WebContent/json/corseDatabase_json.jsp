@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="corse.*"
+    import="bike.*"
     import="java.util.*"
     import="org.json.simple.*"
     %>

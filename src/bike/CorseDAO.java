@@ -1,4 +1,4 @@
-package corse;
+package bike;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
