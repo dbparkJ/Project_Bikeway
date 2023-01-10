@@ -15,7 +15,8 @@ mapOption = {
 var path = [];
 var map = new kakao.maps.Map(mapContainer, mapOption);
 function PaintingLine(keyword){
-	$.ajax({
+	setMap(null);
+		$.ajax({
 		type : "GET",
         url:"../json/corseDatabase_json.jsp?keyword="+keyword,
         dataType:"JSON",/*서버로부터 받는 자료형*/

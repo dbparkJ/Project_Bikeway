@@ -98,15 +98,6 @@
    <body class="pt-5">
    <form name="inputForm" method="post" action="${ctxpath}/member/inputPro.do" onsubmit="return check2()" >
       <table border="1" align="center">
-      <%--
-         <tr>
-            <td>ID</td>
-            <td>
-               <input type="text" name="id" id="id" size="20" placeholder="ID입력">
-            </td>
-         </tr>
-       --%>
-         
          <tr>
             <td>이메일</td>
             <td>
@@ -156,7 +147,6 @@
             <td><input type="text" name="address" id="address" size="50" ></td>
          </tr>  
 
-         
          <tr>
             <td>몸무게</td>
             <td><input type="text" name="weight" id="weight" size="7" ></td>
