@@ -11,7 +11,7 @@ mapOption = {
 	    
 // 지도를 생성합니다
 
-removeline = [];
+
 var path = [];
 var map = new kakao.maps.Map(mapContainer, mapOption);
 function PaintingLine(){
@@ -22,8 +22,7 @@ function PaintingLine(){
         url:"../json/corseDatabase_json.jsp?keyword="+keyword,
         dataType:"JSON",/*서버로부터 받는 자료형*/
         success: function(data){
-			var polyline = null;
-			polyline.setMap(null);
+			
         	for(var i=0; i<data.length; i++){
         		path.push(new kakao.maps.LatLng(data[i].lat,data[i].lon))
         	}
