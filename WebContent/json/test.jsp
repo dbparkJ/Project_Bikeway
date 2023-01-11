@@ -10,7 +10,7 @@
 String corse_name = request.getParameter("keyword");
 List<CorseDTO> rentBike = null;
 BikeDAO dao = BikeDAO.getDao();
-rentBike = dao.getRentBikeRecentInfo();
+rentBike = dao.getRentBikeRecentInfos();
 %>
 
 <%=rentBike%>
