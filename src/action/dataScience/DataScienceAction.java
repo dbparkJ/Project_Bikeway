@@ -1,12 +1,13 @@
 package action.dataScience;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.CommandAction;
 
-import member.MemberDAO; // 조인
-import member.MemberDTO;
+import riding.RidingDAO;
 import riding.RidingDTO;
 
 public class DataScienceAction implements CommandAction{
@@ -15,9 +16,15 @@ public class DataScienceAction implements CommandAction{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		RidingDTO dto=new RidingDTO();
+		List list=null;
 		
-		request.setAttribute("ridingdto",dto);
+		RidingDTO ridingDTO=new RidingDTO();
+		RidingDAO ridingDAO = RidingDAO.getDao();
+		
+		list = ridingDAO.getRidingList();
+		
+		request.setAttribute("list",list);
+		request.setAttribute("ridingDTO",ridingDTO);
 		
 		return "/dataScience/dataScience.jsp";
 	}
