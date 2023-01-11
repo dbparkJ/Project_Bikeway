@@ -6,18 +6,21 @@
 
 <html>
 <head>
-	<script>
-	
-	var tmpDate = new Date();
-	 $("#distanceChart").attr("src", "${ctxpath}/img/chart.png?"+tmeDate.getTime());
-	///img/shirt.jpg 뒤에 의미없는 숫자가 붙게 되는데, 이미지 변경 시 매번 getTime( )로 다른 숫자가 붙게된다.
-	//이렇게 되면 브라우저는 새로운 파일로 변경된것으로 인식하여 이미지가 변경된다.
-	</script>
+
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 	<%-- 부트스트랩 --%>
 
+	<script src="https:ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		var vahnge=setInterval(gogo,5000);//5초 간격으로 gogo()호출
+	})	
 	
+	function gogo(){
+		$("#imgId").attr("src","${ctxpath}/template/chart.png")
+	}
+	</script>
 	<style>
 		<%--
 		#title{
