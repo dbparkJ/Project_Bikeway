@@ -4,7 +4,6 @@
 <c:set var="ctxpath" value="<%=request.getContextPath() %>" />   
 
 <html>
-     <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
      <script>
@@ -94,8 +93,10 @@
       }
       
    </script>
-   <h2>회원가입</h2>
    <body class="pt-5">
+   <div class="pt-3">
+   <h2>회원가입</h2>
+   </div>
    <form name="inputForm" method="post" action="${ctxpath}/member/inputPro.do" onsubmit="return check2()" >
       <table border="1" align="center">
          <tr>
