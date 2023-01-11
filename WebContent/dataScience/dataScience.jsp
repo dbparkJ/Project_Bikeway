@@ -13,13 +13,13 @@
 
 	<script src="https:ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
-	$(document).ready(function(){
-		var vahnge=setInterval2(gogo,5000);//5초 간격으로 gogo()호출
-	})	
-	
-	function gogo(){
-		$("#imgId").attr("src","${ctxpath}/template/chart.png")
-	}
+		$(document).ready(function(){
+			var vahnge=setInterval2(gogo,5000);//5초 간격으로 gogo()호출
+		})	
+		
+		function gogo(){
+			$("#imgId").attr("src","${ctxpath}/template/chart.png")
+		}
 	</script>
 	<style>
 		<%--
