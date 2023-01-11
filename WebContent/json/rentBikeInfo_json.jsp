@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"
     import="bike.*"
     import="java.util.*"
+    import="org.json.simple.*"
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
-String rentBikeRecentInfo = request.getParameter("bikeInfo");
-List<RentBikeInfoDTO> rentBikeRecentInfoList = null;
+List<RentBikeInfoDTO> rentBike = null;
 BikeDAO dao = BikeDAO.getDao();
-rentBikeRecentInfoList = dao.getRentBikeRecentInfo();
+rentBike = dao.getRentBikeRecentInfo();
 %>
-<%=rentBikeRecentInfoList %>
+<%=rentBike%>

@@ -10,10 +10,27 @@ mapOption = {
 	    };  
 	    
 // 지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption);
 
 var polyline = null;
 var path = [];
-var map = new kakao.maps.Map(mapContainer, mapOption);
+
+/**
+ *  따릉이 API 최신정보
+ */
+ function RentBikeRecentInfoList(){
+	 $.ajax({
+		type : "GET",
+        url:"../json/test.jsp",
+        dataType:"JSON",/*서버로부터 받는 자료형*/
+        success: function(data){
+			console.log(data)
+		}
+		});
+ }// function-end
+
+
+
 function PaintingLine(keyword){
 		$.ajax({
 		type : "GET",
@@ -39,7 +56,6 @@ function PaintingLine(keyword){
         }
      });//$.ajax()
 }
-
 function removemap(polyline){
 	if(polyline !=null){
 		
