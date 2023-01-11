@@ -5,17 +5,18 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<!-- �̰��� �׽�Ʈ �ؽ�Ʈ �Դϴ�  �����غ����� -->
-	<%-- ��Ʈ��Ʈ�� --%>
+
+<!-- 이곳은 테스트 텍스트 입니다  변경해보겠음 -->
+	<%-- 부트스트랩 --%>
 
 	
 	<style>
 		<%--
 		#title{
-		font-family: ���� �߳�ü OTF;
+		font-family: 여기어때 잘난체 OTF;
 		}
 		#fontstyle{
-		font-family: ���� �߳�ü OTF;
+		font-family: 여기어때 잘난체 OTF;
 		}
 		--%>
 		
@@ -27,12 +28,12 @@
 </head>
 <body class="pt-5">
 <div class="text-bg-dark p-3">
-<h2 id = "title" align="center">'nickname'���� �ְ����</h2>
+<h2 id = "title" align="center">'nickname'님의 주간기록</h2>
 
 <table id = "table1style" cellpadding="20" width="800" height="300" align = "center">
 	<tr>	
 		<td>
-			<font size = "+1" id="fontstyle">���̵� �ְ� ����Ÿ� �м�</font>
+			<font size = "+1" id="fontstyle">라이딩 주간 주행거리 분석</font>
 		</td>
 	</tr>
 	
@@ -48,7 +49,7 @@
 	
 	<tr>	
 		<td>
-			<font size = "+1" id="fontstyle">���̵� �ְ� Kcal �м�</font>
+			<font size = "+1" id="fontstyle">라이딩 주간 Kcal 분석</font>
 		</td>
 	</tr>
 	
@@ -60,7 +61,7 @@
 	
 	<tr>
 		<td align = "center">
-			<font size = "+2" id = "fontstyle">�����ϵ��� 5,632Kcal �Ҹ��ϼ̰� 566Km �����ϼ̽��ϴ�!</font>
+			<font size = "+2" id = "fontstyle">일주일동안 5,632Kcal 소모하셨고 566Km 주행하셨습니다!</font>
 		</td>
 	</tr>
 
