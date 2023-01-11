@@ -14,7 +14,7 @@
 	<script src="https:ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 	$(document).ready(function(){
-		var vahnge=setInterval(gogo,5000);//5초 간격으로 gogo()호출
+		var vahnge=setInterval2(gogo,5000);//5초 간격으로 gogo()호출
 	})	
 	
 	function gogo(){
