@@ -1,13 +1,16 @@
-package action.bikeRealTime;
+package bike;
 
-public class BikeRealTimeDTO {
+import java.time.LocalDateTime;
+
+public class RentBikeInfoDTO {
 	private String stationName;
 	private Integer rackToCnt;
 	private Integer parkingBikeToCnt;
-	private Integer sharderRate;
 	private Double lat;
 	private Double lon;
 	private String stationId;
+	private LocalDateTime updatetime;
+	
 	public String getStationName() {
 		return stationName;
 	}
@@ -25,12 +28,6 @@ public class BikeRealTimeDTO {
 	}
 	public void setParkingBikeToCnt(Integer parkingBikeToCnt) {
 		this.parkingBikeToCnt = parkingBikeToCnt;
-	}
-	public Integer getSharderRate() {
-		return sharderRate;
-	}
-	public void setSharderRate(Integer sharderRate) {
-		this.sharderRate = sharderRate;
 	}
 	public Double getLat() {
 		return lat;
@@ -50,7 +47,11 @@ public class BikeRealTimeDTO {
 	public void setStationId(String stationId) {
 		this.stationId = stationId;
 	}
+	public LocalDateTime getUpdatetime() {
+		return updatetime;
+	}
+	public void setUpdatetime(LocalDateTime updatetime) {
+		this.updatetime = updatetime;
+	}
 	
-	
-//	private DateTime
 }
