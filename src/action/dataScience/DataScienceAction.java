@@ -21,7 +21,6 @@ public class DataScienceAction implements CommandAction{
 		RidingDTO ridingDTO=new RidingDTO();
 		RidingDAO ridingDAO = RidingDAO.getDao();
 		
-		list = ridingDAO.getRidingList();
 		
 		request.setAttribute("list",list);
 		request.setAttribute("ridingDTO",ridingDTO);
