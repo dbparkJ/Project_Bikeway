@@ -116,14 +116,14 @@
          <tr>
             <td>PW확인</td>
             <td>
-                <input type="password" name="password2" id="password2" size="12" ">
+                <input type="password" name="password2" id="password2" size="12">
             </td>
          </tr>
           
          
          <tr>
             <td>이름</td>
-            <td><input type="text" name="name" id="name" size="30" placeholder="이름입력" ">
+            <td><input type="text" name="name" id="name" size="30" placeholder="이름입력">
             </td>
          </tr>
          <tr>

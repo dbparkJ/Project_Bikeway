@@ -1,8 +1,13 @@
 package riding;
 import java.sql.*;
 
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import db.DBConnection;
 import member.LoginMemberDTO;
+import member.MemberDTO;
 
 public class RidingDAO {
 	// 싱글톤 객체사용
@@ -22,14 +27,14 @@ public class RidingDAO {
 	ResultSet rs=null;
 	
 	//==================
-	// 일주일 주행거리
+	// 총 주행거리
 	//==================
-	public RidingDTO week_distance(Integer id){
+	public RidingDTO week_distance(int id){
 		RidingDTO dto = null;
 		
 		try{
 			con = DBConnection.getInstacne().getConnection();
-			pstmt=con.prepareStatement("select sum(distance) from riding where id = ?");
+			pstmt=con.prepareStatement("select sum(distance) from riding where id=?");
 			
 			pstmt.setInt(1,id);
 			
@@ -42,6 +47,11 @@ public class RidingDAO {
 				
 				dto.setId(rs.getInt("id"));
 				dto.setDistance(rs.getInt("distance"));
+				dto.setCalorie(rs.getInt("calorie"));
+				dto.setRiding_time(rs.getInt("riding_time"));
+			
+				dto.setRiding_dt(rs.getTimestamp("riding_dt").toLocalDateTime());
+				
 			}//if-end
 			
 		}catch(Exception ex){
@@ -56,4 +66,32 @@ public class RidingDAO {
 		
 		return dto;
 	} // week_distance-end
+	
+	//==========================
+	// 주행거리, 주행시간 , 날짜 입력
+	//==========================
+	public void insertList(RidingDTO dto){
+		try{
+			con = DBConnection.getInstacne().getConnection();
+			
+			pstmt=con.prepareStatement("insert into riding values(0,?,null,?,?)");
+			
+			rs=pstmt.executeQuery();
+			
+			//?값 채우기
+			pstmt.setInt(1,dto.getDistance());
+			pstmt.setInt(2,dto.getRiding_time());
+			dto.setRiding_dt(rs.getTimestamp("riding_dt").toLocalDateTime());
+			
+			pstmt.executeUpdate(); //쿼리 수행
+			
+		}catch(Exception ex){
+			System.out.println("insertMember()예외 : "+ex);
+		}finally{
+			try{
+				if(pstmt!=null){pstmt.close();}
+				if(con!=null){con.close();}
+			}catch(Exception exx){}
+		}//finally-end
+	}//insertMember()-end
 }

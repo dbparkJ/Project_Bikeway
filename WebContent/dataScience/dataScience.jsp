@@ -4,17 +4,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="ctxpath" value="<%=request.getContextPath() %>" />			
 
+
 <html>
 <head>
 
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-	<%-- ºÎÆ®½ºÆ®·¦ 1--%>
+
+	<%-- ë¶€íŠ¸ìŠ¤íŠ¸ë© --%>
+
 
 	<script src="https:ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(){
-			var vahnge=setInterval2(gogo,5000);//5ÃÊ °£°İÀ¸·Î gogo()È£Ãâ
+			var vahnge=setInterval2(gogo,5000);//5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ gogo()È£ï¿½ï¿½
 		})	
 		
 		function gogo(){
@@ -24,19 +27,21 @@
 	<style>
 		<%--
 		#title{
-		font-family: ¿©±â¾î¶§ Àß³­Ã¼ OTF;
+		font-family: ì—¬ê¸°ì–´ë•Œ ì˜ë‚œì²´ OTF;
 		}
 		#fontstyle{
-		font-family: ¿©±â¾î¶§ Àß³­Ã¼ OTF;
+		font-family: ì—¬ê¸°ì–´ë•Œ ì˜ë‚œì²´ OTF;
 		}
 		--%>
 		
-		#table1st
+		#table1st{
 		border:2px solid #BDBDBD;
 		}
+		
 	</style>
 
 </head>
+
 <body class="pt-5" >
 
 	<tr>	
@@ -46,12 +51,15 @@
 	RidingDAO ridingDAO=RidingDAO.getDao();
 	%>
 	
-<h2 id = "title" align="center">'nickname'´ÔÀÇ ÁÖ°£±â·Ï</h2>
+
+	
+<h2 id = "title" align="center">'nickname'ë‹˜ì˜ ì£¼ê°„ê¸°ë¡</h2>
+
 
 <table id = "table1style" cellpadding="20" width="800" height="300" align = "center">
 	
 		<td>
-			<font size = "+1" id="fontstyle">¶óÀÌµù ÁÖ°£ ÁÖÇà°Å¸® ºĞ¼®</font>
+			<font size = "+1" id="fontstyle">ë¼ì´ë”© ì£¼ê°„ ì£¼í–‰ê±°ë¦¬ ë¶„ì„</font>
 		</td>
 	</tr>
 	
@@ -69,7 +77,7 @@
 	
 	<tr>	
 		<td>
-			<font size = "+1" id="fontstyle">¶óÀÌµù ÁÖ°£ Kcal ºĞ¼®</font>
+			<font size = "+1" id="fontstyle">ë¼ì´ë”© ì£¼ê°„ Kcal ë¶„ì„</font>
 		</td>
 	</tr>
 	
@@ -83,7 +91,7 @@
 
 	<tr>
 		<td align = "center">
-			<font size = "+2" id = "fontstyle">ÀÏÁÖÀÏµ¿¾È 5,632Kcal ¼Ò¸ğÇÏ¼Ì°í 566Km ÁÖÇàÇÏ¼Ì½À´Ï´Ù!</font>
+			<font size = "+2" id = "fontstyle">ì¼ì£¼ì¼ë™ì•ˆ 5,632Kcal ì†Œëª¨í•˜ì…¨ê³  566Km ì£¼í–‰í•˜ì…¨ìŠµë‹ˆë‹¤!</font>
 		</td>
 	</tr>
 

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class RidingDTO {
 	
-	private Integer id; // 아이디
+	private int id; // 아이디
 	private Integer distance; // 주행거리
 	private Integer calorie; // 칼로리
 	private Integer riding_time; // 라이딩 한 시간

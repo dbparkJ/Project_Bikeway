@@ -10,22 +10,14 @@ import command.CommandAction;
 import riding.RidingDAO;
 import riding.RidingDTO;
 
-public class DataScienceAction implements CommandAction{
+public class DataScienceFormAction implements CommandAction {
 
+	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		
-		request.setCharacterEncoding("utf-8");
-		
-		List list=null;
-		
-		RidingDTO ridingDTO=new RidingDTO();
-		RidingDAO ridingDAO = RidingDAO.getDao();
+		// TODO Auto-generated method stub
 		
 		
-		request.setAttribute("list",list);
-		request.setAttribute("ridingDTO",ridingDTO);
-		
-		return "/dataScience/dataScience.jsp";
+		return "/dataScience/dataScienceForm.jsp";
 	}
 
 }
