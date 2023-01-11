@@ -1,11 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import = "riding.*" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>      
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="ctxpath" value="<%=request.getContextPath() %>" />			
+
+
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+	<%-- 부트스트랩 --%>
+
+
+	<script src="https:ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var vahnge=setInterval2(gogo,5000);//5�� ������� gogo()ȣ��
+		})	
+		
+		function gogo(){
+			$("#imgId").attr("src","${ctxpath}/template/chart.png")
+		}
+	</script>
+
 	<style>
 		<%--
 		#title{
@@ -23,20 +43,33 @@
 	</style>
 
 </head>
-<body class="pt-5">
+
+<body class="pt-5" >
+
+	<tr>	
+	<br>
+	<%
+	RidingDTO ridingDTO=new RidingDTO();
+	RidingDAO ridingDAO=RidingDAO.getDao();
+	%>
+	
+
 	
 <h2 id = "title" align="center">'nickname'님의 주간기록</h2>
 
+
 <table id = "table1style" cellpadding="20" width="800" height="300" align = "center">
-	<tr>	
+	
 		<td>
 			<font size = "+1" id="fontstyle">라이딩 주간 주행거리 분석</font>
 		</td>
 	</tr>
 	
 	<tr>
-		<td>
-			<img src = "${ctxpath}/dataScience/chart.png" width="800" height="250">
+		<td> 
+			<div id="image_container">
+				<img id="distanceChart" src = "chart.png" width="600" height="250" alt="distance_chart"/>
+			</div>
 		</td>
 	</tr>
 	
@@ -52,7 +85,9 @@
 	
 	<tr>
 		<td>
-			<img src = "${ctxpath}/dataScience/chart.png" width="800" height="250">
+			<div id="image_container">	
+				<img src = "image_graph.png" width="600" height="250">
+			</div>
 		</td>
 	</tr>
 

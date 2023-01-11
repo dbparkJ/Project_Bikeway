@@ -5,12 +5,11 @@ import java.time.LocalDateTime;
 public class RentBikeInfoDTO {
 	private String stationName;
 	private Integer rackToCnt;
-	private Integer parkingBikeToCnt;
-	private Double lat;
+	private Integer bikeToCnt;
 	private Double lon;
+	private Double lat;
 	private String stationId;
-	private LocalDateTime updatetime;
-	
+	private LocalDateTime updateTime;
 	public String getStationName() {
 		return stationName;
 	}
@@ -23,17 +22,11 @@ public class RentBikeInfoDTO {
 	public void setRackToCnt(Integer rackToCnt) {
 		this.rackToCnt = rackToCnt;
 	}
-	public Integer getParkingBikeToCnt() {
-		return parkingBikeToCnt;
+	public Integer getBikeToCnt() {
+		return bikeToCnt;
 	}
-	public void setParkingBikeToCnt(Integer parkingBikeToCnt) {
-		this.parkingBikeToCnt = parkingBikeToCnt;
-	}
-	public Double getLat() {
-		return lat;
-	}
-	public void setLat(Double lat) {
-		this.lat = lat;
+	public void setBikeToCnt(Integer bikeToCnt) {
+		this.bikeToCnt = bikeToCnt;
 	}
 	public Double getLon() {
 		return lon;
@@ -41,17 +34,22 @@ public class RentBikeInfoDTO {
 	public void setLon(Double lon) {
 		this.lon = lon;
 	}
+	public Double getLat() {
+		return lat;
+	}
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
 	public String getStationId() {
 		return stationId;
 	}
 	public void setStationId(String stationId) {
 		this.stationId = stationId;
 	}
-	public LocalDateTime getUpdatetime() {
-		return updatetime;
+	public LocalDateTime getUpdateTime() {
+		return updateTime;
 	}
-	public void setUpdatetime(LocalDateTime updatetime) {
-		this.updatetime = updatetime;
+	public void setUpdateTime(LocalDateTime updateTime) {
+		this.updateTime = updateTime;
 	}
-	
 }
