@@ -1,13 +1,15 @@
 package riding;
 import java.sql.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import db.DBConnection;
+
 import member.LoginMemberDTO;
-import member.MemberDTO;
+import riding.RidingDTO;
 
 public class RidingDAO {
 	// 싱글톤 객체사용
@@ -46,11 +48,11 @@ public class RidingDAO {
 				dto=new RidingDTO(); //객체생성
 				
 				dto.setId(rs.getInt("id"));
-				dto.setDistance(rs.getInt("distance"));
-				dto.setCalorie(rs.getInt("calorie"));
-				dto.setRiding_time(rs.getInt("riding_time"));
+				dto.setDistance(rs.getFloat("distance"));
+				dto.setCalorie(rs.getFloat("calorie"));
+				dto.setRiding_time(rs.getFloat("riding_time"));
 			
-				dto.setRiding_dt(rs.getTimestamp("riding_dt").toLocalDateTime());
+				//dto.setRiding_dt(rs.getTimestamp("riding_dt"));
 				
 			}//if-end
 			
@@ -74,14 +76,14 @@ public class RidingDAO {
 		try{
 			con = DBConnection.getInstacne().getConnection();
 			
-			pstmt=con.prepareStatement("insert into riding values(0,?,null,?,?)");
+			pstmt=con.prepareStatement("insert into riding values(0,?,null,?,NOW())");
 			
 			rs=pstmt.executeQuery();
 			
 			//?값 채우기
-			pstmt.setInt(1,dto.getDistance());
-			pstmt.setInt(2,dto.getRiding_time());
-			dto.setRiding_dt(rs.getTimestamp("riding_dt").toLocalDateTime());
+			pstmt.setFloat(1,dto.getDistance());
+			pstmt.setFloat(2,dto.getRiding_time());
+		//pstmt.(3,dto.getRiding_dt().toLocalDate());
 			
 			pstmt.executeUpdate(); //쿼리 수행
 			
