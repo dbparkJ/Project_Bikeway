@@ -3,30 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctxpath" value="<%=request.getContextPath()%>" />
 
-<div class="modal fade" id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index:1055">
+<div class="modal fade" id="exampleModal" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable pt-1">
 		<div class="modal-content">
 			<div class="modal-header bg-dark">
 				<h1 class="modal-title text-white fs-5" id="exampleModalLabel">로그인</h1>
 				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
-				<div class="w-25">
+			<div class="modal-body bg-light pt-3">
+				<div class="container w-90">
 					<form method="post" action="${ctxpath}/member/loginPro.do">
-						<div class="form-group">
-							<label for="inputEmail">이메일 주소</label>
-							<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address"
-							required="required" autofocus="autofocus">
+						<div class="form-group pt-2">
+							<label for="floatingInputInvalid">이메일 주소</label>
+							<div class="form-floating mb-3">
+								<input type="email" name="email" id="email" class="form-control" placeholder="name@example.com" required="required">
+								<label for="floatingInputInvalid">name@example.com</label>
+							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group pt-2">
 							<label for="inputPassword">비밀번호</label>
-							<input type="password" name="pw" id="inputPassword" class="form-control" placeholder="Password"
-							required="required">
+							<div class="form-floating mb-3">
+								<input type="password" name="pw" id="pw" class="form-control" placeholder="Password" required="required">
+								<label for="inputPassword">Password</label>
+							</div>
 						</div>
-						<div class="mb-3">
-							<button class="btn btn-warning btn-block" type="submit"><i class="bi bi-box-arrow-in-left"></i>
-							로그인</button>
-							<button type="button" class="btn btn-primary fs-6"><a class="text-white" href="${ctxpath}/member/inputForm.do">회원가입 </a></button>
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end pt-3">
+							<button class="btn btn-secondary" type="submit">로그인</button>
+							<button type="button" class="btn btn-primary fs-6" onclick="location.href='${ctxpath}/member/inputForm.do'">회원가입</button>
 						</div>
 					</form>
 				</div>
