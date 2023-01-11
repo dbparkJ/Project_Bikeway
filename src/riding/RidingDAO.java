@@ -1,5 +1,7 @@
 package riding;
 import java.sql.*;
+
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,16 +74,14 @@ public class RidingDAO {
 		try{
 			con = DBConnection.getInstacne().getConnection();
 			
-			pstmt=con.prepareStatement("insert into riding values(0,?,null,?,NOW())");
+			pstmt=con.prepareStatement("insert into riding values(0,?,null,?,?)");
 			
 			rs=pstmt.executeQuery();
 			
 			//?값 채우기
-			pstmt.setInt(2,dto.getDistance());
-			
-			pstmt.setInt(3,dto.getRiding_time());
-			
-			pstmt.setDate(4,dto.getRiding_dt());
+			pstmt.setInt(1,dto.getDistance());
+			pstmt.setInt(2,dto.getRiding_time());
+			dto.setRiding_dt(rs.getTimestamp("riding_dt").toLocalDateTime());
 			
 			pstmt.executeUpdate(); //쿼리 수행
 			
