@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"
     import = "riding.*" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-        
+
 <html>
 <head>
 <meta charset="EUC-KR">
@@ -10,10 +10,10 @@
 	<style>
 		<%--
 		#title{
-		font-family: ���� �߳�ü OTF;
+		font-family: 여기어때 잘난체 OTF;
 		}
 		#fontstyle{
-		font-family: ���� �߳�ü OTF;
+		font-family: 여기어때 잘난체 OTF;
 		}
 		--%>
 		
@@ -28,7 +28,7 @@
 <table id = "table1style" cellpadding="20" width="800" height="300" align = "center">
 	<tr>	
 		<td>
-			<font size = "+1" id="fontstyle">���̵� �ְ� ����Ÿ� �м�</font>
+			<font size = "+1" id="fontstyle">라이딩 주간 주행거리 분석</font>
 		</td>
 	</tr>
 	
@@ -43,7 +43,7 @@
 
 	<tr>	
 		<td>
-			<font size = "+1" id="fontstyle">���̵� �ְ� Kcal �м�</font>
+			<font size = "+1" id="fontstyle">라이딩 주간 Kcal 분석</font>
 		</td>
 	</tr>
 	
@@ -55,7 +55,7 @@
 
 	<tr>
 		<td align = "center">
-			<font size = "+2" id = "fontstyle">�����ϵ��� 5,632Kcal �Ҹ��ϼ̰� 568km �����ϼ̽��ϴ�!</font>
+			<font size = "+2" id = "fontstyle">일주일동안 5,632Kcal 소모하셨고 568km 주행하셨습니다!</font>
 		</td>
 	</tr>
 
