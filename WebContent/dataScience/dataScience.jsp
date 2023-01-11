@@ -2,7 +2,10 @@
     pageEncoding="EUC-KR"
     import = "riding.*" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-			<c:set var="distance" value="<%=ridingDAO.week_distance(id)%>"/>
+    <%
+    
+    %>
+	<%-- <c:set var="distance" value="<%=ridingDAO.week_distance(id)%>"/> --%>
        
 <html>
 <head>
