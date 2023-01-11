@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<!-- 이곳은 원본 파일입니다 -->
 	<%-- 부트스트랩 --%>
 
 	
