@@ -130,7 +130,7 @@ public class BikeDAO {
 			
 			
 		}catch(Exception ex) {
-			System.out.println("getCorseList()예외:"+ex);
+			System.out.println("getRentBikeRecentInfo()예외:"+ex);
 		}finally{
 			try{
 				if(rs!=null){rs.close();}
