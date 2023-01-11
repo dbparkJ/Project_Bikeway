@@ -16,7 +16,6 @@ public class DataScienceFormAction implements CommandAction {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
 		
-		
 		return "/dataScience/dataScienceForm.jsp";
 	}
 

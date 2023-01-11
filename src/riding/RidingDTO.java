@@ -7,34 +7,35 @@ import java.util.Date;
 public class RidingDTO {
 	
 	private int id; // 아이디
-	private float distance; // 주행거리
-	private float calorie; // 칼로리
-	private float riding_time; // 라이딩 한 시간
+	private double distance; // 주행거리
+	private double calorie; // 칼로리
+	private int riding_time; // 라이딩 한 시간
 	private LocalDateTime riding_dt; // 라이딩 일자
 	
-	// 게터세터
+	
+	// 게터,세터
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public float getDistance() {
+	public double getDistance() {
 		return distance;
 	}
-	public void setDistance(float distance) {
+	public void setDistance(double distance) {
 		this.distance = distance;
 	}
-	public float getCalorie() {
+	public double getCalorie() {
 		return calorie;
 	}
-	public void setCalorie(float calorie) {
+	public void setCalorie(double calorie) {
 		this.calorie = calorie;
 	}
-	public float getRiding_time() {
+	public int getRiding_time() {
 		return riding_time;
 	}
-	public void setRiding_time(float riding_time) {
+	public void setRiding_time(int riding_time) {
 		this.riding_time = riding_time;
 	}
 	public LocalDateTime getRiding_dt() {
@@ -44,7 +45,6 @@ public class RidingDTO {
 		this.riding_dt = riding_dt;
 	}
 	
-	
-	
+
 	
 }
