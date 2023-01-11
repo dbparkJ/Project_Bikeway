@@ -9,8 +9,8 @@
 <%
 String corse_name = request.getParameter("keyword");
 List<CorseDTO> corseList = null;
-CorseDAO dao = CorseDAO.getDao();
-corseList = dao.getLatLon(corse_name);
+BikeDAO dao = BikeDAO.getDao();
+corseList = dao.getCorseLatLon(corse_name);
 %>
 
 <%=corseList%>
