@@ -6,28 +6,43 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 
-<body class="pt-5">
-	<div class="pt-5">
-		<p class="text-center fs-2">기록을 입력하세요</p>
-		<form name="dataScience" method="post" action="${ctxpath}/dataScience/dataScience.do" onSubmit="return Distance_Check()">
-			<div class="container bg-light" style="width: 30%;">
-				<div class="container-md p-3">
-					<label for="exampleFormControlInput1" class="form-label">주행거리</label>
-					<input type="text" class="form-control" id="distance" placeholder="km">
-				</div>
-				<div class="container-md p-3">
-					<label for="exampleFormControlInput1" class="form-label">주행시간</label>
-					<input type="email" class="form-control" id="time" placeholder="분">
-				</div>
-				<div class="container-md p-3">
-					<label for="exampleFormControlInput1" class="form-label">주행시간</label>
-					<input type="date" class="form-control" id="date">
-				</div>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<input class="btn btn-dark" type="submit" value="입력">
-				<input class="btn btn-dark" type="reset" value="초기화">
+<body class="mx-5 pt-5">
+	<div class="container overflow-hidden pt-5">
+		<div class="row gx-5">
+			<div class="col">
+				<div class="p-3 border bg-light">Custom column padding</div>
+			</div>
+			<div class="col">
+				<div class="bg-light border" style="width: 500px;">
+					<form name="dataScience" method="post" action="${ctxpath}/dataScience/dataScience.do">
+						<div class="container-md p-3">
+							<label for="exampleFormControlInput1" class="form-label">주행거리</label>
+							<div class="form-floating">
+								<input type="text" id="distance" class="form-control" placeholder="km" required="required">
+								<label for="floatingInputInvalid">km</label>
+							</div>
+						</div>
+						<div class="container-md p-3">
+							<label for="exampleFormControlInput1" class="form-label">주행시간</label>
+							<div class="form-floating">
+								<input type="text" id="distance" class="form-control" placeholder="분" required="required">
+								<label for="floatingInputInvalid">분</label>
+							</div>
+						</div>
+						<div class="container-md p-3">
+							<label for="exampleFormControlInput1" class="form-label">주행시간</label>
+							<input type="date" class="form-control" id="date" required="required">
+						</div>
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+							<input class="btn btn-dark" type="submit" value="입력">
+							<input class="btn btn-dark" type="reset" value="초기화">
+						</div>
+					</form>
 				</div>
 			</div>
-		</form>
+			<div class="col">
+				<div class="p-3 border bg-light">Custom column padding</div>
+			</div>
+		</div>
 	</div>
 </body>
