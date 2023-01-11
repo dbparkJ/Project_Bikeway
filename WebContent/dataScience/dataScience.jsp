@@ -9,7 +9,7 @@
 
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-	<%-- 부트스트랩 --%>
+	<%-- 부트스트랩 1--%>
 
 	<script src="https:ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script>
