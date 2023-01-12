@@ -4,8 +4,8 @@
     import = "riding.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="ctxpath" value="<%=request.getContextPath() %>" />	
-
+<c:set var="ctxpath"  value="<%=request.getContextPath() %>" />	
+<%--와이라노 --%>
 <html>
 <head>
 
@@ -13,7 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <title>Insert title here</title>
 	<%-- 부트스트랩 --%>
-	
+
 	<style>
 		<%--
 		#title{
@@ -31,7 +31,7 @@
 
 </head>
 <body class="pt-5" >
-
+		<h2>와이라노</h2>
 	<tr>	
 	<br>
 	<%
