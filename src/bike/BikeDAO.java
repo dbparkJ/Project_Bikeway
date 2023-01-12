@@ -80,7 +80,7 @@ public class BikeDAO {
 			JSONArray array = new JSONArray();
 			try {
 				con = DBConnection.getInstacne().getConnection();
-				pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=? order by seq");
+				pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=?");
 				pstmt.setString(1, corse_name);
 				
 				rs=pstmt.executeQuery();
@@ -106,53 +106,17 @@ public class BikeDAO {
 			}//finally
 			return array;
 		}//getAllCorseList-end
-	
-		
-		//코스의 위도 경도 데이터를 불러온다
-		public List<CorseDTO> getCorseElev(){
-
-			List<CorseDTO> elevInfo = new ArrayList<CorseDTO>(); 
-			try {
-				con = DBConnection.getInstacne().getConnection();
-				pstmt = con.prepareStatement("SELECT elev FROM corse where corse_name='가오리코스' order by seq");
-				//일단 가오리 코스로만 test
-//				pstmt.setString(1, corse_name);
-				
-				rs=pstmt.executeQuery();
-				
-				CorseDTO dto=null;
-				
-				while(rs.next()) {
-					dto=new CorseDTO();
-					
-//					dto.setCorse_name("가오리코스");
-					dto.setElev(rs.getDouble("elev"));
-					
-					elevInfo.add(dto);
-			    }
-			}catch(Exception ex) {
-				System.out.println("getCorseElev()예외:"+ex);
-			}finally{
-				try{
-					if(stmt!=null){stmt.close();}
-					if(rs!=null){rs.close();}
-					if(pstmt!=null){pstmt.close();}
-					if(con!=null){con.close();}
-				} catch (Exception exx) {}
-			}//finally
-			return elevInfo;
-		}//getCorseElev-end
 
 //==============================================================================================
 /*
 *  따릉이 정보 관련 DAO
 */
 //==============================================================================================		
-		public JSONArray getRentBikeRecentInfo(){
-			JSONArray array = new JSONArray();
+		public List<RentBikeInfoDTO> getRentBikeRecentInfo(){
+			JSONArray rentbikeList = new JSONArray();
 			try {
 				con = DBConnection.getInstacne().getConnection();
-				pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=?");
+				pstmt = con.prepareStatement("select * from bike_real_time where updatetime = (select max(updatetime) from bike_real_time)");
 				rs=pstmt.executeQuery();
 				
 				
@@ -164,8 +128,7 @@ public class BikeDAO {
 			        obj.put("lon", rs.getDouble("lon"));
 			        obj.put("lat", rs.getDouble("lat"));
 			        obj.put("stationId", rs.getString("stationId"));	// obj.put("key","value")
-			        obj.put("updatetime", rs.getTimestamp("updatetime").toLocalDateTime());
-					array.add(obj);	//작성한 JSON 객체를 배열에 추가
+					rentbikeList.add(obj);	//작성한 JSON 객체를 배열에 추가
 				}
 			}catch(Exception ex) {
 				System.out.println("getRentBikeRecentInfo()예외:"+ex);
@@ -177,8 +140,8 @@ public class BikeDAO {
 					if(con!=null){con.close();}
 				} catch (Exception exx) {}
 			}//finally
-			return array;
-		}//getAllCorseList-end
+			return rentbikeList;
+		}//getRentBikeRecentInfo-end
 
 
 

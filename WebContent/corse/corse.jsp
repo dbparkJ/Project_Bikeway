@@ -5,42 +5,37 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-			
 	</head>
 	<body class="mx-5 pt-5">
-	<div style="width:800px pt-5">
-	    <canvas id="myChart"></canvas>
-	</div>
 	
 		<div class="container pt-5">
-			<div class="row gx-5">
-				<div class="col">
+			<div class="border bg-light" style="width: 650px; height: 880px;">
+				<div class="btn-group ms-4">
+					<div class="py-2 text-white">
+						<button type="button" class="btn btn-danger dropdown-toggle me-3" data-bs-toggle="dropdown" aria-expanded="false">
+							코스
+						</button>
+						<ul class="dropdown-menu dropdown-menu-light">
+							<li><a class="dropdown-item">서울근교</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li>
+								<c:forEach var="singleCorse" items="${singleCorseList}">
+									<div class="d-grid gap-2">
+										<button class="btn btn-outline-white" keyword = "${singleCorse.corse_name}" onclick="PaintingLine(this.getAttribute('keyword'))">${singleCorse.corse_name}</button>
+									</div>	
+								</c:forEach>
+							</li>
+						</ul>
+					</div>
+					<div class="py-2">
+						<button class="btn btn-danger" onclick="RentBikeRecentInfoList()"> 따릉이지도</button>
+					</div>
 				</div>
-				<div class="col border bg-light" style="width: 700px; height: 700px;">
-					<div class="btn-group ms-3">
-						<div class="py-2 text-white">
-							<button type="button" class="btn btn-danger dropdown-toggle me-3" data-bs-toggle="dropdown" aria-expanded="false">
-								코스
-							</button>
-							<ul class="dropdown-menu dropdown-menu-light">
-								<li><a class="dropdown-item">서울근교</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li>
-									<c:forEach var="singleCorse" items="${singleCorseList}">
-										<div class="d-grid gap-2">
-											<button class="btn btn-outline-white" keyword = "${singleCorse.corse_name}" onclick="PaintingLine(this.getAttribute('keyword'))">${singleCorse.corse_name}</button>
-										</div>	
-									</c:forEach>
-								</li>
-							</ul>
-						</div>
-						<div class="py-2">
-							<button type="button" class="btn btn-danger" onclick="RentBikeRecentInfoList()"> 따릉이지도</button>
-						</div>
-					</div>
-					<div class="ms-3">
-		      			<div id="map" style="width:600px;height:600px;"></div>
-					</div>
+				<div class="ms-4 pb-3">
+	      			<div class="border"id="map" style="width:600px;height:500px;"></div>
+				</div>
+				<div class="border pt-2 ms-4" style="width:600px;">
+				    <canvas id="myChart"></canvas>
 				</div>
 			</div>
 		</div>

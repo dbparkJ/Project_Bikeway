@@ -92,8 +92,8 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             <li><a class="dropdown-item" href="${ctxpath}/corse/corse.do">추천코스</a></li>
-            <li><a class="dropdown-item" href="${ctxpath}/member/inputForm.do">회원가입</a></li>
-            <li><a class="dropdown-item" href="${ctxpath}/member/loginFrom.do">로그인</a></li>
+            <li><a class="dropdown-item" href="#">회원가입</a></li>
+            <li><a class="dropdown-item" href="#">로그인</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
