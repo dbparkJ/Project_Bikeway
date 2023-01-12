@@ -102,8 +102,8 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             <li><a class="dropdown-item" href="${ctxpath}/dataScience/dataScienceForm.do">데이터사이언스</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="${ctxpath}/goods/newgoods.do">상품</a></li>
+            <li><a class="dropdown-item" href="${ctxpath}/goods/usedgoods.do">중고상품</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

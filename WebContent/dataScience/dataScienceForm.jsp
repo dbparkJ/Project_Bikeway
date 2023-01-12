@@ -29,10 +29,12 @@
 								<label for="floatingInputInvalid">분</label>
 							</div>
 						</div>
+						<%-- 
 						<div class="container-md p-3">
-							<label for="exampleFormControlInput1" class="form-label">주행시간</label>
+							<label for="exampleFormControlInput1" class="form-label">주행일자</label>
 							<input type="date" class="form-control" id="date" required="required">
 						</div>
+						--%>
 						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 							<input class="btn btn-dark" type="submit" value="입력">
 							<input class="btn btn-dark" type="reset" value="초기화">
