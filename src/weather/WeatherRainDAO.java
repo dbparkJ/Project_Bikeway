@@ -2,8 +2,6 @@ package weather;
 
 import java.sql.Connection;
 
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -41,20 +39,23 @@ public class WeatherRainDAO {
 	// ================
 	// 주간 전체 강수 조회.
 	// =================
-	public Vector<WeatherRainDTO> rainInfo(){
-		Vector<WeatherRainDTO> vec=new Vector<WeatherRainDTO>();//객체생성
+	public List<WeatherRainDTO> rainInfo(){
+		List<WeatherRainDTO> list = null;
 		try{
-			//System.out.println("Debug] rainInfo 1");
+			System.out.println("Debug] rainInfo 함수 1");
 			con = DBConnection.getInstacne().getConnection();
 			
 			pstmt=con.prepareStatement("select * from weather_rain where updatetime = (select max(updatetime) from weather_rain)");
 			rs=pstmt.executeQuery();
 			
-			WeatherRainDTO dto=null;
 			
-			while(rs.next()){
-				dto=new WeatherRainDTO();
-
+			if(rs.next()){
+				list = new ArrayList<WeatherRainDTO>();
+				
+				//dto=new WeatherRainDTO();
+				do {
+				WeatherRainDTO dto = new WeatherRainDTO();
+				
 				dto.setAreaname(rs.getString("areaname"));
 				
 				dto.setRain_1_am(rs.getInt("rain_1_am"));
@@ -84,8 +85,9 @@ public class WeatherRainDAO {
 				
 				dto.setUpdatetime(rs.getTimestamp("updatetime"));
 				
-				vec.add(dto);
-			} // while-end
+				list.add(dto);
+			}while (rs.next());
+		} 
 		}catch(Exception ex){
 			System.out.println("rainInfo 예외 : "+ex);
 		}finally{
@@ -102,6 +104,6 @@ public class WeatherRainDAO {
 			}catch(Exception ex2){}
 		}//finally-end
 		
-		return vec;
+		return list;
 	}//rainInfo()-end
 }
