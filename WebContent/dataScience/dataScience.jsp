@@ -2,17 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import = "riding.*" %>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<c:set var="ctxpath" value="<%=request.getContextPath() %>" />			
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="ctxpath"  value="<%=request.getContextPath() %>" />	
+<%--와이라노 --%>
 <html>
 <head>
 
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <title>Insert title here</title>
 	<%-- 부트스트랩 --%>
-	
+
 	<style>
 		<%--
 		#title{
@@ -30,7 +31,7 @@
 
 </head>
 <body class="pt-5" >
-
+		<h2>와이라노</h2>
 	<tr>	
 	<br>
 	<%
@@ -68,7 +69,7 @@
 	<tr>
 		<td>
 			<div id="image_container2">	
-				<img src = "image_graph.png" width="600" height="250">
+				<img src = "${ctxpath}/template/bike2.jpg" width="600" height="250">
 			</div>
 		</td>
 	</tr>
@@ -82,16 +83,14 @@
 </table>
 	
    <script>
-    var tmpDate = new Date();
-
     var img = $('#imgId');
 
     function changeImg() {
-    	alert('hi')
+    	var tmpDate = new Date();
         img.attr('src', 'chart.png?ver=' + tmpDate.getTime())
     }
 
-    setInterval(()=> changeImg(), 5000);
+    setInterval(()=> changeImg(), 500);
    </script>
 </body>
 </html>
