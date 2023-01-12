@@ -4,7 +4,7 @@
     import = "riding.*" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<c:set var="ctxpath" value="<%=request.getContextPath() %>" />			
+<c:set var="ctxpath" value="<%=request.getContextPath() %>"/>			
 
 <html>
 <head>
