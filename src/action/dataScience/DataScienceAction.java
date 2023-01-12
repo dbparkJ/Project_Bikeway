@@ -3,6 +3,7 @@ package action.dataScience;
 import java.util.List;
 
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,6 +24,7 @@ public class DataScienceAction implements CommandAction{
 
 		double distance = Integer.parseInt(request.getParameter("distance"));
 		int riding_time = Integer.parseInt(request.getParameter("riding_time"));
+		//riding_dt = request.getParameter("riding_dt")
 
 		//System.out.println(floatToString);
 		//System.out.println(riding_time);
