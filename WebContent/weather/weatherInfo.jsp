@@ -41,7 +41,7 @@
 		<c:set var="day" value="${weatherRainDTO.updatetime}"/>
 		<font size="-1"><fmt:formatDate value="${day}" pattern="MM-dd(E)"/></font><br> 날짜출력 --%>
 		1일 오후 강수확률 : ${rainvec.rain_1_pm}<br>
-		1일 오후 날씨상태 : ${rainvec.weather_1_pm}<br>
+		1일 오후 날씨상태 : ${rainvec.weather_1_pm}<br>안녕
 		</th>
 		
 		</c:forEach>
