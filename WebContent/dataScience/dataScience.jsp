@@ -87,7 +87,7 @@
 
     function changeImg() {
     	var tmpDate = new Date();
-        img.attr('src', 'chart.png?ver=' + tmpDate.getTime())
+        img.attr('src', "/test/a.png?ver=" + tmpDate.getTime())
     }
 
     setInterval(()=> changeImg(), 500);
