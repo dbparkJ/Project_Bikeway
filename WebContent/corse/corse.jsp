@@ -5,12 +5,16 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+			
 	</head>
 	<body class="mx-5 pt-5">
+	<div style="width:800px pt-5">
+	    <canvas id="myChart"></canvas>
+	</div>
+	
 		<div class="container pt-5">
 			<div class="row gx-5">
 				<div class="col">
-					<div class="p-3 border bg-light">Custom column padding</div>
 				</div>
 				<div class="col border bg-light" style="width: 700px; height: 700px;">
 					<div class="btn-group ms-3">
@@ -42,5 +46,6 @@
 		</div>
 	</body>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=17d6d1b98aeed31a6b874f4a6fd6d957"></script>    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<script type="text/javascript" src="${ctxpath}/static/app/js/paintingMap.js"></script>
 </html>
