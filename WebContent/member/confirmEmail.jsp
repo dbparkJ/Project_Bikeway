@@ -6,7 +6,7 @@
 <%--confirmEmail.jsp --%>
 
 <%
-String email=request.getParameter("email");//ajax에서 넘겨준 email
+String email=request.getParameter("email1");//ajax에서 넘겨준 email
 MemberDAO dao=MemberDAO.getDao();
 int x=dao.confirmEmail(email);//dao메서드 호출
 %>

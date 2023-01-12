@@ -1,10 +1,11 @@
-/action/
 /bike/
-/command/
-/controller/
+/action/
 /db/
+<<<<<<< HEAD
 /member/
 /riding/
 /weather.class
 /weather/
 /action.weather/
+=======
+>>>>>>> branch 'master' of https://github.com/dbparkJ/Project_Bikeway.git

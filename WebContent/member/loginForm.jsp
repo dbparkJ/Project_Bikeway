@@ -22,8 +22,7 @@
                     required="required">
             </div>
             <div class="mb-3">
-                <button class="btn btn-warning btn-block" type="submit"><i class="bi bi-box-arrow-in-left"></i>
-                    로그인</button>
+                <button class="btn btn-warning btn-block" type="submit"><i class="bi bi-box-arrow-in-left"></i>로그인</button>
             </div>
             <div class="text-center">
                 <a class="text-dark" href="${ctxpath }/member/inputForm.do">회원가입 </a> <span> | </span> <a
