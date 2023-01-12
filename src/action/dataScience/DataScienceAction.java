@@ -15,23 +15,21 @@ import riding.RidingDTO;
 public class DataScienceAction implements CommandAction{
 
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		//System.out.println("안녕");
-		request.setCharacterEncoding("utf-8");
-			
+		//request.setCharacterEncoding("utf-8");
+		//System.out.println("데이터사이언스액션"); <= 얘 찍힘
 		RidingDTO dto=new RidingDTO();
 		RidingDAO dao= RidingDAO.getDao();
 		
-
+		System.out.println("데이터사이언스액션");
 		double distance = Integer.parseInt(request.getParameter("distance"));
 		int riding_time = Integer.parseInt(request.getParameter("riding_time"));
-		//riding_dt = request.getParameter("riding_dt")
 
-		//System.out.println(floatToString);
-		//System.out.println(riding_time);
+		//System.out.println("데이터사이언스액션"); <= 얘 안찍힘
 		
 		dto.setDistance(distance);
 		dto.setRiding_time(riding_time);
-	
+		
+		System.out.println(dto);
 		dao.insertList(dto);  //dao메서드 호출		
 		
 		return "/dataScience/dataScience.jsp";

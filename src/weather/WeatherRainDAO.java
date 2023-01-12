@@ -2,6 +2,7 @@ package weather;
 
 import java.sql.Connection;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -42,7 +43,7 @@ public class WeatherRainDAO {
 	public List<WeatherRainDTO> rainInfo(){
 		List<WeatherRainDTO> list = null;
 		try{
-			System.out.println("Debug] rainInfo 함수 1");
+			//System.out.println("Debug] rainInfo 함수 1");
 			con = DBConnection.getInstacne().getConnection();
 			
 			pstmt=con.prepareStatement("select * from weather_rain where updatetime = (select max(updatetime) from weather_rain)");

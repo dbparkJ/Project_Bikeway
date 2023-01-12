@@ -2,6 +2,7 @@ package action.weather;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import javax.servlet.http.HttpServletResponse;
 
 import command.CommandAction;
@@ -12,7 +13,7 @@ import java.util.*;
 public class WeatherInfoAction implements CommandAction {
 	
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-	System.out.println("Debug] WeatherInfoAction 1");
+	//System.out.println("Debug] WeatherInfoAction 1");
 	// 인코딩처리
 	request.setCharacterEncoding("utf-8");
 

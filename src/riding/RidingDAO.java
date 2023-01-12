@@ -47,7 +47,7 @@ public class RidingDAO {
 			pstmt.setInt(2,dto.getRiding_time());
 			
 			pstmt.executeUpdate(); //쿼리 수행
-			System.out.println("ridingDTO.");
+			
 		}catch(Exception ex){
 			System.out.println("insertList()예외 : "+ex);
 		}finally{
