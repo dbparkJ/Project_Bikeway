@@ -68,6 +68,7 @@ function PaintingLine(keyword){
         dataType:"JSON",
         success: function(data){
 					removemap(polyline);
+					removegraph(elevList);
 		        	drawingLine(data);
 					polyline.setMap(map);
 					corseInfowindow()
@@ -101,8 +102,13 @@ function corseInfowindow(){
 	});
 }
 
+let myLine;//전역변수로 선언
 function creatgraph(data,keyword){
 	elevList = [];
+	if (myLine != undefined){//이미 있으면 myLine 삭제
+		myLine.destroy();
+	}
+
 	for(var i=0; i<data.length; i++){
 		elevList.push(data[i].elev)
 	}
@@ -176,5 +182,6 @@ function removemap(polyline){
 
 function removegraph(elevList){
 	if(elevList != null){
-		elevList =[];	}
+		elevList =[];
+			}
 }
