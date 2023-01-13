@@ -7,6 +7,7 @@ public class Corse_MAX_MIN_DTO {
 	private Double lat_max;
 	private Double lat_min;
 	private Double lat_avg;
+	
 	public Double getLon_max() {
 		return lon_max;
 	}
@@ -42,8 +43,5 @@ public class Corse_MAX_MIN_DTO {
 	}
 	public void setLat_avg(Double lat_avg) {
 		this.lat_avg = lat_avg;
-	}
-	
-	
-	
+	}	
 }
