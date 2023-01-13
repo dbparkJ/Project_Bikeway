@@ -1,4 +1,14 @@
+<<<<<<< HEAD
+/db/
+/riding/
+/action/
+/bike/
+=======
 /goods/
+/action/
+/riding/
 /weather/
 /bike/
 /db/
+>>>>>>> branch 'master' of https://github.com/dbparkJ/Project_Bikeway.git
+/member/

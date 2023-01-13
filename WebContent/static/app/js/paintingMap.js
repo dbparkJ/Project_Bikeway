@@ -13,9 +13,11 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var polyline = null;
 var path = []; /*위경도를 그리기위한 전역변수*/
 var elevList = []; /*고도 그래프를 그리기위한 전역변수*/
-var points = [];
-var bounds = new kakao.maps.LatLngBounds();
-
+var lating =[]; /* 마커의 위경도*/
+var title =[]; /*마커의 이름*/
+var markers = [];
+/*마커 이미지주소*/
+var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 
 /**
  *  따릉이 API 최신정보
@@ -26,12 +28,38 @@ function RentBikeRecentInfoList(){
 		url : "../json/rentBikeInfo_json.jsp",
 		dataType : "JSON",
 		success : function(data){
-			for(var i=0; i<data.length; i++){
-			console.log(data[i])
-			}
+			drwaingMarker(data)
 		}
 	})
 }// function-end
+
+
+function drwaingMarker(data){
+	var lating=[];
+
+	for(var i=0; i<data.length; i++){
+			lating.push(new kakao.maps.LatLng(data[i].latlonList.lat,data[i].latlonList.lon))
+	}
+			
+	for (var i = 0; i < data.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: lating[i], // 마커를 표시할 위치
+        title : data[i].stationName, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    	});
+    
+    markers.push(marker)
+	}
+}
 
 function PaintingLine(keyword){
 		$.ajax({
@@ -40,27 +68,13 @@ function PaintingLine(keyword){
         dataType:"JSON",
         success: function(data){
 					removemap(polyline);
+					removegraph(elevList);
 		        	drawingLine(data);
-					var marker;
-					for (i = 0; i < points.length; i++) {
-						// 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
-						marker =     new kakao.maps.Marker({ position : path[i] });
-						marker.setMap(map);
-						
-						// LatLngBounds 객체에 좌표를 추가합니다
-						bounds.extend(path[i]);
-					}
-					
 					polyline.setMap(map);
-					creatgraph(data);
+					corseInfowindow()
+					creatgraph(data,keyword);
 	        		}
      	});//$.ajax()
-}
-
-function setBounds() {
-	// LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
-	// 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
-	map.setBounds(bounds);
 }
 
 function drawingLine(data){
@@ -77,7 +91,24 @@ function drawingLine(data){
 				});
 }
 
-function creatgraph(data){
+function corseInfowindow(){
+	kakao.maps.event.addListener(polyline, 'mouseover', function(mouseEvent) {  
+    var latlng = mouseEvent.latLng;
+    console.log(latlng.toString());         
+	});
+	kakao.maps.event.addListener(polyline, 'click', function(mouseEvent) {  
+    var latlng = mouseEvent.latLng;
+    console.log(latlng.toString());         
+	});
+}
+
+let myLine;//전역변수로 선언
+function creatgraph(data,keyword){
+	elevList = [];
+	if (myLine != undefined){//이미 있으면 myLine 삭제
+		myLine.destroy();
+	}
+
 	for(var i=0; i<data.length; i++){
 		elevList.push(data[i].elev)
 	}
@@ -107,7 +138,7 @@ function creatgraph(data){
 			responsive: true,
 			title:{
 				display:true,
-				text:'고도 그래프'
+				text: keyword + " 코스"
 			},
 			tooltips: {
 				mode: 'index',
@@ -137,6 +168,7 @@ function creatgraph(data){
 				}
 		}
 	};
+	
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLine = new Chart(ctx, config);	
 }
@@ -151,5 +183,6 @@ function removemap(polyline){
 
 function removegraph(elevList){
 	if(elevList != null){
-		elevList =[];	}
+		elevList =[];
+			}
 }

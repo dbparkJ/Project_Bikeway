@@ -1,5 +1,8 @@
 package action.dataScience;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -15,22 +18,20 @@ import riding.RidingDTO;
 public class DataScienceAction implements CommandAction{
 
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		//request.setCharacterEncoding("utf-8");
-		//System.out.println("데이터사이언스액션"); <= 얘 찍힘
+		request.setCharacterEncoding("utf-8");
+		
 		RidingDTO dto=new RidingDTO();
 		RidingDAO dao= RidingDAO.getDao();
 		
-		System.out.println("데이터사이언스액션");
-		double distance = Integer.parseInt(request.getParameter("distance"));
-		int riding_time = Integer.parseInt(request.getParameter("riding_time"));
 
-		//System.out.println("데이터사이언스액션"); <= 얘 안찍힘
-		
-		dto.setDistance(distance);
-		dto.setRiding_time(riding_time);
-		
-		System.out.println(dto);
-		dao.insertList(dto);  //dao메서드 호출		
+		Double distance = Double.parseDouble(request.getParameter("distance"));
+		Integer riding_time = Integer.parseInt(request.getParameter("riding_time"));
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		//LocalDate riding_dt = LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ISO_DATE);
+		LocalDate riding_dt = LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+
+		dao.insertList(id,distance,riding_time,riding_dt); //dao 메서드 호출		
+
 		
 		return "/dataScience/dataScience.jsp";
 	}

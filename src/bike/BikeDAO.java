@@ -83,7 +83,9 @@ public class BikeDAO {
 			JSONArray array = new JSONArray();
 			try {
 				con = DBConnection.getInstacne().getConnection();
+
 				pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=? ORDER BY SEQ");
+
 				pstmt.setString(1, corse_name);
 				
 				rs=pstmt.executeQuery();
@@ -200,14 +202,16 @@ public class BikeDAO {
 				
 				
 				while(rs.next()) {
+					JSONObject latlon = new JSONObject();	// {}, JSON 객체 생성
 					JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
+					latlon.put("lon", rs.getDouble("lon"));
+					latlon.put("lat", rs.getDouble("lat"));
+					obj.put("stationId", rs.getString("stationId"));	// obj.put("key","value")
 					obj.put("stationName", rs.getString("stationName"));	// obj.put("key","value")
 			    	obj.put("rackToCnt", rs.getInt("rackToCnt"));	// obj.put("key","value")
 			    	obj.put("bikeToCnt", rs.getInt("bikeToCnt"));	// obj.put("key","value")
-			        obj.put("lon", rs.getDouble("lon"));
-			        obj.put("lat", rs.getDouble("lat"));
-			        obj.put("stationId", rs.getString("stationId"));	// obj.put("key","value")
-					rentbikeList.add(obj);	//작성한 JSON 객체를 배열에 추가
+			    	obj.put("latlonList", latlon);	// obj.put("key","value")
+			        rentbikeList.add(obj);	//작성한 JSON 객체를 배열에 추가
 				}
 			}catch(Exception ex) {
 				System.out.println("getRentBikeRecentInfo()예외:"+ex);

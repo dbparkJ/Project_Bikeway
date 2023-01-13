@@ -1,7 +1,6 @@
 package bike;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Id_Dis_Rid_Wei_DTO {
 	private String id;
