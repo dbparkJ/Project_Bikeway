@@ -11,7 +11,6 @@ public class LogoutProAction implements CommandAction{
 	public String requestPro(HttpServletRequest request,
 			HttpServletResponse response) throws Throwable {
 
-		
 		return "/member/logout.jsp";//뷰 리턴
 	}
 }
