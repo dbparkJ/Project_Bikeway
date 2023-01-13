@@ -29,7 +29,7 @@
 	</button>
 	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
 		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Next</span>
+		<span class="visually-hidden">Next1</span>
 	</button>
 </div>
 </body>
