@@ -31,6 +31,9 @@
 
 </head>
 <body class="pt-5" >
+
+		<h2>와이라노</h2>
+
 	<tr>	
 	<%
 	RidingDTO ridingDTO=new RidingDTO();

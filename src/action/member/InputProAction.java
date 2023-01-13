@@ -19,15 +19,14 @@ public class InputProAction implements CommandAction {
 		
 		MemberDTO dto=new MemberDTO();
 		
-		//inputForm.jsp보내준 데이터를 dto에 담는다.
-		
+		//inputForm.jsp보내준 데이터를 dto에 담는다.		
 		dto.setEmail(request.getParameter("email"));
 		dto.setPassword(request.getParameter("password"));
 		dto.setName(request.getParameter("name"));
 		dto.setNickname(request.getParameter("nickname"));
 		dto.setAddress(request.getParameter("address"));
 		dto.setZipcode(request.getParameter("zipcode"));
-		dto.setZipcode(request.getParameter("weight"));		
+		//dto.setZipcode(request.getParameter("weight"));		
 		dto.setWeight(Double.parseDouble(request.getParameter("weight")));	
 		
 	
