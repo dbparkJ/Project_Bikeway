@@ -20,17 +20,25 @@ public class DataScienceAction implements CommandAction{
 		RidingDTO dto=new RidingDTO();
 		RidingDAO dao= RidingDAO.getDao();
 		
+		List<RidingDTO> RidingList=null;
+		
+		RidingList=dao.getRidingList();
+		
+		//////
+		
 		System.out.println("데이터사이언스액션");
 		double distance = Integer.parseInt(request.getParameter("distance"));
 		int riding_time = Integer.parseInt(request.getParameter("riding_time"));
-
+		
 		//System.out.println("데이터사이언스액션"); <= 얘 안찍힘
 		
 		dto.setDistance(distance);
 		dto.setRiding_time(riding_time);
 		
 		System.out.println(dto);
-		dao.insertList(dto);  //dao메서드 호출		
+		dao.insertList(dto);  //dao메서드 호출
+		
+		request.setAttribute("RidingList", RidingList);
 		
 		return "/dataScience/dataScience.jsp";
 	}

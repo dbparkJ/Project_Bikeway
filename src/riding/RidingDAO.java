@@ -1,15 +1,16 @@
 package riding;
 import java.sql.*;
-
-
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import db.DBConnection;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
+import db.DBConnection;
+import goods.NewGoodsDTO;
 import member.LoginMemberDTO;
 import riding.RidingDTO;
 
@@ -57,4 +58,111 @@ public class RidingDAO {
 			}catch(Exception ex){}
 		}//finally-end
 	}//insertMember()-end
+	
+	// ================
+	// 내 기록 리스트화
+	// =================
+	
+	
+	public List<RidingDTO> getRidingList(int mem_id)
+	{
+		LocalDate now = LocalDate.now();
+		String format_not=now.toString();
+	    return getRidingList(mem_id,format_not);
+	}//인자에 날짜가 안들어오면 일단 이번주의 값을 보여줌
+	
+	public List<RidingDTO> getRidingList(int mem_id,String riding_time){
+		JSONArray myRidingArray = new JSONArray();
+		try{
+			con = DBConnection.getInstacne().getConnection();
+			
+			pstmt=con.prepareStatement("select b.riding_dt, nvl(a.distance, 0) from"
+					+ "(select * from riding where id = ?) a "
+					+ "right join (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt, 0 as distance\r\n"
+					+ "   FROM (SELECT TO_DATE(?, 'YYYY-MM-DD') SDT  -- 시작 일자\r\n"
+					+ "              , (TO_DATE(?, 'YYYY-MM-DD')+6) EDT -- 종료일자\r\n"
+					+ "           FROM DUAL)\r\n"
+					+ " CONNECT BY LEVEL <= EDT - SDT + 1) b on a.riding_dt = b.riding_dt;");
+			
+			pstmt.setInt(1, mem_id);
+			pstmt.setString(2, riding_time);
+			pstmt.setString(3, riding_time);
+			
+			rs=pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+				JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
+		    	obj.put("id", rs.getInt("id"));	// obj.put("key","value")
+		        obj.put("distance", rs.getDouble("distance"));
+		        
+		        myRidingArray.add(obj);	//작성한 JSON 객체를 배열에 추가
+		    }
+		}catch(Exception ex) {
+			System.out.println("getRidingList()예외:"+ex);
+		}finally{
+			try{
+				if(stmt!=null){stmt.close();}
+				if(rs!=null){rs.close();}
+				if(pstmt!=null){pstmt.close();}
+				if(con!=null){con.close();}
+			} catch (Exception exx) {}
+		}//finally
+		return myRidingArray;
+	}//getRidingList()-end
+	
+	
+	
+	// ================
+		// 평균 리스트화
+		// =================
+		
+		
+		public List<RidingDTO> getAvgRidingList()
+		{
+			LocalDate now = LocalDate.now();
+			String format_not=now.toString();
+		    return getAvgRidingList(format_not);
+		}//인자에 날짜가 안들어오면 일단 이번주의 값을 보여줌
+		
+		public List<RidingDTO> getAvgRidingList(String riding_time){
+			JSONArray avgRidingArray = new JSONArray();
+			try{
+				con = DBConnection.getInstacne().getConnection();
+				
+				pstmt=con.prepareStatement("select b.riding_dt, nvl(a.distance, 0) from"
+						+ "(select * from riding where id = ?) a "
+						+ "right join (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt, 0 as distance\r\n"
+						+ "   FROM (SELECT TO_DATE(?, 'YYYY-MM-DD') SDT  -- 시작 일자\r\n"
+						+ "              , (TO_DATE(?, 'YYYY-MM-DD')+6) EDT -- 종료일자\r\n"
+						+ "           FROM DUAL)\r\n"
+						+ " CONNECT BY LEVEL <= EDT - SDT + 1) b on a.riding_dt = b.riding_dt;");
+				
+				pstmt.setString(1, riding_time);
+				pstmt.setString(2, riding_time);
+				
+				rs=pstmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
+			    	obj.put("id", rs.getInt("id"));	// obj.put("key","value")
+			        obj.put("distance", rs.getDouble("distance"));
+			        
+			        avgRidingArray.add(obj);	//작성한 JSON 객체를 배열에 추가
+			    }
+			}catch(Exception ex) {
+				System.out.println("getRidingList()예외:"+ex);
+			}finally{
+				try{
+					if(stmt!=null){stmt.close();}
+					if(rs!=null){rs.close();}
+					if(pstmt!=null){pstmt.close();}
+					if(con!=null){con.close();}
+				} catch (Exception exx) {}
+			}//finally
+			return avgRidingArray;
+		}//getRidingList()-end
 }
+
+
