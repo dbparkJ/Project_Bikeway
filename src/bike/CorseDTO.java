@@ -5,6 +5,7 @@ public class CorseDTO {
 	private Double lon;
 	private Double lat;
 	private Double elev;
+	
 	public String getCorse_name() {
 		return corse_name;
 	}
