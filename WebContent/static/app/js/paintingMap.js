@@ -13,9 +13,11 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var polyline = null;
 var path = []; /*위경도를 그리기위한 전역변수*/
 var elevList = []; /*고도 그래프를 그리기위한 전역변수*/
-var points = [];
-var bounds = new kakao.maps.LatLngBounds();
-
+var lating =[]; /* 마커의 위경도*/
+var title =[]; /*마커의 이름*/
+var markers = [];
+/*마커 이미지주소*/
+var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 
 /**
  *  따릉이 API 최신정보
@@ -26,12 +28,38 @@ function RentBikeRecentInfoList(){
 		url : "../json/rentBikeInfo_json.jsp",
 		dataType : "JSON",
 		success : function(data){
-			for(var i=0; i<data.length; i++){
-			console.log(data[i])
-			}
+			drwaingMarker(data)
 		}
 	})
 }// function-end
+
+
+function drwaingMarker(data){
+	var lating=[];
+
+	for(var i=0; i<data.length; i++){
+			lating.push(new kakao.maps.LatLng(data[i].latlonList.lat,data[i].latlonList.lon))
+	}
+			
+	for (var i = 0; i < data.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: lating[i], // 마커를 표시할 위치
+        title : data[i].stationName, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    	});
+    
+    markers.push(marker)
+	}
+}
 
 function PaintingLine(keyword){
 		$.ajax({
@@ -42,32 +70,19 @@ function PaintingLine(keyword){
 					removemap(polyline);
 					removegraph(elevList);
 		        	drawingLine(data);
-					var marker;
-					for (i = 0; i < points.length; i++) {
-						// 배열의 좌표들이 잘 보이게 마커를 지도에 추가합니다
-						marker =     new kakao.maps.Marker({ position : path[i] });
-						marker.setMap(map);
-						
-						// LatLngBounds 객체에 좌표를 추가합니다
-						bounds.extend(path[i]);
-					}
-					
 					polyline.setMap(map);
 					creatgraph(data);
 	        		}
      	});//$.ajax()
 }
 
-function setBounds() {
-	// LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
-	// 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
-	map.setBounds(bounds);
-}
-
 function drawingLine(data){
 	for(var i=0; i<data.length; i++){
     		path.push(new kakao.maps.LatLng(data[i].lat,data[i].lon))
+		
 	}
+	
+	
 	polyline = 	new kakao.maps.Polyline({
 				    path: path, // 선을 구성하는 좌표배열 입니다
 				    strokeWeight: 5, // 선의 두께 입니다
@@ -76,6 +91,27 @@ function drawingLine(data){
 				    strokeStyle: 'solid', // 선의 스타일입니다
 				    endArrow : true
 				});
+
+}
+
+function infoWindow(){
+var iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+var iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+}
+
+
+
+
+
+
+
+
+function corseInfowindow(){
+	kakao.maps.event.addListener(polyline, 'click', function(mouseEvent) {  
+    var latlng = mouseEvent.latLng;
+    console.log(latlng.toString());         
+	});
 }
 
 let myLine;//전역변수로 선언
