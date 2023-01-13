@@ -31,14 +31,30 @@
 
 </head>
 <body class="pt-5" >
-		<h2>와이라노</h2>
 	<tr>	
-	<br>
 	<%
 	RidingDTO ridingDTO=new RidingDTO();
 	RidingDAO ridingDAO=RidingDAO.getDao();
 	%>
-	
+<table>
+테스트
+<script>
+	var disList=[]
+	var dateList=[]
+</script>
+<c:set var = "list" value = "<%=ridingDAO.getRidingList() %>"/>
+ 
+	<c:forEach var="rdto" items="${list}">
+		<script>
+			disList.push(${rdto.distance});
+			dateList.push(${rdto.riding_dt})
+		</script>
+	</c:forEach>
+</table>
+<script>
+	console.log(dateList);
+</script>	
+
 <h2 id = "title" align="center">'nickname'님의 주간기록</h2>
 
 <table id = "table1style" cellpadding="20" width="800" height="300" align = "center">
@@ -51,13 +67,13 @@
 	<tr>
 		<td> 
 			<div id="image_container">
-				<img id="imgId" src = "chart.png" width="600" height="250" alt="distance_chart">
+				<canvas id="myRidingChart"></canvas>
 			</div>
 		</td>
 	</tr>
 	
 </table>
-<table></table>
+
 <table id = "table1style" cellpadding="20" width="800" height="300" align = "center">
 	
 	<tr>	
@@ -93,4 +109,7 @@
     setInterval(()=> changeImg(), 500);
    </script>
 </body>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=17d6d1b98aeed31a6b874f4a6fd6d957"></script>    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<script type="text/javascript" src="${ctxpath}/static/app/js/paintingMap.js"></script>
 </html>
