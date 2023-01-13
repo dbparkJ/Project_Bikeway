@@ -4,10 +4,13 @@ import java.net.http.HttpRequest;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +83,9 @@ public class BikeDAO {
 			JSONArray array = new JSONArray();
 			try {
 				con = DBConnection.getInstacne().getConnection();
-				pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=? order by seq");
+
+				pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=? ORDER BY SEQ");
+
 				pstmt.setString(1, corse_name);
 				
 				rs=pstmt.executeQuery();
@@ -146,7 +151,42 @@ public class BikeDAO {
 			return array;
 		}//getCorse_max_minLatLon-end				
 		
-		
+		//id별 주행거리 주행시간 몸무게 주행일자 가져오기 
+		public List<Id_Dis_Rid_Wei_DTO> getCorse_id_ds_rid_wid(String id, Date riding_dt ){
+			JSONArray array = new JSONArray();
+			try {
+				con = DBConnection.getInstacne().getConnection();
+				pstmt = con.prepareStatement("SELECT A.DISTANCE,A.RIDING_TIME,B.WEIGHT,A.RIDING_DT   \r\n"
+						+ "  FROM RIDING A,MEMBER B\r\n"
+						+ "WHERE A.ID = B.ID\r\n"
+						+ "  AND A.ID = ?\r\n"
+						+ "  AND A.RIDING_DT = ?");
+				pstmt.setString(1, id);
+				pstmt.setDate(2, riding_dt);				
+				
+				rs=pstmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
+			    	obj.put("DISTANCE", rs.getDouble("DISTANCE"));	// obj.put("key","value")
+			        obj.put("RIDING_TIME", rs.getDouble("RIDING_TIME"));
+			        obj.put("WEIGHT", rs.getDouble("WEIGHT"));
+			        obj.put("RIDING_DT", rs.getDate("RIDING_DT"));					        
+			        array.add(obj);	//작성한 JSON 객체를 배열에 추가
+			    }
+			}catch(Exception ex) {
+				System.out.println("getCorse_id_ds_rid_wid()예외:"+ex);
+			}finally{
+				try{
+					if(stmt!=null){stmt.close();}
+					if(rs!=null){rs.close();}
+					if(pstmt!=null){pstmt.close();}
+					if(con!=null){con.close();}
+				} catch (Exception exx) {}
+			}//finally
+			return array;
+		}//getCorse_id_ds_rid_wid-end		
 		
 //==============================================================================================
 /*
