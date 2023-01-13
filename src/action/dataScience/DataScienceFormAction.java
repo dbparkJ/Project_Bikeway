@@ -1,23 +1,28 @@
 package action.dataScience;
 
-import java.util.List;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import command.CommandAction;
 
-import riding.RidingDAO;
-import riding.RidingDTO;
+import member.*;
 
 public class DataScienceFormAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		// TODO Auto-generated method stub
+		  
+		  HttpSession session = request.getSession();
+	      
+	      LoginMemberDTO loginMember = (LoginMemberDTO)session.getAttribute("member");
+	      
+	      MemberDAO dao=MemberDAO.getDao();	      
+	      MemberDTO dto = dao.getMember(loginMember.getId());      
+	      
+	      request.setAttribute("dto", dto);   
 		
-		//System.out.println("dataScienceFormAction"); 찍힘
 		return "/dataScience/dataScienceForm.jsp";
 	}
 

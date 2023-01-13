@@ -137,6 +137,7 @@ function creatgraph(data){
 				}
 		}
 	};
+	
 	var ctx = document.getElementById("myChart").getContext("2d");
 	var myLine = new Chart(ctx, config);	
 }

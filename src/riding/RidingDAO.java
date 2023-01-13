@@ -1,11 +1,10 @@
 package riding;
 import java.sql.*;
-
-
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import db.DBConnection;
@@ -34,17 +33,21 @@ public class RidingDAO {
 	//==========================
 	// 주행거리, 주행시간 , 날짜 입력
 	//==========================
-	public void insertList(RidingDTO dto){
+	public void insertList(Integer id, Double distance, Integer riding_time, LocalDate riding_dt){
 		try{
 			con = DBConnection.getInstacne().getConnection();
 			
-			pstmt=con.prepareStatement("insert into riding values(0,?,NULL,?,sysdate)");
+			pstmt=con.prepareStatement("insert into riding(id,distance,calorie,riding_time,riding_dt) "
+					+ "values(?,?,NULL,?,?)");
 			
 			rs=pstmt.executeQuery();
 			
 			//?값 채우기
-			pstmt.setDouble(1,dto.getDistance());
-			pstmt.setInt(2,dto.getRiding_time());
+			pstmt.setInt(1,id);
+			pstmt.setDouble(2,distance);
+			pstmt.setInt(3,riding_time);
+			//pstmt.setTimestamp(4,Timestamp.valueOf(riding_dt.getLocalDate()));
+			pstmt.setDate(3,java.sql.Date.valueOf(riding_dt));
 			
 			pstmt.executeUpdate(); //쿼리 수행
 			
