@@ -23,14 +23,15 @@ public class DataScienceAction implements CommandAction{
 		RidingDTO dto=new RidingDTO();
 		RidingDAO dao= RidingDAO.getDao();
 		
-		//System.out.println("데이터사이언스액션");
+
 		Double distance = Double.parseDouble(request.getParameter("distance"));
 		Integer riding_time = Integer.parseInt(request.getParameter("riding_time"));
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		//LocalDate riding_dt = LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ISO_DATE);
 		LocalDate riding_dt = LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-		
+
 		dao.insertList(id,distance,riding_time,riding_dt); //dao 메서드 호출		
+
 		
 		return "/dataScience/dataScience.jsp";
 	}

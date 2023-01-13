@@ -141,7 +141,6 @@ public class MemberDAO {
 				pstmt=con.prepareStatement("select * from member where email=?");
 				
 				pstmt.setString(1, email);
-				
 				rs=pstmt.executeQuery();
 				
 				//rs 내용을 dto에 넣고
@@ -194,6 +193,7 @@ public class MemberDAO {
 				dto.setName(rs.getString("name"));
 				dto.setAddress(rs.getString("address"));
 				dto.setZipcode(rs.getString("zipcode"));
+				dto.setWeight(rs.getDouble("weight"));
 			
 				dto.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime());
 				dto.setUpdated_at(rs.getTimestamp("updated_at").toLocalDateTime());
@@ -212,99 +212,6 @@ public class MemberDAO {
 		
 		return dto;
 	}//getMember-end
-	
-	//====================
-	   //DB내용 수정(내정보 수정)
-	   //====================
-	   public void updateMember(MemberDTO dto){
-	      try{
-	         con = DBConnection.getInstacne().getConnection();
-	         String sql="update member set password=?, name=?, nickname=?,  zipcode=?, address=?, updated_at=SYSDATE where id=?";
-	         pstmt=con.prepareStatement(sql);
-	         
-	         pstmt.setString(1, dto.getPassword());
-	         pstmt.setString(2, dto.getName());
-	         pstmt.setString(3, dto.getNickname());
-	         pstmt.setString(4, dto.getZipcode());
-	         pstmt.setString(5, dto.getAddress());
-	         pstmt.setInt(6, dto.getId());
-	         
-	         pstmt.executeUpdate();
-	      }catch(Exception ex){
-	         System.out.println("updateMember 예외 : "+ex);
-	      }finally{
-	         try{
-	            if(pstmt!=null){pstmt.close();}
-	            if(con!=null){con.close();}
-	         }catch(Exception ex2){}
-	      }//finally-end
-	   }//updateMember-end
-	   
-	   public void updatePw(String pw,String email){
-		      try{
-		         con = DBConnection.getInstacne().getConnection();
-		         String sql="update member set password=?, updated_at=SYSDATE where email=?";
-		         pstmt=con.prepareStatement(sql);
-		         pstmt.setString(1, pw);
-		         pstmt.setString(2, email);
-		   
-		         
-		         pstmt.executeUpdate();
-		      }catch(Exception ex){
-		         System.out.println("updatePw 예외 : "+ex);
-		      }finally{
-		         try{
-		            if(pstmt!=null){pstmt.close();}
-		            if(con!=null){con.close();}
-		         }catch(Exception ex2){}
-		      }//finally-end
-		   }//updatePw-end
-
-	
-	//====================
-	//회원탈퇴
-	//====================
-	public int deleteMember(int id,String pw){
-		PreparedStatement pstmt2=null;
-		int x=-100;
-		
-		try{
-			con = DBConnection.getInstacne().getConnection();
-			pstmt=con.prepareStatement("select pw from member where id=?");
-			
-			pstmt.setInt(1,id);
-			
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()){
-				String dbpw=rs.getString("pw");
-				
-				if(dbpw.equals(pw)){
-					//암호가 일치하면 회원탈퇴
-					pstmt2=con.prepareStatement("delete from member where id=?");
-					
-					pstmt2.setInt(1,id);
-					
-					pstmt2.executeUpdate();
-					
-					x=1; //삭제성공
-				}else{
-					x=-1; //암호틀림
-				}//else-end
-			}//if-end
-		}catch(Exception ex){
-			System.out.println("deleteMember 예외 : "+ex);
-		}finally{
-			try{
-				if(rs!=null){rs.close();}
-				if(pstmt!=null){pstmt.close();}
-				if(pstmt2!=null){pstmt2.close();}
-				if(con!=null){con.close();}
-			}catch(Exception ex2){}
-		}//finally-end
-		
-		return x;
-	}//deleteMember-end
 	
 	public void insertMember(MemberDTO dto){
 		try{
@@ -332,50 +239,7 @@ public class MemberDAO {
 			}catch(Exception exx){}
 		}//finally-end
 	}//메서드-end
-	
-	public List<MemberDTO> getBusinessList(Integer item_id, Integer member_id){
-		List<MemberDTO> relist=null;
 
-		try {
-			con = DBConnection.getInstacne().getConnection();
-			String sql="select m.nickname,m.id from (select distinct sender_id from message where item_id = ?) me join (select * from member where id != ?) m on me.sender_id = m.id;";
-			pstmt=con.prepareStatement(sql); //생성시 인자들어간다
-
-			//?값 채우기
-			pstmt.setInt(1, item_id);
-			pstmt.setInt(2, member_id);
-
-			rs=pstmt.executeQuery();
-
-			//rs내용을 dto에 담고
-			//dto를 list에 넣는다
-			//list를 리턴한다
-
-			if(rs.next()){
-				relist=new ArrayList();
-				do{	//rs.next로 하나를 받았으므로 do-while 사용
-					MemberDTO dto=new MemberDTO();
-
-					dto.setNickname(rs.getString("m.nickname"));
-					dto.setId(rs.getInt("m.id"));
-
-					relist.add(dto); //***
-
-				}while(rs.next());
-			}//if-end
-
-		} catch (Exception ex) {
-			System.out.println("getBusinessList()예외:"+ex);
-		}finally{
-			try{
-				if(rs!=null){rs.close();}
-				if(pstmt!=null){pstmt.close();}
-				if(con!=null){con.close();}
-			} catch (Exception exx) {}
-		}//finally
-		return relist;
-	}//getSaleList()
-	
 	//===============
 	//로그인, 인증
 	//===============
@@ -451,29 +315,5 @@ public class MemberDAO {
 		return x;
 	}//userCheck-end
 	
-	//====================
-			//회원탈퇴
-			//====================
-			public int deleteMember(Integer id){
-				PreparedStatement pstmt2=null;
-				int x=-100;
-				try{
-					con = DBConnection.getInstacne().getConnection();
-					pstmt=con.prepareStatement("delete from member where id=?");
-					pstmt.setInt(1, id);
-					
-					x = pstmt.executeUpdate();
-					
-				}catch(Exception ex){
-					System.out.println("deleteMember() 예외"+ex);
-				}finally{
-					try{
-						if(rs!=null){rs.close();}
-						if(pstmt!=null){pstmt.close();}
-						if(con!=null){con.close();}
-					}catch(Exception exx){}
-				}//finally end
-				return x;
-			}//deleteMember-end
 	
 }//class-end

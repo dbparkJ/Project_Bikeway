@@ -10,7 +10,7 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <c:choose>
-	<%-- 로그인상태가 아닐때 --%>
+	<%-- 로그인상태가 아닐때  sdsdsdsdsd--%>
 	<c:when test= "${empty dto.id}" >
 			<script>
 		 	alert("로그인 후 이용 가능합니다");
@@ -18,7 +18,7 @@
 			<meta http-equiv="Refresh" content="0;url=${ctxpath}/member/loginForm.do">
 	</c:when>
 	
-<%-- 로그인상태일때 --%>
+<%-- 로그인상태일때 --%>dd
 	<c:otherwise>	
 		<body class="mx-5 pt-5">
 			<div class="container overflow-hidden pt-5">

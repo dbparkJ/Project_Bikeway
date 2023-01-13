@@ -13,7 +13,7 @@
 					<tr>
 						<td>이메일</td>
 						<td>
-							<input type="text" name="email" id="email" size="30" placeholder="이메일입력" required="required">
+							<input type="email" name="email" id="email" size="30" placeholder="이메일입력" required="required">
 							<input class="btn btn-outline-dark" type="button" value="email중복체크" onClick="emailCheck()">                
 							<input type="hidden" name="emailck" id="emailck" value="false">                
 						</td>

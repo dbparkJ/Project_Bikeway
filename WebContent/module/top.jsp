@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctxpath" value="<%=request.getContextPath()%>" />
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="${ctxpath}/static/app/js/check.js"></script>
+
 <div class="modal fade" id="login" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable pt-1">
 		<div class="modal-content">
@@ -48,12 +51,13 @@
 			</div>
 			<div class="modal-body bg-light pt-3">
 				<div class="container w-90">
-					<form method="post" action="${ctxpath}/member/loginPro.do">
+					<form method="post" action="${ctxpath}/member/inputPro.do">
 						<div class="form-group pt-2">
-							<label for="floatingInputInvalid">이메일 주소</label>
+							<label for="floatingInputInvalid">이메일</label>
 							<div class="form-floating mb-3">
-								<input type="email" name="email" id="email" class="form-control" placeholder="name@example.com" required="required">
+								<input type="email" name="inemail" id="inemail" class="form-control" placeholder="name@example.com" required="required">
 								<label for="floatingInputInvalid">name@example.com</label>
+								<input class="btn btn-outline-dark" type="button" value="email중복체크" onClick="emailCheck()">                
 							</div>
 						</div>
 						<div class="form-group pt-2">
@@ -63,9 +67,16 @@
 								<label for="inputPassword">Password</label>
 							</div>
 						</div>
+						<div class="form-group pt-2">
+							<label for="inputPassword">비밀번호 확인</label>
+							<div class="form-floating mb-3">
+								<input type="password" name="pw" id="pw" class="form-control" placeholder="Password" required="required">
+								<label for="inputPassword">RePassword</label>
+							</div>
+						</div>
 						<div class="d-grid gap-2 d-md-flex justify-content-md-end pt-3">
-							<button class="btn btn-secondary" type="submit">로그인</button>
-							<button type="button" class="btn btn-primary fs-6" onclick="location.href='${ctxpath}/member/inputForm.do'">회원가입</button>
+							<button class="btn btn-secondary" type="submit">확인</button>
+							<button type="button" class="btn btn-primary fs-6">회원가입</button>
 						</div>
 					</form>
 				</div>
@@ -92,8 +103,8 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             <li><a class="dropdown-item" href="${ctxpath}/corse/corse.do">추천코스</a></li>
-            <li><a class="dropdown-item" href="#">회원가입</a></li>
-            <li><a class="dropdown-item" href="#">로그인</a></li>
+            <li><a class="dropdown-item" href="#">blank</a></li>
+            <li><a class="dropdown-item" href="#">blank</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -101,7 +112,7 @@
             메뉴2
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="${ctxpath}/dataScience/dataScienceForm.do">데이터사이언스</a></li>
+            <li><a class="dropdown-item" href="#">blank</a></li>
             <li><a class="dropdown-item" href="${ctxpath}/goods/newgoods.do">상품</a></li>
             <li><a class="dropdown-item" href="${ctxpath}/goods/usedgoods.do">중고상품</a></li>
           </ul>
@@ -111,21 +122,35 @@
             메뉴3
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="#">blank</a></li>
+            <li><a class="dropdown-item" href="#">blank</a></li>
+            <li><a class="dropdown-item" href="#">blank</a></li>
           </ul>
         </li>
       </ul>
     </div>
-    <div>
-	    <button type="button" class="btn btn-Dark mx-2" data-bs-toggle="modal" data-bs-target="#login">로그인</button>
-    </div>
-    <div>
-	    <button type="button" class="btn btn-Dark mx-2" data-bs-toggle="modal" data-bs-target="#membership">회원가입</button>
-	</div>
-    <c:if test="">
+    
+    
+    <c:if test="${empty sessionScope.member}">
+	    <div>
+		    <button type="button" class="btn btn-Dark mx-2" data-bs-toggle="modal" data-bs-target="#login">로그인</button>
+	    </div>
+	    <div>
+		    <button type="button" class="btn btn-Dark mx-2" data-bs-toggle="modal" data-bs-target="#membership">회원가입</button>
+		</div>
     </c:if>
+    <c:if test="${!empty sessionScope.member}">
+	    <div>
+		    <a class="btn btn-Dark mx-2" href="${ctxpath}/dataScience/dataScienceForm.do">마이페이지</a>
+		</div>
+	    <div>
+		    <a class="btn btn-Dark mx-2" href="${ctxpath}/member/logoutPro.do">로그아웃</a>
+	    </div>
+    </c:if>
+    
+    
+    
+    
 	
   </div>
 </nav>
