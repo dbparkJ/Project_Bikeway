@@ -71,7 +71,8 @@ function PaintingLine(keyword){
 					removegraph(elevList);
 		        	drawingLine(data);
 					polyline.setMap(map);
-					creatgraph(data);
+					corseInfowindow()
+					creatgraph(data,keyword);
 	        		}
      	});//$.ajax()
 }
@@ -79,10 +80,7 @@ function PaintingLine(keyword){
 function drawingLine(data){
 	for(var i=0; i<data.length; i++){
     		path.push(new kakao.maps.LatLng(data[i].lat,data[i].lon))
-		
 	}
-	
-	
 	polyline = 	new kakao.maps.Polyline({
 				    path: path, // 선을 구성하는 좌표배열 입니다
 				    strokeWeight: 5, // 선의 두께 입니다
@@ -91,23 +89,13 @@ function drawingLine(data){
 				    strokeStyle: 'solid', // 선의 스타일입니다
 				    endArrow : true
 				});
-
 }
-
-function infoWindow(){
-var iwContent = '<div style="padding:5px;">Hello World!</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-var iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
-var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-}
-
-
-
-
-
-
-
 
 function corseInfowindow(){
+	kakao.maps.event.addListener(polyline, 'mouseover', function(mouseEvent) {  
+    var latlng = mouseEvent.latLng;
+    console.log(latlng.toString());         
+	});
 	kakao.maps.event.addListener(polyline, 'click', function(mouseEvent) {  
     var latlng = mouseEvent.latLng;
     console.log(latlng.toString());         
@@ -115,11 +103,12 @@ function corseInfowindow(){
 }
 
 let myLine;//전역변수로 선언
-function creatgraph(data){
-	elevList=[];
+function creatgraph(data,keyword){
+	elevList = [];
 	if (myLine != undefined){//이미 있으면 myLine 삭제
 		myLine.destroy();
 	}
+
 	for(var i=0; i<data.length; i++){
 		elevList.push(data[i].elev)
 	}
@@ -149,7 +138,7 @@ function creatgraph(data){
 			responsive: true,
 			title:{
 				display:true,
-				text:'고도 그래프'
+				text: keyword + " 코스"
 			},
 			tooltips: {
 				mode: 'index',
