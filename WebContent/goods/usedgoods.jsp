@@ -1,49 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    import = "goods.*"
-    import = "java.util.*"%>
-    
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-    
-<!DOCTYPE html>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
-<body>
-		<%
-			GoodsDAO goodsDAO = GoodsDAO.getDao();
-		%>
-		
-<c:set var = "list" value="<%=goodsDAO.usedgoods()%>"/>
-	
-	<c:forEach var = "dto" items ="${list}">
-	<table class="table table-striped-columns" align ="center" width ="50%">
-	
-	<tr>
-		<td align="center">
-		<a href ="${dto.link}">
-		<h3>${dto.title}</h3>
-		</a>
-		
-		<img src = "${dto.img}" height = "280" width = "280">
-		
-		</td>		
-	</tr>
-	
-	<tr>
-		<td colspan="3" align="center">
-		<font size ="+1">
-		<b>${dto.price}원</b>
-		</font>
-		</td>
-	</tr>
+<body class="mx-5 pt-5">
+	<div class="pb-5">
+		<div class="container-md pt-5">
+			<div class="pb-5">
+				<div class="text-center py-3">
+					<h1 class="dispaly-4"><중고 자전거 리스트></h1>
+				</div>
+				<div class="row row-cols-1 row-cols-md-4 g-5 bg-light">
+					<c:forEach var="goods" items="${usedlist}">
+						<div class="col">
+							<div class="card h-100">
+								<img src="${goods.img}" class="card-img border" alt="...">
+								<div class="card-body">
+									<p class="card-title fs-4">${goods.name}</p>
+								</div>
+								<div class="text-end ">
+									<p class="card-text fs-5">${goods.price}원</p>
+								</div>
+								<div class="card-footer text-end">
+									<a class="text-muted fs-6" href="${goods.link}">구매하러 가기</a>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	</table>
-	</c:forEach>
-	
 		
 </body>
 </html>

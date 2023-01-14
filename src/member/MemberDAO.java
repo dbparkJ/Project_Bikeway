@@ -16,12 +16,9 @@ public class MemberDAO {
 		
 	//생성자
 	private MemberDAO(){} //private 이라 외부에서 객체생성 못함 자신의 클래스에서만 가능
-	
-	
 	public static MemberDAO getDao(){ //jsp 사용할 메서드
 		return instance;
 	}//getDao-end	
-
 	
 	//전역변수
 	Connection con=null;
@@ -217,8 +214,8 @@ public class MemberDAO {
 		try{
 			con = DBConnection.getInstacne().getConnection();
 			pstmt=con.prepareStatement("insert into member (email, password, nickname, name, address, zipcode, created_at, updated_at,ID,weight)"+
-			" values(?,?,?,?,?,?, SYSDATE, SYSDATE,emp_seq.NEXTVAL,?)");
-
+			" values(?,?,?,?,?,?, SYSDATE, SYSDATE,1,?)");
+			//emp_seq.NEXTVAL,
 			//?값 채우기
 			pstmt.setString(1, dto.getEmail());
 			pstmt.setString(2, dto.getPassword());

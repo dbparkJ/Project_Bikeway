@@ -55,7 +55,7 @@
 						<div class="form-group pt-2">
 							<label for="floatingInputInvalid">이메일</label>
 							<div class="form-floating mb-3">
-								<input type="email" name="inemail" id="inemail" class="form-control" placeholder="name@example.com" required="required">
+								<input type="email" name="email" id="email" class="form-control" placeholder="name@example.com" required="required">
 								<label for="floatingInputInvalid">name@example.com</label>
 								<input class="btn btn-outline-dark" type="button" value="email중복체크" onClick="emailCheck()">                
 							</div>
@@ -64,19 +64,45 @@
 							<label for="inputPassword">비밀번호</label>
 							<div class="form-floating mb-3">
 								<input type="password" name="pw" id="pw" class="form-control" placeholder="Password" required="required">
-								<label for="inputPassword">Password</label>
+								<label for="inputPassword">비밀번호</label>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="password" name="pw2" id="pw2" class="form-control" placeholder="Password" required="required">
+								<label for="inputPassword">비밀번호 확인</label>
 							</div>
 						</div>
 						<div class="form-group pt-2">
-							<label for="inputPassword">비밀번호 확인</label>
+							<label for="inputPassword">이름</label>
 							<div class="form-floating mb-3">
-								<input type="password" name="pw" id="pw" class="form-control" placeholder="Password" required="required">
-								<label for="inputPassword">RePassword</label>
+								<input type="text" name="name" id="name" class="form-control" placeholder="홍길동" required="required">
+								<label for="floatingInputInvalid">홍길동</label>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="text" name="nickname" id="nickname" class="form-control" placeholder="홍길동" required="required">
+								<label for="floatingInputInvalid">닉네임</label>
+							</div>
+						</div>
+						<div class="form-group pt-2">
+							<label for="inputPassword">주소</label>
+							<div class="form-floating mb-3">
+								<input readonly="readonly" type="text" name="zipcode" id="zipcode" class="form-control" placeholder="우편번호" required="required">
+								<label for="floatingInputInvalid">우편번호</label>
+								<input class="btn btn-outline-dark" type="button" value="주소찾기" onClick="findAddr()">
+							</div>
+							<div class="form-floating mb-3">
+								<input type="text" name="address" id="address" class="form-control" placeholder="주소" required="required">
+								<label for="floatingInputInvalid">주소</label>
+							</div>
+						</div>
+						<div class="form-group pt-2">
+							<label for="inputPassword">몸무게</label>
+							<div class="form-floating mb-3">
+								<input type="number" name="weight" id="weight" class="form-control" placeholder="kg" required="required">
+								<label for="floatingInputInvalid">kg</label>
 							</div>
 						</div>
 						<div class="d-grid gap-2 d-md-flex justify-content-md-end pt-3">
-							<button class="btn btn-secondary" type="submit">확인</button>
-							<button type="button" class="btn btn-primary fs-6">회원가입</button>
+							<button class="btn btn-primary" type="submit">확인</button>
 						</div>
 					</form>
 				</div>
