@@ -1,4 +1,4 @@
-<%@page import="weather.WeatherRainDAO"%>
+<%@page import="weather.WeatherDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import = "weather.*"
@@ -11,8 +11,8 @@
 </head>
 <body>
 		<%
-			WeatherRainDAO weatherRainDAO = WeatherRainDAO.getDao();
-			WeatherTempDAO weatherTempDAO = WeatherTempDAO.getDao();
+			WeatherDAO weatherRainDAO = WeatherDAO.getDao();
+			WeatherDAO weatherTempDAO = WeatherDAO.getDao();
 		%>
 		
 		<c:set var = "list" value="<%=weatherRainDAO.rainInfo()%>"/>

@@ -23,7 +23,7 @@ public class TotalAction implements CommandAction{
 		
 		// weather
 		// weatherRain
-		WeatherRainDAO weatherRainDAO = WeatherRainDAO.getDao();
+		WeatherDAO weatherRainDAO = WeatherDAO.getDao();
 		List<WeatherRainDTO> rainlist = weatherRainDAO.rainInfo();
 		
 		// weatherTemp

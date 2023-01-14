@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class RidingDTO {
 	
-	private int id; // 아이디
-	private double distance; // 주행거리
-	private double calorie; // 칼로리
-	private int riding_time; // 라이딩 한 시간
+	private Integer id; // 아이디
+	private Double distance; // 주행거리
+	private Double calorie; // 칼로리
+	private Integer riding_time; // 라이딩 한 시간
 	private LocalDate riding_dt; // 라이딩 일자
 	
 	public int getId() {

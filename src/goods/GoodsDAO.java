@@ -5,7 +5,7 @@ import java.util.*; // list
 
 import db.DBConnection;
 import goods.*;
-import weather.WeatherRainDAO;
+import weather.WeatherDAO;
 import weather.WeatherRainDTO;
 
 public class GoodsDAO {
@@ -44,7 +44,6 @@ public class GoodsDAO {
 					NewGoodsDTO dto = new NewGoodsDTO();
 					
 					dto.setName(rs.getString("name"));
-					
 					dto.setImg(rs.getString("img"));
 					dto.setLink(rs.getString("link"));
 					dto.setPrice(rs.getInt("price"));
