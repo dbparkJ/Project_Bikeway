@@ -129,7 +129,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             <li><a class="dropdown-item" href="${ctxpath}/corse/corse.do">추천코스</a></li>
-            <li><a class="dropdown-item" href="#">blank</a></li>
+            <li><a class="dropdown-item" href="${ctxpath}/weather/weatherInfo.do">날씨</a></li>
             <li><a class="dropdown-item" href="#">blank</a></li>
           </ul>
         </li>

@@ -36,23 +36,22 @@ public class RidingDAO {
 	//==========================
 	// 주행거리, 주행시간 , 날짜 입력
 	//==========================
-	public void insertList(Integer id, Double distance, Integer riding_time, LocalDate riding_dt){
+	public void insertList(RidingDTO dto){
 		try{
 			con = DBConnection.getInstacne().getConnection();
-			
 			pstmt=con.prepareStatement("insert into riding(id,distance,calorie,riding_time,riding_dt) "
-					+ "values(?,?,NULL,?,?)");
-			
+					+ "values(NULL,?,NULL,?,?)");
+
+	//		pstmt.setInt(1, dto.getId());
+			pstmt.setDouble(1, dto.getDistance());
+			pstmt.setInt(2, dto.getRiding_time());
+			pstmt.setDate(3, java.sql.Date.valueOf(dto.getRiding_dt()));
+			//pstmt.setTimestamp(4,Timestamp.valueOf(riding_dt.getLocalDate()));
+
 			rs=pstmt.executeQuery();
 			
-			//?값 채우기
-			pstmt.setInt(1,id);
-			pstmt.setDouble(2,distance);
-			pstmt.setInt(3,riding_time);
-			//pstmt.setTimestamp(4,Timestamp.valueOf(riding_dt.getLocalDate()));
-			pstmt.setDate(3,java.sql.Date.valueOf(riding_dt));
 			
-			pstmt.executeUpdate(); //쿼리 수행
+			//?값 채우기
 			
 		}catch(Exception ex){
 			System.out.println("insertList()예외 : "+ex);

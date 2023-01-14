@@ -35,8 +35,6 @@ public class InputProAction implements CommandAction {
 		String email=request.getParameter("email");		
 		request.setAttribute("email", email);
 		
-		System.out.println(email);
-		System.out.println(Double.parseDouble(request.getParameter("weight")));
 		
 		return "/member/inputPro.jsp";
 	}

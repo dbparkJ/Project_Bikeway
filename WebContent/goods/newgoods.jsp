@@ -13,6 +13,7 @@
 					<h1 class="dispaly-4"><신규 자전거 리스트></h1>
 				</div>
 				<div class="row row-cols-1 row-cols-md-4 g-5 bg-light">
+				
 					<c:forEach var="goods" items="${goodslist}">
 						<div class="col">
 							<div class="card h-100">
@@ -29,6 +30,9 @@
 							</div>
 						</div>
 					</c:forEach>
+					
+					
+					
 				</div>
 			</div>
 		</div>

@@ -12,7 +12,7 @@
 	</head>
 	<body class="mx-5 pt-5">
 		<%
-			WeatherRainDAO weatherRainDAO = WeatherRainDAO.getDao();
+		WeatherDAO weatherRainDAO = WeatherDAO.getDao();
 			WeatherTempDAO weatherTempDAO = WeatherTempDAO.getDao();
 		%>
 		

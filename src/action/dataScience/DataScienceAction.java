@@ -19,19 +19,18 @@ public class DataScienceAction implements CommandAction{
 
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
+		request.setAttribute(null, response);
 		
 		RidingDTO dto=new RidingDTO();
-		RidingDAO dao= RidingDAO.getDao();
 		
-
-		Double distance = Double.parseDouble(request.getParameter("distance"));
-		Integer riding_time = Integer.parseInt(request.getParameter("riding_time"));
-		Integer id = Integer.parseInt(request.getParameter("id"));
-		//LocalDate riding_dt = LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ISO_DATE);
-		LocalDate riding_dt = LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-
-		dao.insertList(id,distance,riding_time,riding_dt); //dao 메서드 호출		
-
+		dto.setDistance(Double.parseDouble(request.getParameter("distance")));
+		dto.setRiding_time(Integer.parseInt(request.getParameter("riding_time")));
+		dto.setRiding_dt(LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+			
+		
+		RidingDAO dao= RidingDAO.getDao();
+		dao.insertList(dto);
+		
 		
 		return "/dataScience/dataScience.jsp";
 	}
