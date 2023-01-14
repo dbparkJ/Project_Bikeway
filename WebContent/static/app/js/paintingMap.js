@@ -69,12 +69,33 @@ function PaintingLine(keyword){
         success: function(data){
 					removemap(polyline);
 					removegraph(elevList);
+					resetMap(keyword);
 		        	drawingLine(data);
 					polyline.setMap(map);
 					corseInfowindow()
 					creatgraph(data,keyword);
 	        		}
-     	});//$.ajax()
+     	});
+}
+
+function resetMap(keyword){
+	$.ajax({
+		type : "GET",
+        url:"../json/moveMap.jsp?keyword="+keyword,
+        dataType:"JSON",
+        success: function(data){
+			var bounds = new kakao.maps.LatLngBounds();			
+			var moveLatLon = [
+				new kakao.maps.LatLng(data[0].LAT_AVG,data[0].LON_AVG),
+				new kakao.maps.LatLng(data[0].LAT_MIN,data[0].LON_MIN),
+				new kakao.maps.LatLng(data[0].LAT_MAX,data[0].LON_MAX)
+			]
+			for(var i=0; i<moveLatLon.length; i++){
+				bounds.extend(moveLatLon[i])
+			}
+			map.setBounds(bounds);
+			}
+     	});
 }
 
 function drawingLine(data){

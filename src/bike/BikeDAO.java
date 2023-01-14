@@ -84,7 +84,7 @@ public class BikeDAO {
 			try {
 				con = DBConnection.getInstacne().getConnection();
 
-				pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=? ORDER BY SEQ");
+				pstmt = con.prepareStatement("SELECT * FROM corse where corse_name=?");
 
 				pstmt.setString(1, corse_name);
 				
