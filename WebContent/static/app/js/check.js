@@ -14,20 +14,20 @@ function findAddr(){
 
 /* 이메일 입력 여부와 ajax를 사용하여 db에서 같은 이메일 여부 확인 */
 function emailCheck(){
-	if($('#inemail').val()==''){
+	if($('#emailin').val()==''){
 		alert("email를 입력 하세요");
-		$('#inemail').focus();
+		$('#emailin').focus();
 		return false;
 	}else{
 		$.ajax({
 		type:"POST",
-		url:"confirmEmail.jsp",
-		data:"email="+$('#inemail').val(),/*서버로 보낼 데이터*/
+		url:"../member/confirmEmail.jsp",
+		data:"email="+$('#emailin').val(),/*서버로 보낼 데이터*/
 		dataType:"JSON",/*서버로부터 받는 자료형*/
 		success:function(data){
 				if(data.x==1){
 					alert("사용중인 email 입니다");
-					$('#inemail').val('').focus();
+					$('#emailin').val('').focus();
 				}else{
 					alert("사용 가능한 email");
 					$('#emailck').val('true');///******

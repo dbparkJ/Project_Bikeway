@@ -1,7 +1,9 @@
-/db/
-/riding/
 /action/
 /bike/
+/command/
+/controller/
+/db/
 /goods/
-/weather/
 /member/
+/riding/
+/weather/
