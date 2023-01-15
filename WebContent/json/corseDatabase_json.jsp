@@ -12,5 +12,4 @@ List<CorseDTO> corseList = null;
 BikeDAO dao = BikeDAO.getDao();
 corseList = dao.getCorseLatLon(corse_name);
 %>
-
 <%=corseList%>

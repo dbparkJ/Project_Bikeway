@@ -27,7 +27,7 @@ public class TotalAction implements CommandAction{
 		List<WeatherRainDTO> rainlist = weatherRainDAO.rainInfo();
 		
 		// weatherTemp
-		WeatherTempDAO weatherTempDAO = WeatherTempDAO.getDao();
+		WeatherDAO weatherTempDAO = WeatherDAO.getDao();
 		Vector<WeatherTempDTO> tempvec = weatherTempDAO.tempInfo();
 				
 		// jsp 사용 할 값 설정
