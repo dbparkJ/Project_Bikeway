@@ -64,6 +64,9 @@ public class GoodsDAO {
 					if(con!=null){
 						con.close();
 					}
+					if(stmt!=null) {
+						stmt.close();
+					}
 				}catch(Exception ex2){}
 			}//finally-end
 			
@@ -88,12 +91,9 @@ public class GoodsDAO {
 					do {
 					UsedGoodsDTO dto = new UsedGoodsDTO();
 					
-					dto.setTitle(rs.getString("title"));
-					
+					dto.setName(rs.getString("name"));
 					dto.setImg(rs.getString("img"));
 					dto.setLink(rs.getString("link"));
-					dto.setSite(rs.getString("site"));
-					
 					dto.setPrice(rs.getInt("price"));
 					
 					list.add(dto);
@@ -111,6 +111,9 @@ public class GoodsDAO {
 					}
 					if(con!=null){
 						con.close();
+					}
+					if(stmt!=null) {
+						stmt.close();
 					}
 				}catch(Exception ex2){}
 			}//finally-end
