@@ -45,7 +45,9 @@
 	var disList=[]
 	var dateList=[]
 </script>
+<%-- 
 <c:set var = "list" value = "<%=ridingDAO.getRidingList("orange@naver.com") %>"/>
+--%>
  
 	<c:forEach var="rdto" items="${list}">
 		<script>

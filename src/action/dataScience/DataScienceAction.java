@@ -19,17 +19,26 @@ public class DataScienceAction implements CommandAction{
 
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		request.setCharacterEncoding("utf-8");
-		request.setAttribute(null, response);
+//		request.setAttribute(null, response);
+//		
+//		RidingDTO dto=new RidingDTO();
+//		
+//		dto.setDistance(Double.parseDouble(request.getParameter("distance")));
+//		dto.setRiding_time(Integer.parseInt(request.getParameter("riding_time")));
+//		dto.setRiding_dt(LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+//			
+//		
+//		RidingDAO dao= RidingDAO.getDao();
+//		dao.insertList(dto);
+		RidingDTO dto = new RidingDTO();
+		RidingDAO dao = RidingDAO.getDao();
 		
-		RidingDTO dto=new RidingDTO();
+		List<RidingDTO> list = null;
 		
-		dto.setDistance(Double.parseDouble(request.getParameter("distance")));
-		dto.setRiding_time(Integer.parseInt(request.getParameter("riding_time")));
-		dto.setRiding_dt(LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-			
+		String riding_time = request.getParameter("riding_time");
+		System.out.println(request.getParameter("riding_time"));
 		
-		RidingDAO dao= RidingDAO.getDao();
-		dao.insertList(dto);
+		dao.getAvgRidingList(riding_time);
 		
 		
 		return "/dataScience/dataScience.jsp";
