@@ -60,7 +60,7 @@
 	console.log(dateList);
 </script>	
 
-<h2 id = "title" align="center">'nickname'님의 주간기록</h2>
+<h2 id = "title" align="center">변경 끝!'nickname'님의 주간기록</h2>
 
 <table id = "table1style" cellpadding="20" width="800" height="300" align = "center">
 	
