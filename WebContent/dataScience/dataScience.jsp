@@ -16,37 +16,21 @@
 
 <c:forEach var="ridingmylist" begin = "0" end ="1" items="${ridingmylist}">					
 <h2 align="center">${ridingmylist.id}님의 주간기록</h2>
-</c:forEach>	
+</c:forEach>
+<table width="800" height="300" align = "center">
 	<tr>
 		<td>
 			<div style="width:800px">
-			<canvas id="myChart"></canvas>
+			<canvas id="distanceChart"></canvas>
 			</div>
 		</td>
 	</tr>
 
-
-<table width="800" height="300" align = "center">
-	
-	<tr>	
-		<td>
-			<font size = "+1" id="fontstyle">라이딩 주간 Kcal 분석</font>
-		</td>
-	</tr>
-	
 	<tr>
 		<td>
-			<img src = "" width="600" height="250">
-		</td>
-	</tr>
-
-	<tr>
-		<td align = "center">
-			<c:set var = "total" value = "0"/>
-			<c:forEach var="ridingmylist" items="${ridingmylist}">
-				<c:set var = "total" value = "${total + ridingmylist.distance}"/>
-			</c:forEach>					
-				<font size = "+2" id = "fontstyle">일주일동안 5,632Kcal 소모하셨고 <c:out value = "${total}"/>Km 주행하셨습니다!</font>
+			<div style="width:800px">
+				<canvas id="kcalChart"></canvas>
+			</div>
 		</td>
 	</tr>
 </table>
@@ -54,7 +38,8 @@
 <script>
 var distanceDateList = new Array();
 var distancemyData = new Array();
-var distanceAvgDate = new Array();
+var distanceAvgData = new Array();
+var distanceRankData = new Array();
 
 <c:forEach var="ridingmylist" items="${ridingmylist}">
 	distanceDateList.push(${ridingmylist.riding_dt});
@@ -62,7 +47,11 @@ var distanceAvgDate = new Array();
 </c:forEach>
 
 <c:forEach var="ridingAvglist" items="${ridingAvglist}">
-	distanceAvgDate.push(${ridingAvglist.distance});	
+	distanceAvgData.push(${ridingAvglist.distance});	
+</c:forEach>
+
+<c:forEach var="ridingRankinglist" items="${ridingRankinglist}">
+	distanceRankData.push(${ridingRankinglist.distance});	
 </c:forEach>
 
 // 우선 컨텍스트를 가져옵니다. 
@@ -84,14 +73,14 @@ var distanceAvgDate = new Array();
 				label: "10% 그래프",
 				backgroundColor: window.chartColors.green,
 				borderColor: window.chartColors.green,
-				data: [5,8,1,12,24,51,10],
+				data: distanceRankData,
 				fill: false,
 			},
 			{
 				label: "평균 그래프",
 				backgroundColor: window.chartColors.purple,
 				borderColor: window.chartColors.purple,
-				data: distanceAvgDate,
+				data: distanceAvgData,
 				fill: false,
 			},
 			{
@@ -136,7 +125,93 @@ var distanceAvgDate = new Array();
 				}
 		}
 	};
-	var ctx = document.getElementById("myChart").getContext("2d");
+	var ctx = document.getElementById("distanceChart").getContext("2d");
+	var myLine = new Chart(ctx, config);
+
+</script>
+
+<script>
+var kcalDateList = new Array();
+var kcalmyData = new Array();
+
+
+<c:forEach var="kcalmylist" items="${kcalmylist}">
+	kcalDateList.push(${kcalmylist.riding_dt});
+	kcalmyData.push(${kcalmylist.calorie});	
+</c:forEach>
+
+// 우선 컨텍스트를 가져옵니다. 
+	window.chartColors = {
+		red: 'rgb(255, 99, 132)',
+		orange: 'rgb(255, 159, 64)',
+		yellow: 'rgb(255, 205, 86)',
+		green: 'rgb(75, 192, 192)',
+		blue: 'rgb(54, 162, 235)',
+		purple: 'rgb(153, 102, 255)',
+		grey: 'rgb(231,233,237)',
+		mycolor : 'rgb(75, 192, 192)'
+	};
+	var config = {
+		type: 'bar',
+		data: {
+			labels: kcalDateList,
+			datasets: [{
+				label: "10% 그래프",
+				backgroundColor: window.chartColors.green,
+				borderColor: window.chartColors.green,
+				data: [],
+				fill: false,
+			},
+			{
+				label: "평균 그래프",
+				backgroundColor: window.chartColors.purple,
+				borderColor: window.chartColors.purple,
+				data: [],
+				fill: false,
+			},
+			{
+				label: "나의 그래프",
+				backgroundColor: window.chartColors.red,
+				borderColor: window.chartColors.red,
+				data: kcalmyData,
+				fill: false,
+			}]
+		},
+		options: {
+			responsive: true,
+			title:{
+				display:true,
+				text:'일주일 라이딩 Kcal 분석 그래프'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			elements:{
+				point:{radius:1}
+			},
+			hover: {
+				mode: 'X',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: false,
+						labelString: 'seq'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+					},
+				}]
+				}
+		}
+	};
+	var ctx = document.getElementById("kcalChart").getContext("2d");
 	var myLine = new Chart(ctx, config);
 
 </script>
