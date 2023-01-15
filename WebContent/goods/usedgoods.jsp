@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 </head>
@@ -21,7 +21,7 @@
 									<p class="card-title fs-4">${goods.name}</p>
 								</div>
 								<div class="text-end ">
-									<p class="card-text fs-5">${goods.price}원</p>
+									<p class="card-text fs-5"><fmt:formatNumber value="${goods.price}" type="number"/>원</p>
 								</div>
 								<div class="card-footer text-end">
 									<a class="text-muted fs-6" href="${goods.link}">구매하러 가기</a>

@@ -2,27 +2,16 @@ package goods;
 
 // 중고 자전거 상품
 public class UsedGoodsDTO {
-	private String title; // 상품이름
-	
-	private int price; // 상품가격
-	
+	private String name; // 상품이름
 	private String img; // 상품이미지
-	private String Link; // 상품링크
-	private String site; // 상품사이트
+	private String link; // 상품링크
+	private Integer price; // 상품가격
 	
-	
-	// 게터,세터
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getImg() {
 		return img;
@@ -31,17 +20,17 @@ public class UsedGoodsDTO {
 		this.img = img;
 	}
 	public String getLink() {
-		return Link;
+		return link;
 	}
 	public void setLink(String link) {
-		Link = link;
+		this.link = link;
 	}
-	public String getSite() {
-		return site;
+	public Integer getPrice() {
+		return price;
 	}
-	public void setSite(String site) {
-		this.site = site;
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 	
-
+	
 }
