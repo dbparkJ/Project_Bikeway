@@ -137,14 +137,9 @@ var distanceRankData = new Array();
 <%-- 칼로리분석차트 --%>
 <script>
 var kcalmyData = new Array();
-var kcalAvgData = new Array();
 
 <c:forEach var="caloriemylist" items="${caloriemylist}">
 	kcalmyData.push(${caloriemylist.calorie});	
-</c:forEach>
-
-<c:forEach var="calorieAvglist" items="${calorieAvglist}">
-	kcalAvgData.push(${calorieAvglist.calorie});	
 </c:forEach>
 
 	window.chartColors = {
@@ -162,27 +157,13 @@ var kcalAvgData = new Array();
 		data: {
 			labels: ['월','화','수','목','금','토','일'],
 			datasets: [{
-				label: "10% 그래프",
+				label: "Kcal",
 				backgroundColor: window.chartColors.green,
 				borderColor: window.chartColors.green,
-				data: [0,0,0,0,0,0,0],
+				data: kcalmyData,
 				fill: false,
 				type:'line',
 	            tension: 0.01,
-			},
-			{
-				label: "평균 그래프",
-				backgroundColor: window.chartColors.purple,
-				borderColor: window.chartColors.purple,
-				data: kcalAvgData,
-				fill: false,
-			},
-			{
-				label: "나의 그래프",
-				backgroundColor: window.chartColors.red,
-				borderColor: window.chartColors.red,
-				data: kcalmyData,
-				fill: false,
 			}]
 		},
 		options: {

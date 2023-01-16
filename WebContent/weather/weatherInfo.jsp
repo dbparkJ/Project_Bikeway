@@ -22,7 +22,7 @@
 		<c:forEach var="rdto" items="${vector}">
 		
 		<%-- 1일 
-		날씨상태 : 흐림, 흐리고 비/눈, 구름많음, 맑음--%>
+		날씨상태 : 흐림, 흐리고 비/눈, 구름많음, 맑음, 구름많고 비/눈--%>
 		<th>
 		<c:set var="day" value="<%=new Date(new Date().getTime() + 60*60*24*1000*1)%>"/>
 		<h3><font><fmt:formatDate value="${day}" pattern="yyyy-MM-dd(E)"/></font><br> <%-- 1일후 날짜 --%></h3>
@@ -33,6 +33,10 @@
    		</c:if>
    		
    		<c:if test="${wdto.weather_1_am eq '흐리고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
+   		<c:if test="${wdto.weather_1_am eq '구름많고 비/눈'}">
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		
@@ -49,11 +53,15 @@
    		</c:if>
    		
    		<%-- 오후 날씨 상태 --%>
-   		   		<c:if test="${wdto.weather_1_pm eq '흐림'}">
+   		<c:if test="${wdto.weather_1_pm eq '흐림'}">
    		<img src="cloudy.jpg" width="90" height="90"><br>
    		</c:if>
    		
    		<c:if test="${wdto.weather_1_pm eq '흐리고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
+   		<c:if test="${wdto.weather_1_pm eq '구름많고 비/눈'}">
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		
@@ -89,6 +97,10 @@
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		
+   		<c:if test="${wdto.weather_2_am eq '구름많고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
    		<c:if test="${wdto.weather_2_am eq '구름많음'}">
    		<img src="cloudy.jpg" width="90" height="90"><br>
    		</c:if>
@@ -107,6 +119,10 @@
    		</c:if>
    		
    		<c:if test="${wdto.weather_2_pm eq '흐리고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
+   		<c:if test="${wdto.weather_2_pm eq '구름많고 비/눈'}">
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		
@@ -142,6 +158,10 @@
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		
+   		<c:if test="${wdto.weather_3_am eq '구름많고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
    		<c:if test="${wdto.weather_3_am eq '구름많음'}">
    		<img src="cloudy.jpg" width="90" height="90"><br>
    		</c:if>
@@ -160,6 +180,10 @@
    		</c:if>
    		
    		<c:if test="${wdto.weather_3_pm eq '흐리고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
+   		<c:if test="${wdto.weather_3_pm eq '구름많고 비/눈'}">
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		
@@ -195,6 +219,10 @@
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		
+   		<c:if test="${wdto.weather_4_am eq '구름많고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
    		<c:if test="${wdto.weather_4_am eq '구름많음'}">
    		<img src="cloudy.jpg" width="90" height="90"><br>
    		</c:if>
@@ -213,6 +241,10 @@
    		</c:if>
    		
    		<c:if test="${wdto.weather_4_pm eq '흐리고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
+   		<c:if test="${wdto.weather_4_pm eq '구름많고 비/눈'}">
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		
@@ -248,6 +280,10 @@
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		
+   		<c:if test="${wdto.weather_5_am eq '구름많고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
    		<c:if test="${wdto.weather_5_am eq '구름많음'}">
    		<img src="cloudy.jpg" width="90" height="90"><br>
    		</c:if>
@@ -266,6 +302,10 @@
    		</c:if>
    		
    		<c:if test="${wdto.weather_5_pm eq '흐리고 비/눈'}">
+   		<img src="snowrain.jpg" width="90" height="90"><br>
+   		</c:if>
+   		
+   		<c:if test="${wdto.weather_5_pm eq '구름많고 비/눈'}">
    		<img src="snowrain.jpg" width="90" height="90"><br>
    		</c:if>
    		

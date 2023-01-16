@@ -240,50 +240,7 @@ public class RidingDAO {
 	
 	} // getKcalList()-end
 	
-	//==============
-	// 칼로리 평균데이터
-	//==============
-	public List<RidingDTO> getKcalAvgList(String riding_dt){
-		List<RidingDTO> calorieAvgList = null;
-		try {
-			con = DBConnection.getInstacne().getConnection();
-			pstmt = con.prepareStatement("select b.riding_dt, nvl(a.avg, 0) calorie "
-					+ "	  from (select riding_dt, round(sum(cal)/(select count(distinct(email)) from riding),2) as avg "
-					+ "	  from (select m.email, r.riding_dt riding_dt,2.3 * m.weight*(r.riding_time*0.0667) as cal from member m join riding r on m.email=r.email) group by riding_dt order by riding_dt) a right join (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt, 0 as distance\r\n"
-					+ "   FROM (SELECT trunc(TO_DATE(?, 'YYYY-MM-DD'),'day') SDT \r\n"
-					+ "              ,trunc((TO_DATE(?, 'YYYY-MM-DD')),'day')+6 EDT \r\n"
-					+ "           FROM DUAL)\r\n"
-					+ " CONNECT BY LEVEL <= EDT - SDT + 1) b on a.riding_dt = b.riding_dt order by b.riding_dt");
-			
-			pstmt.setString(1, riding_dt);
-			pstmt.setString(2, riding_dt);
-			
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()){
-				calorieAvgList = new ArrayList<RidingDTO>();
-				do{	
-					RidingDTO dto=new RidingDTO();
-					
-					dto.setCalorie(rs.getDouble("calorie"));
-					dto.setRiding_dt(rs.getDate("riding_dt").toLocalDate());
-					
-					calorieAvgList.add(dto); //***
-				}while(rs.next());
-			}
-		}catch(Exception ex) {
-			System.out.println("getKcalAvgList()예외:"+ex);
-		}finally{
-			try{
-				if(rs!=null){rs.close();}
-				if(stmt!=null){stmt.close();}
-				if(pstmt!=null){pstmt.close();}
-				if(con!=null){con.close();}
-			} catch (Exception exx) {}
-		}//finally
-		return calorieAvgList;
 	
-	} // getKcalAvgList()-end
 }
 	
 
