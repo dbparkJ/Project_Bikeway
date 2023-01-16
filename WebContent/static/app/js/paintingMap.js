@@ -9,13 +9,15 @@ mapOption = {
 	    };  
 	    
 var map = new kakao.maps.Map(mapContainer, mapOption);
+var latlon_AVG = [];
 
 var polyline = null;
 var path = []; /*위경도를 그리기위한 전역변수*/
 var elevList = []; /*고도 그래프를 그리기위한 전역변수*/
 var lating =[]; /* 마커의 위경도*/
 var title =[]; /*마커의 이름*/
-var markers = [];
+var bikemarkers = [];
+var matzipmarkers =[];
 var imageSize = new kakao.maps.Size(24, 35); // 마커 이미지의 이미지 크기 입니다
 var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); // 마커 이미지를 생성합니다
@@ -26,22 +28,22 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); // 마커 이
  */
 function RentBikeRecentInfoList(){
 	
-	if(markers.length > 0) {
-		deletemarkers()
+	if(bikemarkers.length > 0) {
+		deletebikemarkers()
 	}else {
 		$.ajax({
 			type : "GET",
 			url : "../json/rentBikeInfo_json.jsp",
 			dataType : "JSON",
 			success : function(data){
-				drwaingMarker(data)
+				drwaingBikeMarker(data)
 			}
 		})
 	}
 }// function-end
 
 
-function drwaingMarker(data){
+function drwaingBikeMarker(data){
 	for(var i=0; i<data.length; i++){
 		var	marker = new kakao.maps.Marker({
 	        map: map, // 마커를 표시할 지도
@@ -50,19 +52,42 @@ function drwaingMarker(data){
 	        image : markerImage // 마커 이미지 
 	    	});
 			
-    		markers.push(marker);
+    		bikemarkers.push(marker);
 	}
 }
 
-function deletemarkers(){
-	 for (var i = 0; i < markers.length; i++) {
-	    	markers[i].setMap(null);
+function drwaingMatzipMarker(data){
+	for(var i=0; i<data.length; i++){
+		var	marker = new kakao.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: new kakao.maps.LatLng(data[i].lat,data[i].lon), // 마커를 표시할 위치
+	        title : data[i].name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	        image : markerImage // 마커 이미지 
+	    	});
+			
+    		matzipmarkers.push(marker);
+	}
+}
+
+function deletebikemarkers(){
+	 for (var i = 0; i < bikemarkers.length; i++) {
+	    	bikemarkers[i].setMap(null);
     	}
-	markers=[];
+	bikemarkers=[];
+    
+}
+function deletematzipmarkers(){
+	 for (var i = 0; i < matzipmarkers.length; i++) {
+	    	matzipmarkers[i].setMap(null);
+    	}
+	matzipmarkers=[];
     
 }
 
 function PaintingLine(keyword){
+	if(latlon_AVG!=null){
+		latlon_AVG=[];
+	}
 		$.ajax({
 		type : "GET",
         url:"../json/corseDatabase_json.jsp?keyword="+keyword,
@@ -73,7 +98,7 @@ function PaintingLine(keyword){
 					resetMap(keyword);
 		        	drawingLine(data);
 					polyline.setMap(map);
-					corseInfowindow()
+					/*corseInfowindow()*/
 					creatgraph(data,keyword);
 	        		}
      	});
@@ -91,6 +116,8 @@ function resetMap(keyword){
 				new kakao.maps.LatLng(data[0].LAT_MIN,data[0].LON_MIN),
 				new kakao.maps.LatLng(data[0].LAT_MAX,data[0].LON_MAX)
 			]
+			latlon_AVG = [data[0].LON_MIN,data[0].LAT_AVG,data[0].LON_MIN,data[0].LAT_MIN,data[0].LON_MAX,data[0].LAT_MAX];
+			console.log(latlon_AVG)
 			for(var i=0; i<moveLatLon.length; i++){
 				bounds.extend(moveLatLon[i])
 			}
@@ -113,7 +140,7 @@ function drawingLine(data){
 				});
 }
 
-function corseInfowindow(){
+/*function corseInfowindow(){
 	kakao.maps.event.addListener(polyline, 'mouseover', function(mouseEvent) {  
     var latlng = mouseEvent.latLng;
     console.log(latlng.toString());         
@@ -122,7 +149,7 @@ function corseInfowindow(){
     var latlng = mouseEvent.latLng;
     console.log(latlng.toString());         
 	});
-}
+}*/
 
 let myLine;//전역변수로 선언
 function creatgraph(data,keyword){
@@ -207,4 +234,21 @@ function removegraph(elevList){
 	if(elevList != null){
 		elevList =[];
 			}
+}
+
+function matzipList(latlon_AVG){
+	if(bikemarkers.length > 0) {
+		deletebikemarkers()
+	}else {
+		$.ajax({
+				type : "GET",
+				url : "../json/matZipList.jsp?minlon="+latlon_AVG[0]+"&minlat="+latlon_AVG[1]+
+				"&avglon="+latlon_AVG[2]+"&avglat="+latlon_AVG[3]+"&maxlon="+latlon_AVG[4]+"&maxlat="+latlon_AVG[5],
+				dataType : "JSON",
+				success : function(data){
+					console.log(data[0].lon)
+					drwaingMatzipMarker(data)
+				}
+		})
+	}
 }

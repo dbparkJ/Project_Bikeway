@@ -223,16 +223,27 @@ public class BikeDAO {
 			return rentbikeList;
 		}//getRentBikeRecentInfo-end
 //==============================================================================================		
-		public List<MatzipDTO> getMatzipList(Double lat, Double lon){
+		public List<MatzipDTO> getMatzipList(Double minlat, Double minlon,Double avglat,Double avglon,Double maxlat,Double maxlon){
 			JSONArray matZipList = new JSONArray();
 			try {
 				con = DBConnection.getInstacne().getConnection();
-				pstmt = con.prepareStatement(" select * from(select name, category, subcategory, review,"
-						+ "abs(lon-?) as lon,abs(lat-?)as lat "
-						+ "from matzip order by lon) where rownum <=50");
+				pstmt = con.prepareStatement("select * from(select name, category, subcategory, review,lon,lat,\r\n"
+						+ "                 abs(lon-?) as absminlon,\r\n"
+						+ "                 abs(lat-?)as absminlat,\r\n"
+						+ "                 abs(lon-?) as absavglon,\r\n"
+						+ "                 abs(lat-?)as absavglat,\r\n"
+						+ "                 abs(lon-?) as absmaxlon,\r\n"
+						+ "                 abs(lat-?)as absmaxlat\r\n"
+						+ "                 from matzip where review>4.7 \r\n"
+						+ "                 order by absminlon,absminlat) \r\n"
+						+ "                 where rownum <=50");
 				
-				pstmt.setDouble(1, lon);
-				pstmt.setDouble(2, lat);
+				pstmt.setDouble(1, minlon);
+				pstmt.setDouble(2, minlat);
+				pstmt.setDouble(3, avglon);
+				pstmt.setDouble(4, avglat);
+				pstmt.setDouble(5, maxlon);
+				pstmt.setDouble(6, maxlat);
 				rs=pstmt.executeQuery();
 				
 				
