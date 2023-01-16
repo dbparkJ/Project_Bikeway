@@ -41,12 +41,16 @@ public class DataScienceAction implements CommandAction{
 		ridingDto.setRiding_dt(LocalDate.parse(request.getParameter("riding_dt"),DateTimeFormatter.ISO_LOCAL_DATE));
 		ridingDao.insertList(loginMember.getEmail(),ridingDto);
 		
+		// 주행거리
 		List<RidingDTO> ridingmylist = null;
 		List<RidingDTO> ridingAvglist = null;
 		List<RidingDTO> ridingRankinglist = null;
-		List<RidingDTO> kcalmylist = null;
+		// 칼로리
+		List<RidingDTO> caloriemylist = null;
+		List<RidingDTO> calorieAvglist = null;
 		
 		RidingDAO dao = RidingDAO.getDao();
+		
 		String riding_dt = request.getParameter("riding_dt");
 
 		// 주행거리
@@ -54,18 +58,19 @@ public class DataScienceAction implements CommandAction{
 		ridingAvglist = dao.getAvgRidingList(riding_dt); // 평균 주행거리
 		ridingRankinglist = dao.getRankingList(riding_dt); // 상위 10%
 		
-//		// 칼로리
-//		kcalmylist = dao.getKcalList(loginMember.getEmail(),riding_dt);
-//		
-//		
-//		// 주행거리
+		// 칼로리
+		caloriemylist = dao.getKcalList(loginMember.getEmail(),riding_dt);
+		calorieAvglist = dao.getKcalAvgList(riding_dt);
+
+		// 주행거리
 		request.setAttribute("ridingmylist", ridingmylist);
 		request.setAttribute("ridingAvglist", ridingAvglist);
 		request.setAttribute("ridingRankinglist", ridingRankinglist);
 		
 		// 칼로리
-//		request.setAttribute("kcalmylist", kcalmylist);
-//	
+		request.setAttribute("caloriemylist",caloriemylist);
+		request.setAttribute("calorieAvglist",calorieAvglist);
+		
 		return "/dataScience/dataScience.jsp";
 	}
 
