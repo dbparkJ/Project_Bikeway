@@ -125,33 +125,27 @@
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mx-3" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            메뉴1
+            자전거코스
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             <li><a class="dropdown-item" href="${ctxpath}/corse/corse.do">추천코스</a></li>
-            <li><a class="dropdown-item" href="${ctxpath}/weather/weatherInfo.do">날씨</a></li>
-            <li><a class="dropdown-item" href="#">blank</a></li>
+            <li><a class="dropdown-item" href="${ctxpath}/weather/weatherInfo.do">주간 날씨예보</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mx-3" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            메뉴2
+            자전거 구매
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">blank</a></li>
             <li><a class="dropdown-item" href="${ctxpath}/goods/newgoods.do">상품</a></li>
             <li><a class="dropdown-item" href="${ctxpath}/goods/usedgoods.do">중고상품</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle mx-3" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            메뉴3
+        <li class="nav-item ">
+          <a class="nav-link " href="${ctxpath}/dataScience/dataScienceForm.do" id="navbarDarkDropdownMenuLink" role="button" aria-expanded="false">
+            나의 라이딩일지
           </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">blank</a></li>
-            <li><a class="dropdown-item" href="#">blank</a></li>
-            <li><a class="dropdown-item" href="#">blank</a></li>
-          </ul>
+          
         </li>
       </ul>
     </div>
@@ -167,7 +161,7 @@
     </c:if>
     <c:if test="${!empty sessionScope.member}">
 	    <div>
-		    <a class="btn btn-Dark mx-2" href="${ctxpath}/dataScience/dataScienceForm.do">마이페이지</a>
+		    <a class="btn btn-Dark mx-2" href="${ctxpath}/dataScience/dataScience.do">마이페이지</a>
 		</div>
 	    <div>
 		    <a class="btn btn-Dark mx-2" href="${ctxpath}/member/logoutPro.do">로그아웃</a>

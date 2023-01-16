@@ -146,6 +146,7 @@ public class MemberDAO {
 					dto=new LoginMemberDTO(); //객체생성
 					
 					dto.setId(rs.getInt("id"));
+					dto.setEmail(rs.getString("email"));
 					dto.setNickname(rs.getString("nickname"));
 					dto.setAddress(rs.getString("address"));
 				}//if-end
@@ -167,14 +168,14 @@ public class MemberDAO {
 	//===============
 	//회원 정보 가져오기
 	//===============
-	public MemberDTO getMember(Integer id){
+	public MemberDTO getMember(String email){
 		MemberDTO dto=null;
 		
 		try{
 			con = DBConnection.getInstacne().getConnection();
-			pstmt=con.prepareStatement("select * from member where id=?");
+			pstmt=con.prepareStatement("select * from member where email=?");
 			
-			pstmt.setInt(1, id);
+			pstmt.setString(1, email);
 			
 			rs=pstmt.executeQuery();
 			
