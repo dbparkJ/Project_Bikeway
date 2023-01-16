@@ -105,13 +105,13 @@ public class RidingDAO {
 		try{
 			con = DBConnection.getInstacne().getConnection();
 			
-			pstmt=con.prepareStatement("select b.riding_dt, nvl(a.distance, 0) as distance, a.id as id from"
-					+ "(select * from riding where email = ?) a "
-					+ "right join (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt, 0 as distance"
-					+ "   FROM (SELECT TO_DATE(?, 'YYYY-MM-DD') SDT"
-					+ "              , (TO_DATE(?, 'YYYY-MM-DD')+6) EDT"
-					+ "           FROM DUAL)"
-					+ " CONNECT BY LEVEL <= EDT - SDT + 1) b on a.riding_dt = b.riding_dt order by b.riding_dt");
+			pstmt=con.prepareStatement("select b.riding_dt, nvl(a.distance, 0) as distance, a.email as email from"
+		               + "(select * from riding where email = ?) a "
+		               + "right join (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt, 0 as distance"
+		               + "   FROM (SELECT trunc(TO_DATE(?, 'YYYY-MM-DD'),'day') SDT"
+		               + "        , trunc((TO_DATE(?, 'YYYY-MM-DD')),'day')+6 EDT"
+		               + "           FROM DUAL)"
+		               + " CONNECT BY LEVEL <= EDT - SDT + 1) b on a.riding_dt = b.riding_dt order by b.riding_dt");
 			
 			pstmt.setString(1, email);
 			pstmt.setString(2, riding_dt);
@@ -122,7 +122,7 @@ public class RidingDAO {
 			
 			while(rs.next()) {
 				JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
-		    	obj.put("id", rs.getInt("id"));	// obj.put("key","value")
+		    	obj.put("email", rs.getString("email"));	// obj.put("key","value")
 		        obj.put("distance", rs.getDouble("distance"));
 		        obj.put("riding_dt", rs.getString("riding_dt"));
 		        
@@ -160,13 +160,12 @@ public class RidingDAO {
 		try{
 			con = DBConnection.getInstacne().getConnection();
 			
-			pstmt=con.prepareStatement("select b.riding_dt, nvl(a.avg, 0) as distance from (select riding_dt,sum(distance) as d_sum,round(sum(distance)/(select count(distinct(id)) from riding),2) as avg"
-					+ "                from riding group by riding_dt order by riding_dt) a right join (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt, 0 as distance"
-					+ "   FROM (SELECT TO_DATE(?, 'YYYY-MM-DD') SDT"
-					+ "              , (TO_DATE(?, 'YYYY-MM-DD')+6) EDT"
-					+ "           FROM DUAL)"
-					+ " CONNECT BY LEVEL <= EDT - SDT + 1) b on a.riding_dt = b.riding_dt order by b.riding_dt"
-					+ "");
+			pstmt=con.prepareStatement("select b.riding_dt, nvl(a.avg, 0) as distance from (select riding_dt,sum(distance) as d_sum,round(sum(distance)/(select count(distinct(email)) from riding),2) as avg\r\n"
+					+ "                           from riding group by riding_dt order by riding_dt) a right join (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt, 0 as distance\r\n"
+					+ "                 FROM (SELECT TO_DATE(?, 'YYYY-MM-DD') SDT\r\n"
+					+ "                            , (TO_DATE(?, 'YYYY-MM-DD')+6) EDT\r\n"
+					+ "                          FROM DUAL)\r\n"
+					+ "                CONNECT BY LEVEL <= EDT - SDT + 1) b on a.riding_dt = b.riding_dt order by b.riding_dt");
 			
 			pstmt.setString(1, riding_dt);
 			pstmt.setString(2, riding_dt);
@@ -212,15 +211,13 @@ public class RidingDAO {
 		try{
 			con = DBConnection.getInstacne().getConnection();
 			
-			pstmt=con.prepareStatement("select b.riding_dt, nvl(a.avg,0) distance from (select riding_dt,round(sum(distance)/(select ceil(count(distinct(id))*0.1) from riding),2) as avg from riding where id in (select id from"
-					+ "    (select sum(distance) sum, id from riding"
-					+ "    group by id order by sum desc)"
-					+ "    where rownum<= (select ceil(count(distinct(id))*0.1) from riding)) group by riding_dt order by riding_dt) a right join (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt, 0 as distance"
-					+ "   FROM (SELECT TO_DATE(?, 'YYYY-MM-DD') SDT"
-					+ "              , (TO_DATE(?, 'YYYY-MM-DD')+6) EDT"
-					+ "           FROM DUAL)"
-					+ " CONNECT BY LEVEL <= EDT - SDT + 1) b on a.riding_dt = b.riding_dt order by b.riding_dt"
-					+ "");
+			pstmt=con.prepareStatement(" select riding_dt, round(avg(distance),2) distance from (select * from (select email, riding_dt, distance, rank() over(partition by riding_dt order by distance desc) rnk, count(email) over(partition by riding_dt) as cnt from riding) a where ((a.rnk/a.cnt) <= 0.1) or (cnt<10)) group by riding_dt \r\n"
+		               + " having riding_dt in (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt\r\n"
+		               + "   FROM (SELECT trunc(TO_DATE(?, 'YYYY-MM-DD'),'day') SDT "
+		               + "              , trunc((TO_DATE(?, 'YYYY-MM-DD')),'day')+6 EDT "
+		               + "           FROM DUAL)\r\n"
+		               + " CONNECT BY LEVEL <= EDT - SDT + 1)"
+		               + "");
 			
 			pstmt.setString(1, riding_dt);
 			pstmt.setString(2, riding_dt);

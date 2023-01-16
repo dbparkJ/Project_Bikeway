@@ -222,7 +222,42 @@ public class BikeDAO {
 			}//finally
 			return rentbikeList;
 		}//getRentBikeRecentInfo-end
-
+//==============================================================================================		
+		public List<MatzipDTO> getMatzipList(Double lat, Double lon){
+			JSONArray matZipList = new JSONArray();
+			try {
+				con = DBConnection.getInstacne().getConnection();
+				pstmt = con.prepareStatement(" select * from(select name, category, subcategory, review,"
+						+ "abs(lon-?) as lon,abs(lat-?)as lat "
+						+ "from matzip order by lon) where rownum <=50");
+				
+				pstmt.setDouble(1, lon);
+				pstmt.setDouble(2, lat);
+				rs=pstmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
+					obj.put("name", rs.getString("name"));	// obj.put("key","value")
+					obj.put("category", rs.getString("category"));	// obj.put("key","value")
+			    	obj.put("subcategory", rs.getString("subcategory"));	// obj.put("key","value")
+			    	obj.put("review", rs.getDouble("review"));	// obj.put("key","value")
+			    	obj.put("lon", rs.getDouble("lon"));	// obj.put("key","value")
+			    	obj.put("lat", rs.getDouble("lat"));	// obj.put("key","value")
+			    	matZipList.add(obj);	//작성한 JSON 객체를 배열에 추가
+				}
+			}catch(Exception ex) {
+				System.out.println("getMatzipList()예외:"+ex);
+			}finally{
+				try{
+					if(stmt!=null){stmt.close();}
+					if(rs!=null){rs.close();}
+					if(pstmt!=null){pstmt.close();}
+					if(con!=null){con.close();}
+				} catch (Exception exx) {}
+			}//finally
+			return matZipList;
+		}//getRentBikeRecentInfo-end
 
 
 

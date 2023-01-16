@@ -13,25 +13,12 @@
 </head>
 <body class="pt-5">
 
-<h2 class="text text-center pt-5">${dto.nickname}님의 주간기록</h2>
-
-<table width="800" height="300" align = "center">
-	<tr>
-		<td>
-			<div style="width:800px">
-			<canvas id="distanceChart"></canvas>
-			</div>
-		</td>
-	</tr>
-
-	<tr>
-		<td>
-			<div style="width:800px">
-				<canvas id="kcalChart"></canvas>
-			</div>
-		</td>
-	</tr>
-</table>
+	<h1 class="text text-center py-5">${dto.nickname}님의 주간기록</h1>
+	
+	<div style="width:80%;" class="container-md">
+	<canvas id="distanceChart"></canvas>
+	</div>
+	
 
 <script>
 var distanceDateList = new Array();
