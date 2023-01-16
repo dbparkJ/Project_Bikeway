@@ -141,12 +141,6 @@
             <li><a class="dropdown-item" href="${ctxpath}/goods/usedgoods.do">중고상품</a></li>
           </ul>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link " href="${ctxpath}/dataScience/dataScienceForm.do" id="navbarDarkDropdownMenuLink" role="button" aria-expanded="false">
-            나의 라이딩일지
-          </a>
-          
-        </li>
       </ul>
     </div>
     
@@ -161,7 +155,7 @@
     </c:if>
     <c:if test="${!empty sessionScope.member}">
 	    <div>
-		    <a class="btn btn-Dark mx-2" href="${ctxpath}/dataScience/dataScience.do">마이페이지</a>
+		    <a class="btn btn-Dark mx-2" href="${ctxpath}/dataScience/dataScienceForm.do">나의 라이딩일지</a>
 		</div>
 	    <div>
 		    <a class="btn btn-Dark mx-2" href="${ctxpath}/member/logoutPro.do">로그아웃</a>

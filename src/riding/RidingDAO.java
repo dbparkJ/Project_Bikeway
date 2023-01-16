@@ -67,7 +67,6 @@ public class RidingDAO {
 		JSONArray myRidingArray = new JSONArray();
 		try{
 			con = DBConnection.getInstacne().getConnection();
-
 			pstmt=con.prepareStatement("select b.riding_dt, nvl(a.distance, 0) as distance, a.email as email from"
 					+ "(select * from riding where email = ?) a "
 					+ "right join (SELECT TO_CHAR(SDT + LEVEL - 1, 'YYYY-MM-DD') riding_dt, 0 as distance"
@@ -85,7 +84,6 @@ public class RidingDAO {
 			
 			while(rs.next()) {
 				JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
-				
 		        obj.put("distance", rs.getDouble("distance"));
 		        obj.put("riding_dt", rs.getString("riding_dt"));
 		        
