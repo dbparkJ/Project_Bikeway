@@ -34,7 +34,7 @@
 		</td>
 	</tr>
 </table>
->>>>>>> branch 'master' of https://github.com/dbparkJ/Project_Bikeway.git
+
 
 <%-- 주행거리분석차트 --%>
 <script>
