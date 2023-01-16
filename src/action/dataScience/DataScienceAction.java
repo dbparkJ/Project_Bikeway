@@ -47,7 +47,6 @@ public class DataScienceAction implements CommandAction{
 		List<RidingDTO> ridingRankinglist = null;
 		// 칼로리
 		List<RidingDTO> caloriemylist = null;
-		List<RidingDTO> calorieAvglist = null;
 		
 		RidingDAO dao = RidingDAO.getDao();
 		
@@ -60,7 +59,6 @@ public class DataScienceAction implements CommandAction{
 		
 		// 칼로리
 		caloriemylist = dao.getKcalList(loginMember.getEmail(),riding_dt);
-		calorieAvglist = dao.getKcalAvgList(riding_dt);
 
 		// 주행거리
 		request.setAttribute("ridingmylist", ridingmylist);
@@ -69,7 +67,6 @@ public class DataScienceAction implements CommandAction{
 		
 		// 칼로리
 		request.setAttribute("caloriemylist",caloriemylist);
-		request.setAttribute("calorieAvglist",calorieAvglist);
 		
 		return "/dataScience/dataScience.jsp";
 	}
