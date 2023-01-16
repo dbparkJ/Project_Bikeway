@@ -222,7 +222,53 @@ public class BikeDAO {
 			}//finally
 			return rentbikeList;
 		}//getRentBikeRecentInfo-end
-
+//==============================================================================================		
+		public List<MatzipDTO> getMatzipList(Double minlat, Double minlon,Double avglat,Double avglon,Double maxlat,Double maxlon){
+			JSONArray matZipList = new JSONArray();
+			try {
+				con = DBConnection.getInstacne().getConnection();
+				pstmt = con.prepareStatement("select * from(select name, category, subcategory, review,lon,lat,\r\n"
+						+ "                 abs(lon-?) as absminlon,\r\n"
+						+ "                 abs(lat-?)as absminlat,\r\n"
+						+ "                 abs(lon-?) as absavglon,\r\n"
+						+ "                 abs(lat-?)as absavglat,\r\n"
+						+ "                 abs(lon-?) as absmaxlon,\r\n"
+						+ "                 abs(lat-?)as absmaxlat\r\n"
+						+ "                 from matzip where review>4.7 \r\n"
+						+ "                 order by absminlon,absminlat) \r\n"
+						+ "                 where rownum <=50");
+				
+				pstmt.setDouble(1, minlon);
+				pstmt.setDouble(2, minlat);
+				pstmt.setDouble(3, avglon);
+				pstmt.setDouble(4, avglat);
+				pstmt.setDouble(5, maxlon);
+				pstmt.setDouble(6, maxlat);
+				rs=pstmt.executeQuery();
+				
+				
+				while(rs.next()) {
+					JSONObject obj = new JSONObject();	// {}, JSON 객체 생성
+					obj.put("name", rs.getString("name"));	// obj.put("key","value")
+					obj.put("category", rs.getString("category"));	// obj.put("key","value")
+			    	obj.put("subcategory", rs.getString("subcategory"));	// obj.put("key","value")
+			    	obj.put("review", rs.getDouble("review"));	// obj.put("key","value")
+			    	obj.put("lon", rs.getDouble("lon"));	// obj.put("key","value")
+			    	obj.put("lat", rs.getDouble("lat"));	// obj.put("key","value")
+			    	matZipList.add(obj);	//작성한 JSON 객체를 배열에 추가
+				}
+			}catch(Exception ex) {
+				System.out.println("getMatzipList()예외:"+ex);
+			}finally{
+				try{
+					if(stmt!=null){stmt.close();}
+					if(rs!=null){rs.close();}
+					if(pstmt!=null){pstmt.close();}
+					if(con!=null){con.close();}
+				} catch (Exception exx) {}
+			}//finally
+			return matZipList;
+		}//getRentBikeRecentInfo-end
 
 
 

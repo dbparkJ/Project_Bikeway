@@ -15,6 +15,7 @@
 </head>
 <body class="pt-5">
 
+
 <h2 class="text text-center pt-5">${dto.nickname}님의 주간기록</h2>
 <table width="800" height="300" align = "center">
 	<tr>
@@ -33,6 +34,7 @@
 		</td>
 	</tr>
 </table>
+>>>>>>> branch 'master' of https://github.com/dbparkJ/Project_Bikeway.git
 
 <%-- 주행거리분석차트 --%>
 <script>

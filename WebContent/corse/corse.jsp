@@ -30,6 +30,9 @@
 					<div class="py-2">
 						<button class="btn btn-danger" onclick="RentBikeRecentInfoList()"> 따릉이지도</button>
 					</div>
+					<div class="ms-3 py-2">
+						<button class="btn btn-danger" onclick="matzipList(latlon_AVG)"> test</button>
+					</div>
 				</div>
 				<div class="ms-4 pb-3">
 	      			<div class="border"id="map" style="width:600px;height:500px;"></div>
