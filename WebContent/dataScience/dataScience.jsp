@@ -9,12 +9,13 @@
 <meta charset="UTF-8">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<%-- 시간 --%>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 </head>
 <body class="pt-5">
 
 <h2 class="text text-center pt-5">${dto.nickname}님의 주간기록</h2>
-
 <table width="800" height="300" align = "center">
 	<tr>
 		<td>
@@ -33,14 +34,16 @@
 	</tr>
 </table>
 
+<%-- 주행거리분석차트 --%>
 <script>
-var distanceDateList = new Array();
+var distanceDate = new Array();
+
 var distancemyData = new Array();
 var distanceAvgData = new Array();
 var distanceRankData = new Array();
 
 <c:forEach var="ridingmylist" items="${ridingmylist}">
-	distanceDateList.push(${ridingmylist.riding_dt});
+	distanceDate.push(${ridingmylist.riding_dt});
 	distancemyData.push(${ridingmylist.distance});	
 </c:forEach>
 
@@ -52,7 +55,7 @@ var distanceRankData = new Array();
 	distanceRankData.push(${ridingRankinglist.distance});	
 </c:forEach>
 
-// 우선 컨텍스트를 가져옵니다. 
+
 	window.chartColors = {
 		red: 'rgb(255, 99, 132)',
 		orange: 'rgb(255, 159, 64)',
@@ -66,13 +69,15 @@ var distanceRankData = new Array();
 	var config = {
 		type: 'bar',
 		data: {
-			labels: distanceDateList,
+			labels: ['월','화','수','목','금','토','일'],
 			datasets: [{
 				label: "10% 그래프",
 				backgroundColor: window.chartColors.green,
 				borderColor: window.chartColors.green,
 				data: distanceRankData,
 				fill: false,
+				type:'line',
+	            tension: 0.01,
 			},
 			{
 				label: "평균 그래프",
@@ -128,17 +133,20 @@ var distanceRankData = new Array();
 
 </script>
 
+
+<%-- 칼로리분석차트 --%>
 <script>
-var kcalDateList = new Array();
 var kcalmyData = new Array();
+var kcalAvgData = new Array();
 
-
-<c:forEach var="kcalmylist" items="${kcalmylist}">
-	kcalDateList.push(${kcalmylist.riding_dt});
-	kcalmyData.push(${kcalmylist.calorie});	
+<c:forEach var="caloriemylist" items="${caloriemylist}">
+	kcalmyData.push(${caloriemylist.calorie});	
 </c:forEach>
 
-// 우선 컨텍스트를 가져옵니다. 
+<c:forEach var="calorieAvglist" items="${calorieAvglist}">
+	kcalAvgData.push(${calorieAvglist.calorie});	
+</c:forEach>
+
 	window.chartColors = {
 		red: 'rgb(255, 99, 132)',
 		orange: 'rgb(255, 159, 64)',
@@ -152,19 +160,21 @@ var kcalmyData = new Array();
 	var config = {
 		type: 'bar',
 		data: {
-			labels: kcalDateList,
+			labels: ['월','화','수','목','금','토','일'],
 			datasets: [{
 				label: "10% 그래프",
 				backgroundColor: window.chartColors.green,
 				borderColor: window.chartColors.green,
-				data: [],
+				data: [0,0,0,0,0,0,0],
 				fill: false,
+				type:'line',
+	            tension: 0.01,
 			},
 			{
 				label: "평균 그래프",
 				backgroundColor: window.chartColors.purple,
 				borderColor: window.chartColors.purple,
-				data: [],
+				data: kcalAvgData,
 				fill: false,
 			},
 			{
@@ -197,7 +207,7 @@ var kcalmyData = new Array();
 					display: true,
 					scaleLabel: {
 						display: false,
-						labelString: 'seq'
+						labelString: 'seq',
 					}
 				}],
 				yAxes: [{
