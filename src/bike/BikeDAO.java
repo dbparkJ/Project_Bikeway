@@ -56,11 +56,8 @@ public class BikeDAO {
 				singleCorseList=new ArrayList<CorseDTO>();
 				do{	
 					CorseDTO dto=new CorseDTO();
-
 					dto.setCorse_name(rs.getString("corse_name"));
-
 					singleCorseList.add(dto); //***
-
 				}while(rs.next());
 			}//if-end
 			

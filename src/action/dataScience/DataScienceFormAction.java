@@ -1,12 +1,9 @@
 package action.dataScience;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import command.CommandAction;
-
 import member.*;
 
 public class DataScienceFormAction implements CommandAction {
@@ -16,12 +13,11 @@ public class DataScienceFormAction implements CommandAction {
 
 		HttpSession session = request.getSession();
 	      
-//	      LoginMemberDTO loginMember = (LoginMemberDTO)session.getAttribute("member");
-//	      
-//	      MemberDAO dao=MemberDAO.getDao();	      
-//	      MemberDTO dto = dao.getMember(loginMember.getId());      
-//	      
-//	      request.setAttribute("dto", dto);   
+		LoginMemberDTO loginMember = (LoginMemberDTO)session.getAttribute("member");
+		  
+		MemberDAO memberDao=MemberDAO.getDao();	      
+		MemberDTO memberDto = memberDao.getMember(loginMember.getEmail());      
+		request.setAttribute("dto", memberDto);
 		
 		return "/dataScience/dataScienceForm.jsp";
 	}

@@ -8,15 +8,13 @@
 
 <meta charset="UTF-8">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 </head>
-<body>
+<body class="pt-5">
 
-<c:forEach var="ridingmylist" begin = "0" end ="1" items="${ridingmylist}">					
-<h2 align="center">${ridingmylist.id}님의 주간기록</h2>
-</c:forEach>
+<h2 class="text text-center pt-5">${dto.nickname}님의 주간기록</h2>
+
 <table width="800" height="300" align = "center">
 	<tr>
 		<td>
