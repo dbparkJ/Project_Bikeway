@@ -139,6 +139,7 @@ var distanceRankData = new Array();
 var kcalmyData = new Array();
 
 <c:forEach var="caloriemylist" items="${caloriemylist}">
+
    kcalmyData.push(${caloriemylist.calorie});   
 </c:forEach>
 
@@ -202,6 +203,7 @@ var kcalmyData = new Array();
    };
    var ctx = document.getElementById("kcalChart").getContext("2d");
    var myLine = new Chart(ctx, config);
+
 
 </script>
 </body>

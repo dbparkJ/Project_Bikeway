@@ -223,26 +223,26 @@ public class BikeDAO {
 			return rentbikeList;
 		}//getRentBikeRecentInfo-end
 //==============================================================================================		
-		public List<MatzipDTO> getMatzipList(Double minlat, Double minlon,Double avglat,Double avglon,Double maxlat,Double maxlon){
+		public List<MatzipDTO> getMatzipList(Double avglon, Double avglat,Double minlon,Double maxlon,Double minlat,Double maxlat){
 			JSONArray matZipList = new JSONArray();
 			try {
 				con = DBConnection.getInstacne().getConnection();
-				pstmt = con.prepareStatement("select * from(select name, category, subcategory, review,lon,lat,\r\n"
-						+ "                 abs(lon-?) as absminlon,\r\n"
-						+ "                 abs(lat-?)as absminlat,\r\n"
-						+ "                 abs(lon-?) as absavglon,\r\n"
-						+ "                 abs(lat-?)as absavglat,\r\n"
-						+ "                 abs(lon-?) as absmaxlon,\r\n"
-						+ "                 abs(lat-?)as absmaxlat\r\n"
-						+ "                 from matzip where review>4.7 \r\n"
-						+ "                 order by absminlon,absminlat) \r\n"
-						+ "                 where rownum <=50");
+				pstmt = con.prepareStatement("select * from\r\n"
+						+ "(select name,category,subcategory,review, addr, lon, lat,\r\n"
+						+ "abs(lon-?) as avglon,\r\n"
+						+ "abs(lat-?) as avglat\r\n"
+						+ "from matzip\r\n"
+						+ "where lon>? and lon<? \r\n"
+						+ "and lat>? and lat<?\r\n"
+						+ "and review>4.7\r\n"
+						+ "order by avglon,avglat)\r\n"
+						+ "where rownum <=50");
 				
-				pstmt.setDouble(1, minlon);
-				pstmt.setDouble(2, minlat);
-				pstmt.setDouble(3, avglon);
-				pstmt.setDouble(4, avglat);
-				pstmt.setDouble(5, maxlon);
+				pstmt.setDouble(1, avglon);
+				pstmt.setDouble(2, avglat);
+				pstmt.setDouble(3, minlon);
+				pstmt.setDouble(4, maxlon);
+				pstmt.setDouble(5, minlat);
 				pstmt.setDouble(6, maxlat);
 				rs=pstmt.executeQuery();
 				
@@ -253,6 +253,7 @@ public class BikeDAO {
 					obj.put("category", rs.getString("category"));	// obj.put("key","value")
 			    	obj.put("subcategory", rs.getString("subcategory"));	// obj.put("key","value")
 			    	obj.put("review", rs.getDouble("review"));	// obj.put("key","value")
+			    	obj.put("addr", rs.getString("addr"));	// obj.put("key","value")
 			    	obj.put("lon", rs.getDouble("lon"));	// obj.put("key","value")
 			    	obj.put("lat", rs.getDouble("lat"));	// obj.put("key","value")
 			    	matZipList.add(obj);	//작성한 JSON 객체를 배열에 추가

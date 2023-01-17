@@ -15,7 +15,7 @@ Double avglon = Double.parseDouble(request.getParameter("avglon"));
 Double avglat = Double.parseDouble(request.getParameter("avglat"));
 Double maxlon = Double.parseDouble(request.getParameter("maxlon"));
 Double maxlat = Double.parseDouble(request.getParameter("maxlat"));
-matzipList = dao.getMatzipList(minlon,minlat,avglon,avglat,maxlon,maxlat);
+matzipList = dao.getMatzipList(avglon,avglat,minlon,maxlon,minlat,maxlat);
 
 %>
 <%=matzipList%>
