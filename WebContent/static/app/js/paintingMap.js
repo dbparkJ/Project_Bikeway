@@ -260,8 +260,7 @@ function matzipList(latlon_AVG){
 	}else {
 		$.ajax({
 				type : "GET",
-				url : "../json/matZipList.jsp?avglon="+latlon_AVG[0]+"&avglat="+latlon_AVG[1]+
-				"&minlon="+latlon_AVG[2]+"&maxlon="+latlon_AVG[3]+"&minlat="+latlon_AVG[4]+"&maxlat="+latlon_AVG[5],
+				url : "../json/matZipList.jsp?&minlon="+latlon_AVG[2]+"&maxlon="+latlon_AVG[3]+"&minlat="+latlon_AVG[4]+"&maxlat="+latlon_AVG[5],
 				dataType : "JSON",
 				success : function(data){
 					drwaingMatzipMarker(data)

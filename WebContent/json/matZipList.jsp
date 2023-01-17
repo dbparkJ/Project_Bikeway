@@ -11,11 +11,11 @@ List<MatzipDTO> matzipList = null;
 BikeDAO dao = BikeDAO.getDao();
 Double minlon = Double.parseDouble(request.getParameter("minlon"));
 Double minlat = Double.parseDouble(request.getParameter("minlat"));
-Double avglon = Double.parseDouble(request.getParameter("avglon"));
+/* Double avglon = Double.parseDouble(request.getParameter("avglon"));
 Double avglat = Double.parseDouble(request.getParameter("avglat"));
-Double maxlon = Double.parseDouble(request.getParameter("maxlon"));
+ */Double maxlon = Double.parseDouble(request.getParameter("maxlon"));
 Double maxlat = Double.parseDouble(request.getParameter("maxlat"));
-matzipList = dao.getMatzipList(avglon,avglat,minlon,maxlon,minlat,maxlat);
+matzipList = dao.getMatzipList(minlon,maxlon,minlat,maxlat);
 
 %>
 <%=matzipList%>

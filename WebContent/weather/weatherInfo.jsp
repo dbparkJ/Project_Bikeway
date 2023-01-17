@@ -9,15 +9,17 @@
 <html>
 <head>
 </head>
-<body>
+<body class="py-5">
       <%
          WeatherDAO weatherRainDAO = WeatherDAO.getDao();
          WeatherDAO weatherTempDAO = WeatherDAO.getDao();
       %>
-      
+      <div class="text text-center display-3 pt-5">
+      <p>주간날씨</p>
+      </div>
       <c:set var = "list" value="<%=weatherRainDAO.rainInfo()%>"/>
       <c:set var = "vector" value = "<%=weatherTempDAO.tempInfo()%>"/>
-      <table id="fontstyle" id="weather" height="30%" width="90%" cellpadding="2" align="center">
+      <table id="fontstyle" id="weather" height="30%" width="90%" cellpadding="2" align="center" >
       <c:forEach var="wdto" items="${list}">
       <c:forEach var="rdto" items="${vector}">
       
