@@ -1,4 +1,4 @@
-# Project_Bikeway_ver1.0
+# Project_Bikeway_ver 1.0
 #### 프로젝트기간 : 2023.01.02 ~ 2023.01.16
 ---
 ### 프로젝트 방향성
