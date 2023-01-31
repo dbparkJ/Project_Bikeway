@@ -1,7 +1,14 @@
-# Project_Bikeway
----
+# Project_Bikeway_ver1.0
 #### 프로젝트기간 : 2023.01.02 ~ 2023.01.16
-#### 프로젝트목적
+---
+### 프로젝트 방향성
+#### 자전거 유저들을 위한 all in one 사이트 구축
+* 라이딩 코스 지도에 맛집, 자전거 수리점, 공공자전거 대요소 등의 편의시설 정보 표시
+* 실시간 날씨 정보 시각화 구현
+* 유저의 라이딩 기록을 시각화하고 전체 평균 기록과 상위 기록을 표시
+* 자전거 상품 표시
+---
+### 프로젝트 목적
 * openAPI, web scraping등으로 수집한 빅데이터를 ETL 도구를 사용해 접합한 형식으로 가공
 * Matplotlib, Folium, 다음지도 api를 통한 빅데이터 실시간 시각화
 * JSON/AJAX 를 활용한 동적 프로그램 구현
@@ -9,9 +16,18 @@
 * 프로젝트를 통한 실무 연습 및 팀원간의 커뮤니케이션 능력 향상
 * 포트폴리오를 통하여 향후 데이터 분석 업무 취업 스펙 확보 또는 창업을 위한 비즈니스 모델 제시
 ---
-#### 팀원소개
-* 박종민(리더) : 프로젝트 매니지먼트, ajax를 활용한 동적 지도 시각화, 웹페이징 제작 및 디자인
-* 이예지(팀원) : 공공데이터 포털의 openAPI 소상공인 데이터 가공 및 분석, Oracle DB의 db구축, 다나와 site web scraping, chart.js를 기반 데이터 시각화
-* 김유진(팀원) : 공공데이터 포털의 openAPI 초단기날씨예보 데이터 가공 및 분석, Oracle DB의 db구축, 라이트브라더스 site web scraping, chart.js를 기반 데이터 시각화
-* 현재봉(팀원) : jatoo site의 코스정보 데이터 db구축
-![image](https://user-images.githubusercontent.com/113589300/215639577-89e8f156-dcc8-4e4a-9a01-da13c60b3a4a.png)
+#### 팀원 및 엄부분담
+* 박종민(리더) : 프로젝트 매니지먼트, ajax와 카카오맵 API를 활용한 동적 지도 시각화, 웹페이징 제작 및 디자인
+* 이예지(팀원) : 공공데이터 포털의 소상공인 openAPI 데이터 가공 및 분석, Oracle DB의 db구축, 다나와 site web scraping, chart.js를 기반 데이터 시각화
+* 김유진(팀원) : 공공데이터 포털의 초단기날씨예보 openAPI  데이터 가공 및 분석, Oracle DB의 db구축, 라이트브라더스 site web scraping, chart.js를 기반 데이터 시각화
+* 현재봉(팀원) : jatoo site의 코스정보 데이터 db구축, 공공데이터 포털의 화장실 openAPI 데이터 가공 및 분석 Oracle DB 구축, DB query문 작성
+---
+### 개발환경
+![image](https://user-images.githubusercontent.com/113589300/215642961-b24b708e-26db-498a-8888-88bea76eb655.png)
+![image](https://user-images.githubusercontent.com/113589300/215643112-5f4c3854-e17b-46cf-82a2-1bf350ea802a.png)
+---
+### 향후 발전 가능성(머신러닝 기반)
+0. SNS의 해쉬태그(#) 자전거 키워드를 분석하여 최신 자전거 트렌드 파악
+1. 실시간 미세먼지 openAPI를 기반으로 한 미세먼지 차트, 딥러닝의 LSTM을 활용한 미세먼지 예측 데이터 제공
+2. 코스의 고도데이터, 맛집데이터, 따릉이 데이터를 기반으로 머신러닝의 비지도학습의 Clustering(군집화)기법을 활용한 초급,중급,고급 등의 코스 분석
+3. 따릉이 데이터의 이용시간별 데이터를 분석하여 추이 예측
