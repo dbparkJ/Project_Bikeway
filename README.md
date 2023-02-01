@@ -26,7 +26,7 @@
 ![image](https://user-images.githubusercontent.com/113589300/215642961-b24b708e-26db-498a-8888-88bea76eb655.png)
 ![image](https://user-images.githubusercontent.com/113589300/215643112-5f4c3854-e17b-46cf-82a2-1bf350ea802a.png)
 ---
-### 향후 발전 가능성(머신러닝 기반)
+### 향후 발전 가능성(AI 기반)
 0. SNS의 해쉬태그(#) 자전거 키워드를 분석하여 최신 자전거 트렌드 파악
 1. 실시간 미세먼지 openAPI를 기반으로 한 미세먼지 차트, 딥러닝의 LSTM을 활용한 미세먼지 예측 데이터 제공
 2. 코스의 고도데이터, 맛집데이터, 따릉이 데이터를 기반으로 머신러닝의 비지도학습의 Clustering(군집화)기법을 활용한 초급,중급,고급 등의 코스 분석
